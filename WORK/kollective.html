@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kollective — CREATEXODUS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="pre-center">
+      <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="pre-logo">
+      <div class="pre-bar-track">
+        <div class="pre-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background -->
+  <div class="site-bg" aria-hidden="true"></div>
+  <div class="site-pattern" aria-hidden="true">
+    <img src="../CE WALL LOGOS.png" alt="" class="site-pattern-img">
+  </div>
+
+  <!-- Navigation -->
+  <nav class="proj-nav">
+    <a href="../index.html" class="proj-nav-logo">
+      <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS">
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('proj-menu').classList.toggle('active');this.classList.toggle('active');document.body.style.overflow=this.classList.contains('active')?'hidden':''">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Full-Screen Menu Overlay -->
+  <div id="proj-menu" class="proj-overlay-menu">
+    <div class="proj-menu-inner">
+      <a href="../index.html#work" class="proj-menu-link">Portfolio</a>
+      <a href="../index.html#services" class="proj-menu-link">Services</a>
+      <a href="../index.html#about" class="proj-menu-link">About</a>
+      <a href="../index.html#contact" class="proj-menu-link">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="proj-hero">
+    <div class="container">
+      <div class="proj-hero-label"><span>Project</span><span>—</span><span>Kollective</span></div>
+      <h1 class="proj-hero-title">Kollective</h1>
+      <div class="proj-tags">
+        <span class="proj-tag">Editing</span>
+        <span class="proj-tag">Videography</span>
+      </div>
+      <div class="proj-details">
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Client</div>
+          <div class="proj-detail-value">Kollective</div>
+        </div>
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Services</div>
+          <div class="proj-detail-value">Editing, Videography</div>
+        </div>
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Location</div>
+          <div class="proj-detail-value">Austin, TX</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media Gallery -->
+  <section class="proj-media">
+    <div class="container">
+      <div class="proj-vertical-grid">
+        <div class="proj-media-vertical">
+          <video src="../WORK/05-31-22 (Kollective) Anna's Introduction V3.mp4#t=1" controls preload="metadata" playsinline></video>
+        </div>
+        <div class="proj-media-vertical">
+          <video src="../WORK/ProMix x Kollective V3.mp4#t=1" controls preload="metadata" playsinline></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Navigation -->
+  <section class="proj-nav-bottom">
+    <div class="container">
+      <div class="proj-nav-item proj-nav-item--prev">
+        <div class="proj-prev-label">Previous Project</div>
+        <a href="cactus-jack.html" class="proj-prev-title">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M26 16H6M6 16L14 8M6 16L14 24" stroke="currentColor" stroke-width="1.5"/></svg>
+          Cactus Jack
+        </a>
+      </div>
+      <div class="proj-nav-item proj-nav-item--next">
+        <div class="proj-next-label">Next Project</div>
+        <a href="youngla.html" class="proj-next-title">
+          YoungLA
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="proj-footer">
+    <div class="container">
+      <div class="proj-footer-inner">
+        <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="proj-footer-logo">
+        <span class="proj-footer-copy">&copy; 2026 CREATEXODUS. All rights reserved.</span>
+        <div class="proj-footer-links">
+          <a href="../index.html#work">Portfolio</a>
+          <a href="../index.html#services">Services</a>
+          <a href="../index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/project.js"></script>
+</body>
+</html>

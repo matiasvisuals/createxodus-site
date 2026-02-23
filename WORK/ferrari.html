@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferrari — CREATEXODUS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="pre-center">
+      <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="pre-logo">
+      <div class="pre-bar-track">
+        <div class="pre-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background -->
+  <div class="site-bg" aria-hidden="true"></div>
+  <div class="site-pattern" aria-hidden="true">
+    <img src="../CE WALL LOGOS.png" alt="" class="site-pattern-img">
+  </div>
+
+  <!-- Navigation -->
+  <nav class="proj-nav">
+    <a href="../index.html" class="proj-nav-logo">
+      <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS">
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('proj-menu').classList.toggle('active');this.classList.toggle('active');document.body.style.overflow=this.classList.contains('active')?'hidden':''">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Full-Screen Menu Overlay -->
+  <div id="proj-menu" class="proj-overlay-menu">
+    <div class="proj-menu-inner">
+      <a href="../index.html#work" class="proj-menu-link">Portfolio</a>
+      <a href="../index.html#services" class="proj-menu-link">Services</a>
+      <a href="../index.html#about" class="proj-menu-link">About</a>
+      <a href="../index.html#contact" class="proj-menu-link">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="proj-hero">
+    <div class="container">
+      <div class="proj-hero-label"><span>Project</span><span>—</span><span>Esperienza Ferrari</span></div>
+      <h1 class="proj-hero-title">Ferrari</h1>
+      <div class="proj-tags">
+        <span class="proj-tag">Videography</span>
+        <span class="proj-tag">Editing</span>
+        <span class="proj-tag">Sound Design</span>
+      </div>
+      <div class="proj-details">
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Client</div>
+          <div class="proj-detail-value">Ferrari Dallas</div>
+        </div>
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Services</div>
+          <div class="proj-detail-value">Videography, Editing, Sound Design</div>
+        </div>
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Location</div>
+          <div class="proj-detail-value">Dallas, TX</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media Gallery -->
+  <section class="proj-media">
+    <div class="container">
+      <div class="proj-media-grid">
+
+        <div class="proj-media-full proj-video-preview" data-video="../WORK/FERRARI REV 4.mp4">
+          <video src="../WORK/FERRARI REV 4.mp4#t=1" preload="metadata" muted playsinline></video>
+          <div class="proj-play-btn">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+              <path d="M26 20L46 32L26 44V20Z" fill="white" fill-opacity="0.9"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Video Lightbox -->
+        <div class="video-lightbox" id="videoLightbox">
+          <button class="video-lightbox-close" id="videoClose" aria-label="Close">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M6 6L22 22M22 6L6 22" stroke="white" stroke-width="1.5"/>
+            </svg>
+          </button>
+          <div class="video-lightbox-inner">
+            <video id="lightboxVideo" controls playsinline>
+              <source src="" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- Row of 2 -->
+        <div class="proj-media-row">
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-23.jpg" alt="Ferrari" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Full -->
+        <div class="proj-media-full">
+          <img src="../FERRARI/Ferrari Site Photos-2.jpg" alt="Ferrari" loading="lazy">
+        </div>
+
+        <!-- Trio -->
+        <div class="proj-media-trio">
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-3.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-5.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-7.jpg" alt="Ferrari" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Full -->
+        <div class="proj-media-full">
+          <img src="../FERRARI/Ferrari Site Photos-6.jpg" alt="Ferrari" loading="lazy">
+        </div>
+
+        <!-- Row of 2 -->
+        <div class="proj-media-row">
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-8.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-9.jpg" alt="Ferrari" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Full -->
+        <div class="proj-media-full">
+          <img src="../FERRARI/Ferrari Site Photos-11.jpg" alt="Ferrari" loading="lazy">
+        </div>
+
+        <!-- Trio -->
+        <div class="proj-media-trio">
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-10.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-12.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-13.jpg" alt="Ferrari" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Row of 2 -->
+        <div class="proj-media-row">
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-14.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-16.jpg" alt="Ferrari" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Full -->
+        <div class="proj-media-full">
+          <img src="../FERRARI/Ferrari Site Photos-15.jpg" alt="Ferrari" loading="lazy">
+        </div>
+
+        <!-- Trio -->
+        <div class="proj-media-trio">
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-17.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-18.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-third">
+            <img src="../FERRARI/Ferrari Site Photos-19.jpg" alt="Ferrari" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Row of 2 -->
+        <div class="proj-media-row">
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-20.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-21.jpg" alt="Ferrari" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Full -->
+        <div class="proj-media-full">
+          <img src="../FERRARI/Ferrari Site Photos-22.jpg" alt="Ferrari" loading="lazy">
+        </div>
+
+        <!-- Row of 2 -->
+        <div class="proj-media-row">
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-24.jpg" alt="Ferrari" loading="lazy">
+          </div>
+          <div class="proj-media-half">
+            <img src="../FERRARI/Ferrari Site Photos-25.jpg" alt="Ferrari" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Full -->
+        <div class="proj-media-full">
+          <img src="../FERRARI/Ferrari Site Photos-26.jpg" alt="Ferrari" loading="lazy">
+        </div>
+
+        <!-- Full -->
+        <div class="proj-media-full">
+          <img src="../FERRARI/Ferrari Site Photos-27.jpg" alt="Ferrari" loading="lazy">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Navigation -->
+  <section class="proj-nav-bottom">
+    <div class="container">
+      <div class="proj-nav-item proj-nav-item--prev">
+        <div class="proj-prev-label">Previous Project</div>
+        <a href="john-sakaguchi.html" class="proj-prev-title">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M26 16H6M6 16L14 8M6 16L14 24" stroke="currentColor" stroke-width="1.5"/></svg>
+          John Sakaguchi
+        </a>
+      </div>
+      <div class="proj-nav-item proj-nav-item--next">
+        <div class="proj-next-label">Next Project</div>
+        <a href="porsche.html" class="proj-next-title">
+          Porsche
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="proj-footer">
+    <div class="container">
+      <div class="proj-footer-inner">
+        <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="proj-footer-logo">
+        <span class="proj-footer-copy">&copy; 2026 CREATEXODUS. All rights reserved.</span>
+        <div class="proj-footer-links">
+          <a href="../index.html#work">Portfolio</a>
+          <a href="../index.html#services">Services</a>
+          <a href="../index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/project.js"></script>
+</body>
+</html>

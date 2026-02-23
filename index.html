@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CREATEXODUS — Premium Creative Studio</title>
+  <meta name="description" content="CREATEXODUS is a premium creative studio specializing in videography, photography, creative direction, and sound design for the world's most ambitious brands. Based in Santa Barbara, CA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Site-wide Background -->
+  <div class="site-bg" aria-hidden="true"></div>
+  <div class="site-pattern" aria-hidden="true">
+    <img src="CE WALL LOGOS.png" alt="" class="site-pattern-img">
+  </div>
+
+  <!-- Grain Overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ============ NAVIGATION (Hamburger Only) ============ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS">
+      </a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Full-Screen Menu Overlay -->
+  <div id="mobile-menu">
+    <div class="mobile-inner">
+      <a href="#work" class="mobile-link">Portfolio</a>
+      <a href="#services" class="mobile-link">Services</a>
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+      <a href="#contact" class="btn btn-glass mobile-cta">Discuss a Project</a>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="WORK/MERCEDES RECAP V4 .mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-fade"></div>
+
+    <div class="hero-inner">
+      <img src="CE LANDING PAGE.png" alt="CREATEXODUS" class="hero-landing-img">
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ============ CLIENT LOGO MARQUEE ============ -->
+  <section id="logo-marquee">
+    <div class="marquee-track">
+      <div class="marquee-inner">
+        <img src="assets/logos/ferrari.png" alt="Ferrari" class="marquee-logo">
+        <img src="assets/logos/porsche-white.png" alt="Porsche" class="marquee-logo">
+        <img src="assets/logos/mercedes-white-new.png" alt="Mercedes-Benz" class="marquee-logo">
+        <img src="assets/logos/cactusjack.svg" alt="Cactus Jack" class="marquee-logo">
+        <img src="assets/logos/celsius.png" alt="Celsius" class="marquee-logo">
+        <img src="assets/logos/youngla-white.png" alt="YoungLA" class="marquee-logo">
+        <img src="assets/logos/newbalance-white-new.png" alt="New Balance" class="marquee-logo">
+        <img src="assets/logos/ag1-white-new.png" alt="AG1" class="marquee-logo">
+        <img src="assets/logos/kollective-white-new.png" alt="Kollective" class="marquee-logo">
+        <img src="assets/logos/bounce-white-new.png" alt="Bounce Sports" class="marquee-logo">
+        <img src="assets/logos/taos-white-new.png" alt="Taos Footwear" class="marquee-logo">
+        <!-- duplicate for seamless loop -->
+        <img src="assets/logos/ferrari.png" alt="Ferrari" class="marquee-logo">
+        <img src="assets/logos/porsche-white.png" alt="Porsche" class="marquee-logo">
+        <img src="assets/logos/mercedes-white-new.png" alt="Mercedes-Benz" class="marquee-logo">
+        <img src="assets/logos/cactusjack.svg" alt="Cactus Jack" class="marquee-logo">
+        <img src="assets/logos/celsius.png" alt="Celsius" class="marquee-logo">
+        <img src="assets/logos/youngla-white.png" alt="YoungLA" class="marquee-logo">
+        <img src="assets/logos/newbalance-white-new.png" alt="New Balance" class="marquee-logo">
+        <img src="assets/logos/ag1-white-new.png" alt="AG1" class="marquee-logo">
+        <img src="assets/logos/kollective-white-new.png" alt="Kollective" class="marquee-logo">
+        <img src="assets/logos/bounce-white-new.png" alt="Bounce Sports" class="marquee-logo">
+        <img src="assets/logos/taos-white-new.png" alt="Taos Footwear" class="marquee-logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS BAR ============ -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-num" data-count="17">0</span>
+          <span class="stat-suffix">+</span>
+          <span class="stat-label">Brands<br>Served</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="21">0</span>
+          <span class="stat-suffix">+</span>
+          <span class="stat-label">Projects<br>Delivered</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="6">0</span>
+          <span class="stat-suffix"></span>
+          <span class="stat-label">Core<br>Services</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="100">0</span>
+          <span class="stat-suffix">%</span>
+          <span class="stat-label">Client<br>Satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PORTFOLIO / WORK (Desktop Interface) ============ -->
+  <section id="work">
+    <div class="container">
+      <div class="section-label"><span>01</span><span>SELECTED WORK</span></div>
+      <h2 class="section-headline">Portfolio</h2>
+      <div class="desktop-grid">
+
+        <a href="work/ferrari.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/ferrari.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Ferrari</span>
+        </a>
+
+        <a href="work/porsche.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/porsche-white.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Porsche</span>
+        </a>
+
+        <a href="work/mercedes-benz.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/mercedes-white-new.png" class="folder-logo folder-logo-wide" alt="">
+          </div>
+          <span class="folder-name">Mercedes-Benz</span>
+        </a>
+
+        <a href="work/cactus-jack.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/cactusjack.svg" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Cactus Jack</span>
+        </a>
+
+        <a href="work/kollective.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/kollective-white-new.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Kollective</span>
+        </a>
+
+        <a href="work/youngla.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/youngla-white.png" class="folder-logo folder-logo-lg" alt="">
+          </div>
+          <span class="folder-name">YoungLA</span>
+        </a>
+
+        <a href="work/mirrorless-apparel.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/mirrorless-white.png" class="folder-logo folder-logo-lg" alt="Mirrorless Apparel" style="transform: translate(-46%, -33%)">
+          </div>
+          <span class="folder-name">Mirrorless Apparel</span>
+        </a>
+
+        <a href="work/new-balance.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/newbalance-white-new.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">New Balance</span>
+        </a>
+
+        <a href="work/taos-footwear.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/taos-white-new.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Taos Footwear</span>
+        </a>
+
+        <a href="work/celsius.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/celsius.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Celsius</span>
+        </a>
+
+        <a href="work/ag1.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/ag1-white-new.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">AG1</span>
+        </a>
+
+        <a href="work/bounce-sports.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/bounce-white-new.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Bounce Sports</span>
+        </a>
+
+        <a href="work/left-coast.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <span class="folder-logo-text">LC</span>
+          </div>
+          <span class="folder-name">Left Coast</span>
+        </a>
+
+        <a href="work/westmont-college.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/westmont-white.png" class="folder-logo folder-logo-wide" alt="Westmont College" style="filter: brightness(0) invert(1)">
+          </div>
+          <span class="folder-name">Westmont College</span>
+        </a>
+
+        <a href="work/bebsters.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <span class="folder-logo-text">BB</span>
+          </div>
+          <span class="folder-name">Bebsters</span>
+        </a>
+
+        <a href="work/aoa.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="AOA LOGO.png" class="folder-logo folder-logo-lg" alt="">
+          </div>
+          <span class="folder-name">AOA</span>
+        </a>
+
+        <a href="work/tamed-psychotic.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="TAMED LOGO.png" class="folder-logo folder-logo-lg" alt="">
+          </div>
+          <span class="folder-name">Tamed Psychotic</span>
+        </a>
+
+        <a href="work/opium.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="Opium logo.png" class="folder-logo folder-logo-lg" alt="">
+          </div>
+          <span class="folder-name">Opium</span>
+        </a>
+
+        <a href="work/interscope.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="INTERSCOPE LOGO.png" class="folder-logo folder-logo-lg" alt="Interscope">
+          </div>
+          <span class="folder-name">Interscope</span>
+        </a>
+
+        <a href="work/cody-wilder.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <span class="folder-logo-text">CW</span>
+          </div>
+          <span class="folder-name">Cody Wilder</span>
+        </a>
+
+        <a href="work/toyota.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/toyota-white.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Toyota</span>
+        </a>
+
+        <a href="work/neffect.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="assets/logos/neffect-white.png" class="folder-logo" alt="NEFFECT">
+          </div>
+          <span class="folder-name">NEFFECT</span>
+        </a>
+
+        <a href="work/the-menas.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <span class="folder-logo-text">TM</span>
+          </div>
+          <span class="folder-name">The Mena's</span>
+        </a>
+
+        <a href="work/john-sakaguchi.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <span class="folder-logo-text">JS</span>
+          </div>
+          <span class="folder-name">John Sakaguchi</span>
+        </a>
+
+        <a href="work/passion-conferences.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <img src="PASSION LOGO.png" class="folder-logo" alt="">
+          </div>
+          <span class="folder-name">Passion Conferences</span>
+        </a>
+
+        <a href="work/richamiri.html" class="desktop-folder">
+          <div class="folder-icon">
+            <img src="FOLDER PNG.webp" class="folder-base" alt="">
+            <div class="folder-glass"></div>
+            <span class="folder-logo-text">RA</span>
+          </div>
+          <span class="folder-name">Rich Amiri</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services">
+    <div class="container">
+      <div class="section-label"><span>02</span><span>SERVICES</span></div>
+      <h2 class="section-headline">Services</h2>
+      <div class="svc-grid">
+
+        <div class="svc-card" data-svc="videography">
+          <div class="svc-card-top">
+            <span class="svc-card-num">01</span>
+          </div>
+          <h3 class="svc-card-title">Videography</h3>
+          <p class="svc-card-desc">Cinematic video production for campaigns, branded content, and visual storytelling.</p>
+        </div>
+
+        <div class="svc-card" data-svc="photography">
+          <div class="svc-card-top">
+            <span class="svc-card-num">02</span>
+          </div>
+          <h3 class="svc-card-title">Photography</h3>
+          <p class="svc-card-desc">Editorial and commercial photography. Every shot intentional, every detail considered.</p>
+        </div>
+
+        <div class="svc-card" data-svc="editing">
+          <div class="svc-card-top">
+            <span class="svc-card-num">03</span>
+          </div>
+          <h3 class="svc-card-title">Video Editing</h3>
+          <p class="svc-card-desc">Color grading, pacing, and seamless post-production that transforms raw footage into art.</p>
+        </div>
+
+        <div class="svc-card" data-svc="sound">
+          <div class="svc-card-top">
+            <span class="svc-card-num">04</span>
+          </div>
+          <h3 class="svc-card-title">Sound Design</h3>
+          <p class="svc-card-desc">Custom sound design, mixing, and sonic branding that elevates your visual content.</p>
+        </div>
+
+        <div class="svc-card" data-svc="direction">
+          <div class="svc-card-top">
+            <span class="svc-card-num">05</span>
+          </div>
+          <h3 class="svc-card-title">Creative Direction</h3>
+          <p class="svc-card-desc">Strategic vision from concept to execution. We direct the narrative of your brand.</p>
+        </div>
+
+        <div class="svc-card" data-svc="social">
+          <div class="svc-card-top">
+            <span class="svc-card-num">06</span>
+          </div>
+          <h3 class="svc-card-title">Social Media</h3>
+          <p class="svc-card-desc">Platform-native content strategy and production optimized for engagement and growth.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCATION (Interactive Globe) ============ -->
+  <section id="location">
+    <div class="container">
+      <div class="section-label"><span>03</span><span>LOCATION</span></div>
+      <h2 class="section-headline">Location</h2>
+      <div class="globe-wrap">
+        <canvas id="globe-canvas"></canvas>
+        <div class="globe-label">
+          <span class="globe-city">Santa Barbara, CA</span>
+          <span class="globe-country">USA</span>
+        </div>
+      </div>
+      <div class="location-details-row">
+        <div class="loc-item">
+          <span class="loc-label">Home Base</span>
+          <span class="loc-value">Santa Barbara, CA</span>
+        </div>
+        <div class="loc-item">
+          <span class="loc-label">Email</span>
+          <a href="mailto:matias@createxodus.com" class="loc-value">matias@createxodus.com</a>
+        </div>
+        <div class="loc-item">
+          <span class="loc-label">Follow</span>
+          <div class="social-row">
+            <a href="https://www.instagram.com/matiasxmena/" target="_blank" rel="noopener noreferrer" class="btn-circle btn-sm-circle" aria-label="Instagram"><span>IG</span></a>
+          </div>
+        </div>
+        <a href="mailto:matias@createxodus.com" class="btn btn-glass">
+          <span>Say Hello</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA / CONTACT ============ -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="cta-headline cta-center">Let's Create.</h2>
+
+      <form id="contact-form" class="glass-card">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="c-name">Name</label>
+            <input type="text" id="c-name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-field">
+            <label for="c-email">Email</label>
+            <input type="email" id="c-email" name="email" required placeholder="you@company.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="c-type">Project Type</label>
+            <select id="c-type" name="type">
+              <option value="" disabled selected>Select a service</option>
+              <option>Videography</option>
+              <option>Photography</option>
+              <option>Video Editing</option>
+              <option>Sound Design</option>
+              <option>Creative Direction</option>
+              <option>Social Media Marketing</option>
+              <option>Full Campaign</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="c-budget">Budget</label>
+            <select id="c-budget" name="budget">
+              <option value="" disabled selected>Select a range</option>
+              <option>Under $1,000</option>
+              <option>$1,000 — $5,000</option>
+              <option>$5,000 — $10,000</option>
+              <option>$10,000 — $25,000</option>
+              <option>$25,000+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="c-msg">Message</label>
+          <textarea id="c-msg" name="message" rows="4" required placeholder="Tell us about your vision..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-glass btn-full">
+          <span>Send It</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="container about-compact">
+      <div class="about-layout">
+        <div class="about-col-text">
+          <div class="section-label"><span>04</span><span>ABOUT</span></div>
+          <h2 class="section-headline">About</h2>
+          <p class="about-p">CREATEXODUS is a premium creative studio founded by Matias Mena, based in Santa Barbara, California. We specialize in high-end video production, photography, and creative direction for the world's most ambitious brands — from Ferrari showrooms to Formula 1 Grand Prix events, from UFC campaigns to behind-the-scenes with Cactus Jack.</p>
+        </div>
+        <div class="about-col-image">
+          <img src="assets/matias.jpg" alt="Matias Mena — Founder of CREATEXODUS" class="about-photo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <img src="CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="footer-logo" id="footer-logo">
+          <span class="footer-copy">&copy; 2026 CREATEXODUS. All rights reserved.</span>
+        </div>
+        <div class="footer-links">
+          <a href="#work">Portfolio</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/matiasxmena/" target="_blank" rel="noopener noreferrer" class="btn-circle btn-sm-circle" aria-label="Instagram"><span>IG</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+  <script type="module">
+    try {
+      const createGlobe = (await import('https://cdn.jsdelivr.net/npm/cobe@0.6.3/+esm')).default;
+      const canvas = document.getElementById('globe-canvas');
+      if (canvas && createGlobe) {
+        let phi = 2.09;
+        let theta = 0.3;
+        let pointerDown = false;
+        let pointerX = 0;
+        let pointerY = 0;
+        let dragPhi = 0;
+        let dragTheta = 0;
+        let destroyGlobe = null;
+
+        canvas.addEventListener('pointerdown', (e) => {
+          pointerDown = true;
+          pointerX = e.clientX;
+          pointerY = e.clientY;
+          canvas.setPointerCapture(e.pointerId);
+        });
+
+        canvas.addEventListener('pointermove', (e) => {
+          if (pointerDown) {
+            dragPhi += (e.clientX - pointerX) / 150;
+            dragTheta += (e.clientY - pointerY) / 150;
+            dragTheta = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, dragTheta));
+            pointerX = e.clientX;
+            pointerY = e.clientY;
+          }
+        });
+
+        canvas.addEventListener('pointerup', () => { pointerDown = false; });
+        canvas.addEventListener('pointercancel', () => { pointerDown = false; });
+
+        function initGlobe() {
+          try {
+            if (destroyGlobe) destroyGlobe();
+
+            const size = canvas.offsetWidth;
+            if (size === 0) return;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const pixelSize = size * dpr;
+
+            canvas.width = pixelSize;
+            canvas.height = pixelSize;
+
+            const isMobile = size < 400;
+
+            destroyGlobe = createGlobe(canvas, {
+              devicePixelRatio: dpr,
+              width: pixelSize,
+              height: pixelSize,
+              phi: phi + dragPhi,
+              theta: theta + dragTheta,
+              dark: 1,
+              diffuse: 1.2,
+              mapSamples: isMobile ? 12000 : 16000,
+              mapBrightness: 6,
+              baseColor: [0.15, 0.18, 0.25],
+              markerColor: [0.72, 0.77, 0.82],
+              glowColor: [0.06, 0.08, 0.14],
+              markers: [
+                { location: [34.42, -119.70], size: 0.08 }
+              ],
+              onRender: (state) => {
+                if (!pointerDown) {
+                  phi += 0.003;
+                  dragTheta *= 0.95;
+                }
+                state.phi = phi + dragPhi;
+                state.theta = theta + dragTheta;
+              }
+            });
+          } catch(e) { /* WebGL not available — globe silently fails */ }
+        }
+
+        initGlobe();
+
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(initGlobe, 200);
+        });
+      }
+    } catch(e) { /* cobe CDN failed to load — globe section still shows text content */ }
+  </script>
+</body>
+</html>

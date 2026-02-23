@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Netlify
+.netlify
+
+# Claude
+.claude
+
+# Videos (too large for GitHub, served via Netlify direct deploy)
+*.mp4
+*.mov
+*.webm
+*.avi
+
+# Raw client project folders (not part of the site)
+AOA TOURNAMENT/
+CACTUS JACK/
+CELSIUS/
+FERRARI/
+GOIN BACK/
+J SAKAGUCHI/
+MERCEDES BENZ/
+OPIUM/
+PASSION/
+
+# Reference images (not used on site)
+INTERFACE REF.png
+AdobeStock_998477010.jpeg

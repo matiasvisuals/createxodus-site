@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opium — CREATEXODUS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="pre-center">
+      <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="pre-logo">
+      <div class="pre-bar-track">
+        <div class="pre-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background -->
+  <div class="site-bg" aria-hidden="true"></div>
+  <div class="site-pattern" aria-hidden="true">
+    <img src="../CE WALL LOGOS.png" alt="" class="site-pattern-img">
+  </div>
+
+  <!-- Navigation -->
+  <nav class="proj-nav">
+    <a href="../index.html" class="proj-nav-logo">
+      <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS">
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('proj-menu').classList.toggle('active');this.classList.toggle('active');document.body.style.overflow=this.classList.contains('active')?'hidden':''">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Full-Screen Menu Overlay -->
+  <div id="proj-menu" class="proj-overlay-menu">
+    <div class="proj-menu-inner">
+      <a href="../index.html#work" class="proj-menu-link">Portfolio</a>
+      <a href="../index.html#services" class="proj-menu-link">Services</a>
+      <a href="../index.html#about" class="proj-menu-link">About</a>
+      <a href="../index.html#contact" class="proj-menu-link">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="proj-hero">
+    <div class="container">
+      <div class="proj-hero-label"><span>Project</span><span>—</span><span>Opium</span></div>
+      <h1 class="proj-hero-title">Opium</h1>
+      <div class="proj-tags">
+        <span class="proj-tag">Photography</span>
+        <span class="proj-tag">Creative Direction</span>
+      </div>
+      <div class="proj-details">
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Client</div>
+          <div class="proj-detail-value">Opium</div>
+        </div>
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Services</div>
+          <div class="proj-detail-value">Photography, Creative Direction</div>
+        </div>
+        <div class="proj-detail-item">
+          <div class="proj-detail-label">Artists</div>
+          <div class="proj-detail-value">Destroy Lonely, Ken Carson</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media Gallery -->
+  <section class="proj-media">
+    <div class="container">
+
+      <!-- Tabs -->
+      <div class="proj-tabs">
+        <button class="proj-tab active" data-tab="destroy-lonely">Destroy Lonely</button>
+        <button class="proj-tab" data-tab="ken-carson">Ken Carson</button>
+      </div>
+
+      <!-- TAB: Destroy Lonely -->
+      <div class="proj-tab-content active" id="tab-destroy-lonely">
+        <div class="proj-media-grid">
+
+          <!-- Full -->
+          <div class="proj-media-full">
+            <img src="../images/opium/DESTROY-LONELY---BL-COLLECTION_05.png" alt="Destroy Lonely" loading="lazy">
+          </div>
+
+          <!-- Row -->
+          <div class="proj-media-row">
+            <div class="proj-media-half"><img src="../images/opium/lone2.png" alt="Destroy Lonely" loading="lazy"></div>
+            <div class="proj-media-half"><img src="../images/opium/lone3.png" alt="Destroy Lonely" loading="lazy"></div>
+          </div>
+
+          <!-- Full -->
+          <div class="proj-media-full">
+            <img src="../images/opium/lone6.png" alt="Destroy Lonely" loading="lazy">
+          </div>
+
+          <!-- Row -->
+          <div class="proj-media-row">
+            <div class="proj-media-half"><img src="../images/opium/lone7.png" alt="Destroy Lonely" loading="lazy"></div>
+            <div class="proj-media-half"><img src="../images/opium/lone8.png" alt="Destroy Lonely" loading="lazy"></div>
+          </div>
+
+          <!-- Trio -->
+          <div class="proj-media-trio">
+            <div class="proj-media-third"><img src="../images/opium/PREVIEWS BL-2.jpg" alt="Destroy Lonely BTS" loading="lazy"></div>
+            <div class="proj-media-third"><img src="../images/opium/PREVIEWS BL-4.jpg" alt="Destroy Lonely BTS" loading="lazy"></div>
+            <div class="proj-media-third"><img src="../images/opium/PREVIEWS BL-5.jpg" alt="Destroy Lonely BTS" loading="lazy"></div>
+          </div>
+
+          <!-- Row -->
+          <div class="proj-media-row">
+            <div class="proj-media-half"><img src="../images/opium/PREVIEWS BL-8.jpg" alt="Destroy Lonely BTS" loading="lazy"></div>
+            <div class="proj-media-half"><img src="../images/opium/PREVIEWS BL-10.jpg" alt="Destroy Lonely BTS" loading="lazy"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB: Ken Carson -->
+      <div class="proj-tab-content" id="tab-ken-carson">
+        <div class="proj-media-grid">
+
+          <!-- Full -->
+          <div class="proj-media-full">
+            <img src="../images/opium/KEN CARSON VZ 2.jpg" alt="Ken Carson" loading="lazy">
+          </div>
+
+          <!-- Row -->
+          <div class="proj-media-row">
+            <div class="proj-media-half"><img src="../images/opium/KEN CARSON VZ 5.jpg" alt="Ken Carson" loading="lazy"></div>
+            <div class="proj-media-half"><img src="../images/opium/KEN CARSON VZ 11.jpg" alt="Ken Carson" loading="lazy"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Project Navigation -->
+  <section class="proj-nav-bottom">
+    <div class="container">
+      <div class="proj-nav-item proj-nav-item--prev">
+        <div class="proj-prev-label">Previous Project</div>
+        <a href="tamed-psychotic.html" class="proj-prev-title">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M26 16H6M6 16L14 8M6 16L14 24" stroke="currentColor" stroke-width="1.5"/></svg>
+          Tamed Psychotic
+        </a>
+      </div>
+      <div class="proj-nav-item proj-nav-item--next">
+        <div class="proj-next-label">Next Project</div>
+        <a href="interscope.html" class="proj-next-title">
+          Interscope
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16H26M26 16L18 8M26 16L18 24" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="proj-footer">
+    <div class="container">
+      <div class="proj-footer-inner">
+        <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="proj-footer-logo">
+        <span class="proj-footer-copy">&copy; 2026 CREATEXODUS. All rights reserved.</span>
+        <div class="proj-footer-links">
+          <a href="../index.html#work">Portfolio</a>
+          <a href="../index.html#services">Services</a>
+          <a href="../index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/project.js"></script>
+</body>
+</html>
