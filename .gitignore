@@ -8,11 +8,14 @@ Thumbs.db
 # Claude
 .claude
 
-# Videos (too large for GitHub, served via Netlify direct deploy)
+# Original videos (uncompressed, too large for GitHub)
 *.mp4
 *.mov
 *.webm
 *.avi
+
+# Allow compressed web videos
+!WORK/web/*.mp4
 
 # Raw client project folders (not part of the site)
 AOA TOURNAMENT/
@@ -28,3 +31,6 @@ PASSION/
 # Reference images (not used on site)
 INTERFACE REF.png
 AdobeStock_998477010.jpeg
+
+# Compression script (not needed on site)
+compress-videos.sh
