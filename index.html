@@ -12,6 +12,52 @@
 </head>
 <body>
 
+  <!-- ============ PASSWORD GATE ============ -->
+  <div id="password-gate">
+    <div class="gate-bg" aria-hidden="true"></div>
+    <div class="gate-pattern" aria-hidden="true">
+      <img src="CE WALL LOGOS.png" alt="" class="gate-pattern-img">
+    </div>
+    <div class="gate-content">
+      <img src="CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="gate-logo">
+      <p class="gate-subtitle">Enter password to continue</p>
+      <form id="gate-form" class="gate-form" autocomplete="off">
+        <input type="password" id="gate-input" class="gate-input" placeholder="Password" autocomplete="off" autofocus>
+        <button type="submit" class="gate-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+      <p id="gate-error" class="gate-error"></p>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      var KEY = 'cx_auth';
+      if (sessionStorage.getItem(KEY) === '1') {
+        document.getElementById('password-gate').style.display = 'none';
+        return;
+      }
+      document.body.style.overflow = 'hidden';
+      document.getElementById('gate-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var val = document.getElementById('gate-input').value;
+        if (val === 'createxodus') {
+          sessionStorage.setItem(KEY, '1');
+          var gate = document.getElementById('password-gate');
+          gate.classList.add('gate-out');
+          document.body.style.overflow = '';
+          setTimeout(function(){ gate.style.display = 'none'; }, 600);
+        } else {
+          var err = document.getElementById('gate-error');
+          err.textContent = 'Incorrect password';
+          document.getElementById('gate-input').classList.add('shake');
+          setTimeout(function(){ document.getElementById('gate-input').classList.remove('shake'); }, 500);
+        }
+      });
+    })();
+  </script>
+
   <!-- Site-wide Background -->
   <div class="site-bg" aria-hidden="true"></div>
   <div class="site-pattern" aria-hidden="true">
