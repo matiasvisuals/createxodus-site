@@ -91,7 +91,6 @@
         document.getElementById('password-gate').style.display = 'none';
         return;
       }
-      document.body.style.overflow = 'hidden';
       document.getElementById('gate-form').addEventListener('submit', function(e) {
         e.preventDefault();
         var val = document.getElementById('gate-input').value;
@@ -99,7 +98,6 @@
           sessionStorage.setItem(KEY, '1');
           var gate = document.getElementById('password-gate');
           gate.classList.add('gate-out');
-          document.body.style.overflow = '';
           setTimeout(function(){ gate.style.display = 'none'; }, 600);
         } else {
           var err = document.getElementById('gate-error');
