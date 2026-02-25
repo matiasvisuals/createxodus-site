@@ -12,12 +12,16 @@
 
   /* ---- Lenis Smooth Scroll ---- */
   let lenis;
+  var gateVisible = document.getElementById('password-gate') && document.getElementById('password-gate').style.display !== 'none';
   if (typeof Lenis !== 'undefined') {
     lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smooth: true,
     });
+
+    /* Stop Lenis while password gate is active so gate can scroll natively */
+    if (gateVisible) lenis.stop();
 
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       lenis.on('scroll', ScrollTrigger.update);
@@ -30,6 +34,11 @@
       }
       requestAnimationFrame(raf);
     }
+  }
+
+  /* Start Lenis when password gate is dismissed */
+  if (lenis && gateVisible) {
+    window.addEventListener('gate-dismissed', function() { lenis.start(); }, { once: true });
   }
 
   /* ---- Init animations immediately ---- */

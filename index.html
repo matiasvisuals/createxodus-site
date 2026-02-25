@@ -98,6 +98,7 @@
           sessionStorage.setItem(KEY, '1');
           var gate = document.getElementById('password-gate');
           gate.classList.add('gate-out');
+          window.dispatchEvent(new Event('gate-dismissed'));
           setTimeout(function(){ gate.style.display = 'none'; }, 600);
         } else {
           var err = document.getElementById('gate-error');
