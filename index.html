@@ -28,6 +28,59 @@
         </button>
       </form>
       <p id="gate-error" class="gate-error"></p>
+
+      <div class="gate-divider"></div>
+
+      <p class="gate-reach-out">Interested in viewing our portfolio? Reach out below or email us at <a href="mailto:matias@createxodus.com">matias@createxodus.com</a></p>
+
+      <h2 class="gate-cta">Let's Create.</h2>
+
+      <form id="gate-contact-form" class="glass-card gate-contact-card">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="gc-name">Name</label>
+            <input type="text" id="gc-name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-field">
+            <label for="gc-email">Email</label>
+            <input type="email" id="gc-email" name="email" required placeholder="you@company.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="gc-type">Project Type</label>
+            <select id="gc-type" name="type">
+              <option value="" disabled selected>Select a service</option>
+              <option>Videography</option>
+              <option>Photography</option>
+              <option>Video Editing</option>
+              <option>Sound Design</option>
+              <option>Creative Direction</option>
+              <option>Social Media Marketing</option>
+              <option>Full Campaign</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="gc-budget">Budget</label>
+            <select id="gc-budget" name="budget">
+              <option value="" disabled selected>Select a range</option>
+              <option>Under $1,000</option>
+              <option>$1,000 — $5,000</option>
+              <option>$5,000 — $10,000</option>
+              <option>$10,000 — $25,000</option>
+              <option>$25,000+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="gc-msg">Message</label>
+          <textarea id="gc-msg" name="message" rows="4" required placeholder="Tell us about your vision..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-glass btn-full">
+          <span>Send It</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </form>
     </div>
   </div>
 
@@ -55,6 +108,30 @@
           setTimeout(function(){ document.getElementById('gate-input').classList.remove('shake'); }, 500);
         }
       });
+    })();
+
+    // Gate contact form handler
+    (function(){
+      var gateContact = document.getElementById('gate-contact-form');
+      if (gateContact) {
+        gateContact.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var name = gateContact.querySelector('#gc-name').value;
+          var email = gateContact.querySelector('#gc-email').value;
+          var type = gateContact.querySelector('#gc-type').value;
+          var budget = gateContact.querySelector('#gc-budget').value;
+          var msg = gateContact.querySelector('#gc-msg').value;
+          var subject = encodeURIComponent('New Project Inquiry from ' + name);
+          var body = encodeURIComponent(
+            'Name: ' + name + '\n' +
+            'Email: ' + email + '\n' +
+            'Project Type: ' + type + '\n' +
+            'Budget: ' + budget + '\n\n' +
+            'Message:\n' + msg
+          );
+          window.location.href = 'mailto:matias@createxodus.com?subject=' + subject + '&body=' + body;
+        });
+      }
     })();
   </script>
 
