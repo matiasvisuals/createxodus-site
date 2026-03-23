@@ -194,27 +194,31 @@
     });
   }
 
-  /* ---- Contact Form ---- */
+  /* ---- Contact Form (Formspree AJAX) ---- */
   var contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = contactForm.querySelector('#c-name').value;
-      var email = contactForm.querySelector('#c-email').value;
-      var type = contactForm.querySelector('#c-type').value;
-      var budget = contactForm.querySelector('#c-budget').value;
-      var msg = contactForm.querySelector('#c-msg').value;
-
-      var subject = encodeURIComponent('New Project Inquiry from ' + name);
-      var body = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Project Type: ' + type + '\n' +
-        'Budget: ' + budget + '\n\n' +
-        'Message:\n' + msg
-      );
-
-      window.location.href = 'mailto:matias@createxodus.com?subject=' + subject + '&body=' + body;
+      var btn = contactForm.querySelector('button[type="submit"] span');
+      var origText = btn.textContent;
+      btn.textContent = 'Sending...';
+      fetch('https://formspree.io/f/mpqygjgo', {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r) {
+        if (r.ok) {
+          btn.textContent = 'Sent!';
+          contactForm.reset();
+          setTimeout(function(){ btn.textContent = origText; }, 3000);
+        } else {
+          btn.textContent = 'Error — try again';
+          setTimeout(function(){ btn.textContent = origText; }, 3000);
+        }
+      }).catch(function() {
+        btn.textContent = 'Error — try again';
+        setTimeout(function(){ btn.textContent = origText; }, 3000);
+      });
     });
   }
 

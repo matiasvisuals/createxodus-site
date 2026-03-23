@@ -35,7 +35,7 @@
 
       <h2 class="gate-cta">Let's Create.</h2>
 
-      <form id="gate-contact-form" class="glass-card gate-contact-card">
+      <form id="gate-contact-form" class="glass-card gate-contact-card" action="https://formspree.io/f/mpqygjgo" method="POST">
         <div class="form-row">
           <div class="form-field">
             <label for="gc-name">Name</label>
@@ -109,26 +109,32 @@
       });
     })();
 
-    // Gate contact form handler
+    // Gate contact form handler (Formspree with AJAX)
     (function(){
       var gateContact = document.getElementById('gate-contact-form');
       if (gateContact) {
         gateContact.addEventListener('submit', function(e) {
           e.preventDefault();
-          var name = gateContact.querySelector('#gc-name').value;
-          var email = gateContact.querySelector('#gc-email').value;
-          var type = gateContact.querySelector('#gc-type').value;
-          var budget = gateContact.querySelector('#gc-budget').value;
-          var msg = gateContact.querySelector('#gc-msg').value;
-          var subject = encodeURIComponent('New Project Inquiry from ' + name);
-          var body = encodeURIComponent(
-            'Name: ' + name + '\n' +
-            'Email: ' + email + '\n' +
-            'Project Type: ' + type + '\n' +
-            'Budget: ' + budget + '\n\n' +
-            'Message:\n' + msg
-          );
-          window.location.href = 'mailto:matias@createxodus.com?subject=' + subject + '&body=' + body;
+          var btn = gateContact.querySelector('button[type="submit"] span');
+          var origText = btn.textContent;
+          btn.textContent = 'Sending...';
+          fetch('https://formspree.io/f/mpqygjgo', {
+            method: 'POST',
+            body: new FormData(gateContact),
+            headers: { 'Accept': 'application/json' }
+          }).then(function(r) {
+            if (r.ok) {
+              btn.textContent = 'Sent!';
+              gateContact.reset();
+              setTimeout(function(){ btn.textContent = origText; }, 3000);
+            } else {
+              btn.textContent = 'Error — try again';
+              setTimeout(function(){ btn.textContent = origText; }, 3000);
+            }
+          }).catch(function() {
+            btn.textContent = 'Error — try again';
+            setTimeout(function(){ btn.textContent = origText; }, 3000);
+          });
         });
       }
     })();
@@ -590,7 +596,7 @@
     <div class="container">
       <h2 class="cta-headline cta-center">Let's Create.</h2>
 
-      <form id="contact-form" class="glass-card">
+      <form id="contact-form" class="glass-card" action="https://formspree.io/f/mpqygjgo" method="POST">
         <div class="form-row">
           <div class="form-field">
             <label for="c-name">Name</label>
