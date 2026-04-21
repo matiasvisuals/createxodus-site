@@ -8,137 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!-- ============ PASSWORD GATE ============ -->
-  <div id="password-gate">
-    <div class="gate-bg" aria-hidden="true"></div>
-    <div class="gate-pattern" aria-hidden="true">
-      <img src="CE WALL LOGOS.png" alt="" class="gate-pattern-img">
-    </div>
-    <div class="gate-content">
-      <img src="CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="gate-logo">
-      <p class="gate-subtitle">Enter password to continue</p>
-      <form id="gate-form" class="gate-form" autocomplete="off">
-        <input type="password" id="gate-input" class="gate-input" placeholder="Password" autocomplete="off" autofocus>
-        <button type="submit" class="gate-btn">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </form>
-      <p id="gate-error" class="gate-error"></p>
-
-      <div class="gate-divider"></div>
-
-      <p class="gate-reach-out">Interested in viewing our portfolio? Reach out below or email us at <a href="mailto:matias@createxodus.com">matias@createxodus.com</a></p>
-
-      <h2 class="gate-cta">Let's Create.</h2>
-
-      <form id="gate-contact-form" class="glass-card gate-contact-card" action="https://formspree.io/f/mpqygjgo" method="POST">
-        <div class="form-row">
-          <div class="form-field">
-            <label for="gc-name">Name</label>
-            <input type="text" id="gc-name" name="name" required placeholder="Your name">
-          </div>
-          <div class="form-field">
-            <label for="gc-email">Email</label>
-            <input type="email" id="gc-email" name="email" required placeholder="you@company.com">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="gc-type">Project Type</label>
-            <select id="gc-type" name="type">
-              <option value="" disabled selected>Select a service</option>
-              <option>Videography</option>
-              <option>Photography</option>
-              <option>Video Editing</option>
-              <option>Sound Design</option>
-              <option>Creative Direction</option>
-              <option>Social Media Marketing</option>
-              <option>Full Campaign</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="gc-budget">Budget</label>
-            <select id="gc-budget" name="budget">
-              <option value="" disabled selected>Select a range</option>
-              <option>Under $1,000</option>
-              <option>$1,000 — $5,000</option>
-              <option>$5,000 — $10,000</option>
-              <option>$10,000 — $25,000</option>
-              <option>$25,000+</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="gc-msg">Message</label>
-          <textarea id="gc-msg" name="message" rows="4" required placeholder="Tell us about your vision..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-glass btn-full">
-          <span>Send It</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      var KEY = 'cx_auth';
-      if (sessionStorage.getItem(KEY) === '1') {
-        document.getElementById('password-gate').style.display = 'none';
-        return;
-      }
-      document.getElementById('gate-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var val = document.getElementById('gate-input').value;
-        if (val === 'createxodus') {
-          sessionStorage.setItem(KEY, '1');
-          var gate = document.getElementById('password-gate');
-          gate.classList.add('gate-out');
-          window.dispatchEvent(new Event('gate-dismissed'));
-          setTimeout(function(){ gate.style.display = 'none'; }, 600);
-        } else {
-          var err = document.getElementById('gate-error');
-          err.textContent = 'Incorrect password';
-          document.getElementById('gate-input').classList.add('shake');
-          setTimeout(function(){ document.getElementById('gate-input').classList.remove('shake'); }, 500);
-        }
-      });
-    })();
-
-    // Gate contact form handler (Formspree with AJAX)
-    (function(){
-      var gateContact = document.getElementById('gate-contact-form');
-      if (gateContact) {
-        gateContact.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var btn = gateContact.querySelector('button[type="submit"] span');
-          var origText = btn.textContent;
-          btn.textContent = 'Sending...';
-          fetch('https://formspree.io/f/mpqygjgo', {
-            method: 'POST',
-            body: new FormData(gateContact),
-            headers: { 'Accept': 'application/json' }
-          }).then(function(r) {
-            if (r.ok) {
-              btn.textContent = 'Sent!';
-              gateContact.reset();
-              setTimeout(function(){ btn.textContent = origText; }, 3000);
-            } else {
-              btn.textContent = 'Error — try again';
-              setTimeout(function(){ btn.textContent = origText; }, 3000);
-            }
-          }).catch(function() {
-            btn.textContent = 'Error — try again';
-            setTimeout(function(){ btn.textContent = origText; }, 3000);
-          });
-        });
-      }
-    })();
-  </script>
 
   <!-- Site-wide Background -->
   <div class="site-bg" aria-hidden="true"></div>
@@ -152,12 +27,23 @@
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <!-- ============ NAVIGATION (Hamburger Only) ============ -->
+  <!-- ============ NAVIGATION ============ -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <img src="CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS">
-      </a>
+      <div class="nav-pill" aria-label="Primary">
+        <div class="nav-pill-group nav-pill-left">
+          <a href="#work" class="nav-pill-link">Work</a>
+          <a href="#services" class="nav-pill-link">Services</a>
+        </div>
+        <a href="#hero" class="nav-pill-slot" aria-label="CREATEXODUS — back to top">
+          <img src="CE LOGO LANDING PAGE.png" alt="CREATEXODUS" class="nav-pill-logo">
+        </a>
+        <div class="nav-pill-group nav-pill-right">
+          <a href="#about" class="nav-pill-link">About</a>
+          <a href="#contact" class="nav-pill-link">Contact</a>
+        </div>
+      </div>
+
       <button class="nav-toggle" aria-label="Menu">
         <span></span><span></span>
       </button>
@@ -184,7 +70,22 @@
     <div class="hero-fade"></div>
 
     <div class="hero-inner">
-      <img src="CE LANDING PAGE.png" alt="CREATEXODUS" class="hero-landing-img">
+      <img src="CE LOGO LANDING PAGE.png" alt="CREATEXODUS" class="hero-landing-img">
+      <div class="hero-ctas">
+        <button type="button" class="btn btn-lit hero-cta" data-book-open>
+          <span>Book</span>
+        </button>
+        <a href="#work" class="btn btn-glass hero-cta">
+          <span>Portfolio</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-corner hc-bl">
+      <span class="hc-small">Santa Barbara, CA</span>
+    </div>
+    <div class="hero-corner hc-br">
+      <span class="hc-small">Multimedia Agency</span>
     </div>
 
     <div class="hero-scroll">
@@ -252,254 +153,278 @@
     </div>
   </section>
 
-  <!-- ============ PORTFOLIO / WORK (Desktop Interface) ============ -->
+  <!-- ============ PORTFOLIO / WORK (Preview Cards + Filters) ============ -->
   <section id="work">
     <div class="container">
       <div class="section-label"><span>01</span><span>SELECTED WORK</span></div>
       <h2 class="section-headline">Portfolio</h2>
-      <div class="desktop-grid">
 
-        <a href="WORK/ferrari.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/ferrari.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Ferrari</span>
+      <!-- Category Filters -->
+      <div class="pf-filters" role="tablist">
+        <button class="pf-tab active" data-filter="all">All</button>
+        <button class="pf-tab" data-filter="videography">Videography</button>
+        <button class="pf-tab" data-filter="photography">Photography</button>
+        <button class="pf-tab" data-filter="editing">Editing</button>
+        <button class="pf-tab" data-filter="sound-design">Sound Design</button>
+        <button class="pf-tab" data-filter="graphic-design">Graphic Design</button>
+        <button class="pf-tab" data-filter="social-media">Social Media</button>
+        <button class="pf-tab" data-filter="long-form">Long Form</button>
+        <button class="pf-tab" data-filter="web-development">Web Dev</button>
+      </div>
+
+      <!-- Preview Card Grid -->
+      <div class="pf-grid">
+
+        <!-- ===== COMMERCIAL ===== -->
+        <a href="WORK/ferrari.html" class="pf-card" data-cat="commercial" data-services="videography editing sound-design long-form">
+          <img class="pf-card-poster" src="assets/thumbs/ferrari-rev-4.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/ferrari-rev-4.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/ferrari.png" class="pf-card-logo" alt="Ferrari">
+          <span class="pf-card-name">Ferrari</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/porsche.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/porsche-white.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Porsche</span>
+        <a href="WORK/porsche.html" class="pf-card" data-cat="commercial" data-services="editing long-form">
+          <img class="pf-card-poster" src="assets/thumbs/porsche-grand-opening.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/porsche-grand-opening.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/porsche-white.png" class="pf-card-logo" alt="Porsche">
+          <span class="pf-card-name">Porsche</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/mercedes-benz.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/mercedes-white-new.png" class="folder-logo folder-logo-wide" alt="">
-          </div>
-          <span class="folder-name">Mercedes-Benz</span>
+        <a href="WORK/mercedes-benz.html" class="pf-card" data-cat="commercial" data-services="editing sound-design social-media">
+          <img class="pf-card-poster" src="assets/thumbs/mercedes-recap-v4.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/mercedes-recap-v4.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/mercedes-white-new.png" class="pf-card-logo pf-card-logo-wide" alt="Mercedes-Benz">
+          <span class="pf-card-name">Mercedes-Benz</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/cactus-jack.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/cactusjack.svg" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Cactus Jack</span>
+        <a href="WORK/toyota.html" class="pf-card" data-cat="commercial" data-services="sound-design">
+          <img class="pf-card-poster" src="assets/thumbs/toyota-spec.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/toyota-spec.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/toyota-white.png" class="pf-card-logo" alt="Toyota">
+          <span class="pf-card-name">Toyota</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/kollective.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/kollective-white-new.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Kollective</span>
+        <a href="WORK/youngla.html" class="pf-card" data-cat="commercial" data-services="sound-design">
+          <img class="pf-card-poster" src="assets/thumbs/youngla-sfx-site.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/youngla-sfx-site.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/youngla-white.png" class="pf-card-logo" alt="YoungLA">
+          <span class="pf-card-name">YoungLA</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/youngla.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/youngla-white.png" class="folder-logo folder-logo-lg" alt="">
-          </div>
-          <span class="folder-name">YoungLA</span>
+        <a href="WORK/new-balance.html" class="pf-card" data-cat="commercial" data-services="sound-design">
+          <img class="pf-card-poster" src="assets/thumbs/new-balance-final.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/new-balance-final.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/newbalance-white-new.png" class="pf-card-logo pf-card-logo-wide" alt="New Balance">
+          <span class="pf-card-name">New Balance</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/mirrorless-apparel.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/mirrorless-white.png" class="folder-logo folder-logo-lg" alt="Mirrorless Apparel" style="transform: translate(-46%, -33%)">
-          </div>
-          <span class="folder-name">Mirrorless Apparel</span>
+        <a href="WORK/ag1.html" class="pf-card" data-cat="commercial" data-services="videography">
+          <img class="pf-card-poster" src="assets/thumbs/terra-oceana-her-2.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/terra-oceana-her-2.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/ag1-white-new.png" class="pf-card-logo" alt="AG1">
+          <span class="pf-card-name">AG1</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/new-balance.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/newbalance-white-new.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">New Balance</span>
+        <a href="WORK/celsius.html" class="pf-card" data-cat="commercial" data-services="videography editing">
+          <img class="pf-card-poster" src="assets/thumbs/celsius-jake-shane-bts.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/celsius-jake-shane-bts.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/celsius.png" class="pf-card-logo" alt="Celsius">
+          <span class="pf-card-name">Celsius</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/taos-footwear.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/taos-white-new.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Taos Footwear</span>
+        <a href="WORK/bounce-sports.html" class="pf-card" data-cat="commercial" data-services="editing social-media">
+          <img class="pf-card-poster" src="assets/thumbs/bounce-highlight.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/bounce-highlight.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/bounce-white-new.png" class="pf-card-logo" alt="Bounce Sports">
+          <span class="pf-card-name">Bounce Sports</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/celsius.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/celsius.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Celsius</span>
+        <a href="WORK/left-coast.html" class="pf-card" data-cat="commercial" data-services="videography social-media">
+          <img class="pf-card-poster" src="assets/thumbs/left-coast-team-highlight.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/left-coast-team-highlight.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">LEFT COAST</span>
+          <span class="pf-card-name">Left Coast Basketball</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/ag1.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/ag1-white-new.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">AG1</span>
+        <a href="WORK/taos-footwear.html" class="pf-card" data-cat="commercial" data-services="editing">
+          <img class="pf-card-poster" src="assets/thumbs/taos-big-time.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/taos-big-time.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/taos-white-new.png" class="pf-card-logo" alt="Taos Footwear">
+          <span class="pf-card-name">Taos Footwear</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/bounce-sports.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/bounce-white-new.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Bounce Sports</span>
+        <a href="WORK/mirrorless-apparel.html" class="pf-card" data-cat="commercial" data-services="videography editing sound-design social-media">
+          <img class="pf-card-poster" src="assets/thumbs/mirrorless-running.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/mirrorless-running.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/mirrorless-white.png" class="pf-card-logo" alt="Mirrorless Apparel">
+          <span class="pf-card-name">Mirrorless Apparel</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/left-coast.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <span class="folder-logo-text">LC</span>
-          </div>
-          <span class="folder-name">Left Coast</span>
+        <a href="WORK/aoa.html" class="pf-card" data-cat="photography" data-services="photography">
+          <img class="pf-card-media" src="AOA TOURNAMENT/AOA 2025-219.jpg" alt="AOA" loading="lazy">
+          <div class="pf-card-overlay"></div>
+          <img src="AOA LOGO.png" class="pf-card-logo pf-card-logo-lg" alt="AOA">
+          <span class="pf-card-name">AOA Tournament</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/westmont-college.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/westmont-white.png" class="folder-logo folder-logo-wide" alt="Westmont College" style="filter: brightness(0) invert(1)">
-          </div>
-          <span class="folder-name">Westmont College</span>
+        <a href="WORK/bebsters.html" class="pf-card" data-cat="commercial" data-services="social-media">
+          <img class="pf-card-poster" src="assets/thumbs/bebsters-volleyball.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/bebsters-volleyball.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">BEBSTERS</span>
+          <span class="pf-card-name">Bebsters Beach Bash</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/bebsters.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <span class="folder-logo-text">BB</span>
-          </div>
-          <span class="folder-name">Bebsters</span>
+        <!-- ===== MUSIC ===== -->
+        <a href="WORK/cactus-jack.html" class="pf-card" data-cat="music" data-services="photography long-form">
+          <img class="pf-card-poster" src="assets/thumbs/bts-hell-yeah-draft1.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/bts-hell-yeah-draft1.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/cactusjack.svg" class="pf-card-logo" alt="Cactus Jack">
+          <span class="pf-card-name">Cactus Jack</span>
+          <span class="pf-card-category">Music</span>
         </a>
 
-        <a href="WORK/aoa.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="AOA LOGO.png" class="folder-logo folder-logo-lg" alt="">
-          </div>
-          <span class="folder-name">AOA</span>
+        <a href="WORK/kollective.html" class="pf-card" data-cat="creators" data-services="editing videography">
+          <img class="pf-card-poster" src="assets/thumbs/kollective-annas-introduction-v3.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/kollective-annas-introduction-v3.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/kollective-white-new.png" class="pf-card-logo" alt="Kollective">
+          <span class="pf-card-name">Kollective</span>
+          <span class="pf-card-category">Creator</span>
         </a>
 
-        <a href="WORK/tamed-psychotic.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="TAMED LOGO.png" class="folder-logo folder-logo-lg" alt="">
-          </div>
-          <span class="folder-name">Tamed Psychotic</span>
+        <a href="WORK/interscope.html" class="pf-card" data-cat="music" data-services="sound-design">
+          <img class="pf-card-poster" src="assets/thumbs/interscope-2pac.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/interscope-2pac.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="INTERSCOPE LOGO.png" class="pf-card-logo pf-card-logo-lg" alt="Interscope">
+          <span class="pf-card-name">Interscope</span>
+          <span class="pf-card-category">Music</span>
         </a>
 
-        <a href="WORK/opium.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="Opium logo.png" class="folder-logo folder-logo-lg" alt="">
-          </div>
-          <span class="folder-name">Opium</span>
+        <a href="WORK/opium.html" class="pf-card" data-cat="photography" data-services="photography">
+          <img class="pf-card-media" src="images/opium/DESTROY-LONELY---BL-COLLECTION_05.png" alt="Opium" loading="lazy">
+          <div class="pf-card-overlay"></div>
+          <img src="Opium logo.png" class="pf-card-logo pf-card-logo-lg" alt="Opium">
+          <span class="pf-card-name">Opium</span>
+          <span class="pf-card-category">Music</span>
         </a>
 
-        <a href="WORK/interscope.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="INTERSCOPE LOGO.png" class="folder-logo folder-logo-lg" alt="Interscope">
-          </div>
-          <span class="folder-name">Interscope</span>
+        <a href="WORK/neffect.html" class="pf-card" data-cat="music" data-services="videography editing">
+          <img class="pf-card-poster" src="assets/thumbs/final-n-effect.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/final-n-effect.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/neffect-white.png" class="pf-card-logo" alt="NEFFECT">
+          <span class="pf-card-name">NEFFECT</span>
+          <span class="pf-card-category">Music</span>
         </a>
 
-        <a href="WORK/cody-wilder.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <span class="folder-logo-text">CW</span>
-          </div>
-          <span class="folder-name">Cody Wilder</span>
+        <a href="WORK/tamed-psychotic.html" class="pf-card" data-cat="commercial" data-services="sound-design">
+          <img class="pf-card-poster" src="assets/thumbs/clip-1-tamed.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/clip-1-tamed.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="TAMED LOGO.png" class="pf-card-logo pf-card-logo-lg" alt="Tamed Psychotic">
+          <span class="pf-card-name">Tamed Psychotic</span>
+          <span class="pf-card-category">Commercial</span>
         </a>
 
-        <a href="WORK/toyota.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/toyota-white.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Toyota</span>
+        <a href="WORK/richamiri.html" class="pf-card" data-cat="photography" data-services="photography">
+          <img class="pf-card-media" src="images/richamiri/Richamirii BTS-19.jpg" alt="Rich Amiri" loading="lazy">
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">RICH AMIRI</span>
+          <span class="pf-card-name">Rich Amiri</span>
+          <span class="pf-card-category">Music</span>
         </a>
 
-        <a href="WORK/neffect.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="assets/logos/neffect-white.png" class="folder-logo" alt="NEFFECT">
-          </div>
-          <span class="folder-name">NEFFECT</span>
+        <!-- ===== CREATORS ===== -->
+        <a href="WORK/cody-wilder.html" class="pf-card" data-cat="creators" data-services="sound-design long-form">
+          <img class="pf-card-poster" src="assets/thumbs/cody-wilder-dune.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/cody-wilder-dune.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">CODY WILDER</span>
+          <span class="pf-card-name">Cody Wilder</span>
+          <span class="pf-card-category">Creator</span>
         </a>
 
-        <a href="WORK/the-menas.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <span class="folder-logo-text">TM</span>
-          </div>
-          <span class="folder-name">The Mena's</span>
+        <a href="WORK/john-sakaguchi.html" class="pf-card" data-cat="creators" data-services="">
+          <img class="pf-card-poster" src="assets/thumbs/j-sakaguchi-final.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/j-sakaguchi-final.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">JOHN SAKAGUCHI</span>
+          <span class="pf-card-name">John Sakaguchi</span>
+          <span class="pf-card-category">Creator</span>
         </a>
 
-        <a href="WORK/john-sakaguchi.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <span class="folder-logo-text">JS</span>
-          </div>
-          <span class="folder-name">John Sakaguchi</span>
+        <a href="WORK/the-menas.html" class="pf-card" data-cat="creators" data-services="videography editing long-form">
+          <img class="pf-card-poster" src="assets/thumbs/the-menas.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/the-menas.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">THE MENA'S</span>
+          <span class="pf-card-name">The Mena's</span>
+          <span class="pf-card-category">Creator</span>
         </a>
 
-        <a href="WORK/passion-conferences.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <img src="PASSION LOGO.png" class="folder-logo" alt="">
-          </div>
-          <span class="folder-name">Passion Conferences</span>
+        <!-- ===== EVENTS & EDUCATION ===== -->
+        <a href="WORK/westmont-college.html" class="pf-card" data-cat="events" data-services="videography social-media long-form">
+          <img class="pf-card-poster" src="assets/thumbs/westmont-christmas.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/westmont-christmas.mp4"></video>
+          <div class="pf-card-overlay"></div>
+          <img src="assets/logos/westmont-white.png" class="pf-card-logo pf-card-logo-wide" alt="Westmont College" style="filter: brightness(0) invert(1)">
+          <span class="pf-card-name">Westmont College</span>
+          <span class="pf-card-category">Education</span>
         </a>
 
-        <a href="WORK/richamiri.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <span class="folder-logo-text">RA</span>
-          </div>
-          <span class="folder-name">Rich Amiri</span>
+        <a href="WORK/passion-conferences.html" class="pf-card" data-cat="photography" data-services="photography">
+          <img class="pf-card-media" src="PASSION/passion fixed.jpg" alt="Passion Conferences" loading="lazy">
+          <div class="pf-card-overlay"></div>
+          <img src="PASSION LOGO.png" class="pf-card-logo" alt="Passion">
+          <span class="pf-card-name">Passion Conferences</span>
+          <span class="pf-card-category">Events</span>
         </a>
 
-        <a href="WORK/real-estate.html" class="desktop-folder">
-          <div class="folder-icon">
-            <img src="FOLDER PNG.webp" class="folder-base" alt="">
-            <div class="folder-glass"></div>
-            <span class="folder-logo-text">RE</span>
+        <!-- ===== REAL ESTATE ===== -->
+        <a href="WORK/751-san-ysidro.html" class="pf-card" data-cat="real-estate" data-services="photography">
+          <img class="pf-card-media" src="REAL-ESTATE/751-san-ysidro/751 San Ysidro Rd Photos V2-40.jpg" alt="751 San Ysidro Rd" loading="lazy">
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">751 SAN YSIDRO</span>
+          <span class="pf-card-name">751 San Ysidro Rd</span>
+          <span class="pf-card-category">Real Estate</span>
+        </a>
+
+        <a href="WORK/amys-home.html" class="pf-card" data-cat="real-estate" data-services="photography">
+          <img class="pf-card-media" src="REAL-ESTATE/amy-home/AMY HOUSE FOOTHILL-38.jpg" alt="Amy's Home" loading="lazy">
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">AMY'S HOME</span>
+          <span class="pf-card-name">Amy's Home</span>
+          <span class="pf-card-category">Real Estate</span>
+        </a>
+
+        <!-- ===== GRAPHIC DESIGN ===== -->
+        <a href="WORK/de-la-cruz.html" class="pf-card" data-cat="graphic-design" data-services="graphic-design">
+          <img class="pf-card-media" src="assets/thumbs/de-la-cruz.jpg" alt="De La Cruz" loading="lazy">
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">DE LA CRUZ</span>
+          <span class="pf-card-name">De La Cruz</span>
+          <span class="pf-card-category">Graphic Design</span>
+        </a>
+
+        <!-- ===== WEBSITES ===== -->
+        <a href="https://exodushills.com" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
+          <div class="pf-card-iframe-wrap">
+            <iframe class="pf-card-iframe" src="https://www.exodushills.com/" scrolling="no" tabindex="-1" loading="lazy" title="Exodus Hills"></iframe>
+            <div class="pf-card-iframe-fallback">
+              <span class="pf-card-url">exodushills.com</span>
+            </div>
           </div>
-          <span class="folder-name">Real Estate</span>
+          <div class="pf-card-overlay"></div>
+          <span class="pf-card-logo-text">EXODUS HILLS</span>
+          <span class="pf-card-name">Exodus Hills</span>
+          <span class="pf-card-category">Website</span>
         </a>
 
       </div>
@@ -510,57 +435,89 @@
   <section id="services">
     <div class="container">
       <div class="section-label"><span>02</span><span>SERVICES</span></div>
-      <h2 class="section-headline">Services</h2>
-      <div class="svc-grid">
+      <h2 class="section-headline">What we do</h2>
+      <p class="svc-intro">Jump straight to the work — every discipline links to that section of the portfolio.</p>
+    </div>
 
-        <div class="svc-card" data-svc="videography">
-          <div class="svc-card-top">
-            <span class="svc-card-num">01</span>
+    <div class="container">
+      <div class="cat-grid">
+        <button type="button" class="cat-card" data-filter="videography">
+          <div class="cat-card-media">
+            <img class="cat-card-poster" src="assets/thumbs/ferrari-rev-4.jpg" alt="">
+            <video class="cat-card-video" preload="none" loop muted playsinline>
+              <source data-src="WORK/web/ferrari-rev-4.mp4" type="video/mp4">
+            </video>
           </div>
-          <h3 class="svc-card-title">Videography</h3>
-          <p class="svc-card-desc">Cinematic video production for campaigns, branded content, and visual storytelling.</p>
-        </div>
-
-        <div class="svc-card" data-svc="photography">
-          <div class="svc-card-top">
-            <span class="svc-card-num">02</span>
+          <div class="cat-card-overlay">
+            <span class="cat-card-num">01</span>
+            <h3 class="cat-card-title">Videography</h3>
+            <p class="cat-card-desc">Cinematic production for brands &amp; campaigns</p>
           </div>
-          <h3 class="svc-card-title">Photography</h3>
-          <p class="svc-card-desc">Editorial and commercial photography. Every shot intentional, every detail considered.</p>
-        </div>
+        </button>
 
-        <div class="svc-card" data-svc="editing">
-          <div class="svc-card-top">
-            <span class="svc-card-num">03</span>
+        <button type="button" class="cat-card" data-filter="photography">
+          <div class="cat-card-media">
+            <img class="cat-card-poster" src="assets/thumbs/bts-hell-yeah-draft1.jpg" alt="">
+            <video class="cat-card-video" preload="none" loop muted playsinline>
+              <source data-src="WORK/web/bts-hell-yeah-draft1.mp4" type="video/mp4">
+            </video>
           </div>
-          <h3 class="svc-card-title">Video Editing</h3>
-          <p class="svc-card-desc">Color grading, pacing, and seamless post-production that transforms raw footage into art.</p>
-        </div>
-
-        <div class="svc-card" data-svc="sound">
-          <div class="svc-card-top">
-            <span class="svc-card-num">04</span>
+          <div class="cat-card-overlay">
+            <span class="cat-card-num">02</span>
+            <h3 class="cat-card-title">Photography</h3>
+            <p class="cat-card-desc">Editorial &amp; commercial stills</p>
           </div>
-          <h3 class="svc-card-title">Sound Design</h3>
-          <p class="svc-card-desc">Custom sound design, mixing, and sonic branding that elevates your visual content.</p>
-        </div>
+        </button>
 
-        <div class="svc-card" data-svc="direction">
-          <div class="svc-card-top">
-            <span class="svc-card-num">05</span>
+        <button type="button" class="cat-card" data-filter="editing">
+          <div class="cat-card-media">
+            <img class="cat-card-poster" src="assets/thumbs/taos-big-time.jpg" alt="">
+            <video class="cat-card-video" preload="none" loop muted playsinline>
+              <source data-src="WORK/web/taos-big-time.mp4" type="video/mp4">
+            </video>
           </div>
-          <h3 class="svc-card-title">Creative Direction</h3>
-          <p class="svc-card-desc">Strategic vision from concept to execution. We direct the narrative of your brand.</p>
-        </div>
-
-        <div class="svc-card" data-svc="social">
-          <div class="svc-card-top">
-            <span class="svc-card-num">06</span>
+          <div class="cat-card-overlay">
+            <span class="cat-card-num">03</span>
+            <h3 class="cat-card-title">Editing</h3>
+            <p class="cat-card-desc">Color grading &amp; post-production</p>
           </div>
-          <h3 class="svc-card-title">Social Media</h3>
-          <p class="svc-card-desc">Platform-native content strategy and production optimized for engagement and growth.</p>
-        </div>
+        </button>
 
+        <button type="button" class="cat-card" data-filter="sound-design">
+          <div class="cat-card-media">
+            <img class="cat-card-poster" src="assets/thumbs/interscope-2pac.jpg" alt="">
+            <video class="cat-card-video" preload="none" loop muted playsinline>
+              <source data-src="WORK/web/interscope-2pac.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="cat-card-overlay">
+            <span class="cat-card-num">04</span>
+            <h3 class="cat-card-title">Sound Design</h3>
+            <p class="cat-card-desc">Mixing, sonic branding &amp; audio</p>
+          </div>
+        </button>
+
+        <button type="button" class="cat-card cat-card--gfx" data-filter="graphic-design">
+          <div class="cat-card-media">
+            <img class="cat-card-poster" src="assets/thumbs/de-la-cruz.jpg" alt="De La Cruz — graphic design preview">
+          </div>
+          <div class="cat-card-overlay">
+            <span class="cat-card-num">05</span>
+            <h3 class="cat-card-title">Graphic Design</h3>
+            <p class="cat-card-desc">Logos, apparel, flyers &amp; identity</p>
+          </div>
+        </button>
+
+        <button type="button" class="cat-card cat-card--web" data-filter="web-development">
+          <div class="cat-card-media">
+            <img class="cat-card-poster" src="assets/thumbs/exodushills.jpg" alt="Exodus Hills — website preview">
+          </div>
+          <div class="cat-card-overlay">
+            <span class="cat-card-num">06</span>
+            <h3 class="cat-card-title">Web Development</h3>
+            <p class="cat-card-desc">Custom-built sites, launched in-house</p>
+          </div>
+        </button>
       </div>
     </div>
   </section>
@@ -596,6 +553,20 @@
           <span>Say Hello</span>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" stroke-width="1.5"/></svg>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DISCOVERY CALL ============ -->
+  <section id="discovery">
+    <div class="container">
+      <div class="discovery-card">
+        <div class="section-label"><span>05</span><span>DISCOVERY CALL</span></div>
+        <h2 class="discovery-headline">Prefer to just talk it out?</h2>
+        <p class="discovery-sub">Grab a free 30-minute discovery call. We'll walk through your vision, ballpark the scope, and see if we're the right fit.</p>
+        <button type="button" class="btn btn-lit discovery-btn" id="discoveryCallBtn" data-calendly-url="https://calendly.com/matias-createxodus">
+          <span>Book a Call</span>
+        </button>
       </div>
     </div>
   </section>
@@ -782,5 +753,122 @@
       }
     } catch(e) { /* cobe CDN failed to load — globe section still shows text content */ }
   </script>
+
+  <!-- ============ BOOKING MODAL — Multi-step wizard ============ -->
+  <div class="booking-modal" id="bookingModal" aria-hidden="true">
+    <div class="booking-backdrop" id="bookingBackdrop"></div>
+    <div class="booking-center">
+      <button class="booking-close" id="bookingClose" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l14 14M15 1L1 15"/></svg>
+      </button>
+
+      <div class="bk-progress" id="bookingProgress">
+        <div class="bk-progress-bar" id="bookingProgressBar"></div>
+      </div>
+
+      <form id="bookingForm" autocomplete="off" action="https://formspree.io/f/mpqygjgo" method="POST">
+        <!-- Step 1: Project Type -->
+        <div class="booking-step active" data-step="1">
+          <h2 class="bk-title">What are we<br>creating together?</h2>
+          <p class="bk-sub">Select the type of project you have in mind.</p>
+          <div class="bk-type-grid">
+            <button type="button" class="bk-type" data-type="Videography"><span class="bk-type-dot"></span><span class="bk-type-label">Videography</span></button>
+            <button type="button" class="bk-type" data-type="Photography"><span class="bk-type-dot"></span><span class="bk-type-label">Photography</span></button>
+            <button type="button" class="bk-type" data-type="Editing"><span class="bk-type-dot"></span><span class="bk-type-label">Editing</span></button>
+            <button type="button" class="bk-type" data-type="Sound Design"><span class="bk-type-dot"></span><span class="bk-type-label">Sound Design</span></button>
+            <button type="button" class="bk-type" data-type="Graphic Design"><span class="bk-type-dot"></span><span class="bk-type-label">Graphic Design</span></button>
+            <button type="button" class="bk-type" data-type="Web Development"><span class="bk-type-dot"></span><span class="bk-type-label">Web Development</span></button>
+            <button type="button" class="bk-type" data-type="Other"><span class="bk-type-dot"></span><span class="bk-type-label">Other</span></button>
+          </div>
+
+          <div class="bk-divider"><span>OR</span></div>
+
+          <button type="button" class="bk-discovery" id="bkDiscoveryBtn" data-calendly-url="https://calendly.com/matias-createxodus">
+            <span class="bk-discovery-dot" aria-hidden="true"></span>
+            <span class="bk-discovery-label">
+              <span class="bk-discovery-title">Book a 30-min Discovery Call</span>
+              <span class="bk-discovery-sub">Free chat — no form needed</span>
+            </span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+        </div>
+
+        <!-- Step 2: Contact -->
+        <div class="booking-step" data-step="2">
+          <h2 class="bk-title">Tell us who<br>you are.</h2>
+          <p class="bk-sub">So we can get back to you.</p>
+          <div class="bk-fields">
+            <div class="bk-card-field bk-stagger">
+              <svg class="bk-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg>
+              <input type="text" name="name" required id="bkName" placeholder="Full Name">
+            </div>
+            <div class="bk-card-field bk-stagger">
+              <svg class="bk-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>
+              <input type="email" name="email" required id="bkEmail" placeholder="Email Address">
+            </div>
+            <div class="bk-card-field bk-stagger">
+              <svg class="bk-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07A19.5 19.5 0 0 1 5.16 12.9 19.86 19.86 0 0 1 2.09 4.18 2 2 0 0 1 4.08 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.68 2.34a2 2 0 0 1-.45 2.11L8.09 9.4a16 16 0 0 0 6.51 6.51l1.23-1.22a2 2 0 0 1 2.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0 1 22 16.92z"/></svg>
+              <input type="tel" name="phone" id="bkPhone" placeholder="Phone (optional)">
+            </div>
+          </div>
+          <div class="bk-nav">
+            <button type="button" class="bk-back" data-goto="1">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 2L4 8l6 6"/></svg>
+              Back
+            </button>
+            <button type="button" class="bk-continue" data-goto="3">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Details -->
+        <div class="booking-step" data-step="3">
+          <h2 class="bk-title">The details.</h2>
+          <p class="bk-sub">Help us understand the scope of your project.</p>
+          <div class="bk-fields">
+            <div class="bk-card-field bk-stagger">
+              <svg class="bk-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              <input type="text" name="location" id="bkLoc" placeholder="Location">
+            </div>
+            <div class="bk-card-field bk-card-field--select bk-stagger">
+              <svg class="bk-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <select name="budget_range" id="bkBudget">
+                <option value="" disabled selected>Budget Range</option>
+                <option>Under $5,000</option>
+                <option>$5,000 – $10,000</option>
+                <option>$10,000 – $25,000</option>
+                <option>$25,000+</option>
+              </select>
+            </div>
+            <div class="bk-card-field bk-card-field--textarea bk-stagger">
+              <svg class="bk-card-icon bk-card-icon--top" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              <textarea name="details" id="bkDetails" rows="3" placeholder="Tell us about your vision"></textarea>
+            </div>
+          </div>
+          <input type="hidden" name="project_type" id="bkProjectType" value="">
+          <div class="bk-nav">
+            <button type="button" class="bk-back" data-goto="2">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 2L4 8l6 6"/></svg>
+              Back
+            </button>
+            <button type="submit" class="bk-continue booking-submit-btn">Submit</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div class="booking-step" data-step="4">
+          <div class="bk-success">
+            <div class="bk-success-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path class="bk-check-path" d="M4 12l6 6L20 6"/>
+              </svg>
+            </div>
+            <h2 class="bk-title">We're on it.</h2>
+            <p class="bk-sub">Expect to hear from us within 24 hours.<br>We can't wait to bring your vision to life.</p>
+            <button type="button" class="bk-continue" id="bookingDone">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

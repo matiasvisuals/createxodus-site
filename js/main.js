@@ -224,6 +224,9 @@
 
   /* ---- Globe is initialized via ES module in index.html ---- */
 
+  /* Hero logo + buttons are static (CSS-only fade-in). No scroll morph. */
+  function initLogoMorph() { /* intentionally empty — morph removed */ }
+
   /* ---- Animations ---- */
   function initAnimations() {
     // Counter Animation (numbers count up when scrolled into view)
@@ -265,16 +268,8 @@
           },
         });
 
-        gsap.to('.hero-inner', {
-          y: -80,
-          opacity: 0,
-          scrollTrigger: {
-            trigger: '#hero',
-            start: '60% top',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        });
+        // Hero CE logo morphs into nav pill slot; buttons fade out
+        initLogoMorph();
 
         gsap.to('.hero-scroll', {
           opacity: 0,
@@ -396,6 +391,291 @@
     }
 
     animate();
+  }
+
+  // ===== PORTFOLIO: Category Filters + Hover Video Previews =====
+  const pfTabs = document.querySelectorAll('.pf-tab');
+  const pfCards = document.querySelectorAll('.pf-card');
+
+  if (pfTabs.length && pfCards.length) {
+    // Filter behavior — matches on data-services (space-separated service slugs),
+    // falls back to data-cat for legacy cards (e.g. the websites card).
+    function cardMatches(card, filter) {
+      if (filter === 'all') return true;
+      const services = (card.dataset.services || '').split(/\s+/).filter(Boolean);
+      if (services.includes(filter)) return true;
+      return card.dataset.cat === filter;
+    }
+    pfTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const filter = tab.dataset.filter;
+        pfTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        pfCards.forEach(card => {
+          card.classList.toggle('is-hidden', !cardMatches(card, filter));
+        });
+      });
+    });
+
+    // Lazy-load video sources as cards enter the viewport (saves bandwidth)
+    const lazyLoadVideo = (video) => {
+      if (video.dataset.loaded || !video.dataset.src) return;
+      const source = document.createElement('source');
+      source.src = video.dataset.src;
+      source.type = 'video/mp4';
+      video.appendChild(source);
+      video.load();
+      video.dataset.loaded = '1';
+    };
+
+    // Each card shows a static poster image (.pf-card-poster) as its idle
+    // state. Video is loaded and played only on hover; leaving the card
+    // pauses and resets the video so the poster re-covers it.
+    pfCards.forEach(card => {
+      const vid = card.querySelector('video.pf-card-media');
+      if (!vid) return;
+      card.addEventListener('mouseenter', () => {
+        lazyLoadVideo(vid);
+        const p = vid.play();
+        if (p !== undefined) p.catch(() => { /* autoplay blocked — ignore */ });
+      });
+      card.addEventListener('mouseleave', () => {
+        vid.pause();
+        try { vid.currentTime = 0; } catch(e) { /* ignore */ }
+      });
+    });
+  }
+
+  /* ============================================
+     BOOKING MODAL — Multi-step wizard
+     (Deferred: modal HTML appears AFTER this script in index.html)
+     ============================================ */
+  function initBookingModal() {
+    var modal = document.getElementById('bookingModal');
+    var form = document.getElementById('bookingForm');
+    if (!modal || !form) return;
+
+    var currentStep = 1;
+    var selectedType = '';
+
+    function openBooking(e) {
+      if (e) e.preventDefault();
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBooking() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(function () {
+        goToStep(1);
+        selectedType = '';
+        form.reset();
+        document.querySelectorAll('.bk-type').forEach(function (c) { c.classList.remove('selected'); });
+        var hidden = document.getElementById('bkProjectType');
+        if (hidden) hidden.value = '';
+      }, 500);
+    }
+
+    function goToStep(step) {
+      currentStep = step;
+      document.querySelectorAll('.booking-step').forEach(function (s) { s.classList.remove('active'); });
+      var target = document.querySelector('.booking-step[data-step="' + step + '"]');
+      if (target) target.classList.add('active');
+
+      var bar = document.getElementById('bookingProgressBar');
+      var progress = document.getElementById('bookingProgress');
+      if (bar && progress) {
+        if (step <= 3) {
+          progress.style.opacity = '1';
+          bar.style.width = (step / 3) * 100 + '%';
+        } else {
+          progress.style.opacity = '0';
+        }
+      }
+
+      // Re-trigger stagger
+      if (target) {
+        target.querySelectorAll('.bk-stagger').forEach(function (el) {
+          el.style.animation = 'none';
+          void el.offsetHeight; // reflow to restart animation
+          el.style.animation = '';
+        });
+      }
+    }
+
+    // Type selection → auto-advance
+    document.querySelectorAll('.bk-type').forEach(function (card) {
+      card.addEventListener('click', function () {
+        document.querySelectorAll('.bk-type').forEach(function (c) { c.classList.remove('selected'); });
+        card.classList.add('selected');
+        selectedType = card.dataset.type;
+        var hidden = document.getElementById('bkProjectType');
+        if (hidden) hidden.value = selectedType;
+        setTimeout(function () { goToStep(2); }, 320);
+      });
+    });
+
+    // Back / Continue navigation
+    document.querySelectorAll('.bk-back, .bk-continue:not(.booking-submit-btn)').forEach(function (btn) {
+      if (btn.dataset.goto) {
+        btn.addEventListener('click', function () { goToStep(parseInt(btn.dataset.goto, 10)); });
+      }
+    });
+
+    // Open triggers — hero Book button + nav pill Book
+    document.querySelectorAll('[data-book-open]').forEach(function (btn) {
+      btn.addEventListener('click', openBooking);
+    });
+
+    // Close triggers
+    var closeBtn = document.getElementById('bookingClose');
+    var backdrop = document.getElementById('bookingBackdrop');
+    var doneBtn = document.getElementById('bookingDone');
+    if (closeBtn) closeBtn.addEventListener('click', closeBooking);
+    if (backdrop) backdrop.addEventListener('click', closeBooking);
+    if (doneBtn) doneBtn.addEventListener('click', closeBooking);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeBooking();
+    });
+
+    // Submit via Formspree AJAX — matches the gate contact form pattern
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var submitBtn = form.querySelector('.booking-submit-btn');
+      var originalText = submitBtn.innerHTML;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (r) {
+        if (r.ok) {
+          goToStep(4);
+        } else {
+          submitBtn.innerHTML = 'Error — try again';
+          setTimeout(function () { submitBtn.innerHTML = originalText; }, 3000);
+        }
+      }).catch(function () {
+        submitBtn.innerHTML = 'Error — try again';
+        setTimeout(function () { submitBtn.innerHTML = originalText; }, 3000);
+      }).finally(function () {
+        submitBtn.disabled = false;
+        if (submitBtn.innerHTML === 'Sending...') submitBtn.innerHTML = originalText;
+      });
+    });
+  }
+
+  function initDiscoveryCall() {
+    // Matches both the standalone section button and the in-modal option
+    var triggers = document.querySelectorAll('[data-calendly-url]');
+    if (!triggers.length) return;
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var url = btn.getAttribute('data-calendly-url');
+        if (!url) return;
+
+        // Close the booking modal first if it's open (so Calendly's popup takes over cleanly)
+        var modal = document.getElementById('bookingModal');
+        if (modal && modal.classList.contains('active')) {
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+
+        if (window.Calendly) {
+          window.Calendly.initPopupWidget({ url: url });
+        } else {
+          // Calendly script hasn't loaded yet — fall back to a new tab
+          window.open(url, '_blank', 'noopener');
+        }
+      });
+    });
+  }
+
+  // Booking modal + categories section + discovery call need DOM to be parsed
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      initBookingModal();
+      initCategoriesSection();
+      initDiscoveryCall();
+    });
+  } else {
+    initBookingModal();
+    initCategoriesSection();
+    initDiscoveryCall();
+  }
+
+  /* ============================================
+     CATEGORIES SECTION — Senti-style hover rows
+     Clicking a row scrolls to #work and activates that portfolio filter
+     ============================================ */
+  function initCategoriesSection() {
+    var cards = document.querySelectorAll('.cat-card');
+    if (!cards.length) return;
+
+    function lazyLoadCardVideo(card) {
+      var vid = card.querySelector('video.cat-card-video');
+      if (!vid) return null;
+      var src = vid.querySelector('source[data-src]');
+      if (src && !src.getAttribute('src')) {
+        src.setAttribute('src', src.getAttribute('data-src'));
+        vid.load();
+      }
+      return vid;
+    }
+
+    cards.forEach(function (card) {
+      card.addEventListener('mouseenter', function () {
+        var vid = lazyLoadCardVideo(card);
+        if (!vid) return;
+        var p = vid.play();
+        if (p !== undefined) p.catch(function () { /* autoplay blocked — ignore */ });
+      });
+      card.addEventListener('mouseleave', function () {
+        var vid = card.querySelector('video.cat-card-video');
+        if (!vid) return;
+        vid.pause();
+        try { vid.currentTime = 0; } catch (e) { /* ignore */ }
+      });
+
+      card.addEventListener('click', function (e) {
+        e.preventDefault();
+        var filter = card.getAttribute('data-filter');
+        var workSection = document.getElementById('work');
+        if (!workSection) return;
+
+        // Reset the card's hover state — pause/reset the video and drop focus
+        // so the poster re-covers and the button doesn't stay visually "pressed".
+        var vid = card.querySelector('video.cat-card-video');
+        if (vid) {
+          vid.pause();
+          try { vid.currentTime = 0; } catch (_) {}
+        }
+        if (card.blur) card.blur();
+
+        var tabs = document.querySelectorAll('.pf-tab');
+        var pfCardsEls = document.querySelectorAll('.pf-card');
+        tabs.forEach(function (t) {
+          t.classList.toggle('active', t.getAttribute('data-filter') === filter);
+        });
+        pfCardsEls.forEach(function (c) {
+          var matches = filter === 'all';
+          if (!matches) {
+            var services = (c.getAttribute('data-services') || '').split(/\s+/).filter(Boolean);
+            matches = services.indexOf(filter) !== -1 || c.getAttribute('data-cat') === filter;
+          }
+          c.classList.toggle('is-hidden', !matches);
+        });
+
+        workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
   }
 
 })();

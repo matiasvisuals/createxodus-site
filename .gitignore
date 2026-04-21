@@ -34,3 +34,11 @@ AdobeStock_998477010.jpeg
 
 # Compression script (not needed on site)
 compress-videos.sh
+
+# Dev/debug only
+tools/
+bg-only.html
+assets/originals/
+
+# Password gate (removed)
+js/auth-guard.js
