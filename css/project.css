@@ -844,121 +844,107 @@ button { border: none; background: none; cursor: pointer; color: inherit; font-f
   padding-top: 0;
 }
 
-/* ---- Graphic Design — chapter layout ----
-   Used on /work/de-la-cruz.html. Each chapter is a labeled group of media so
-   the page reads as discrete bodies of work instead of one undifferentiated
-   stack of images. */
-.proj-media--gfx .proj-media-row {
+/* ---- Graphic Design — minimal chapter layout ----
+   Used on /work/de-la-cruz.html (body.gfx-page). Smaller media, narrower
+   column, quieter chapter labels. The point is restraint — let the artwork
+   read at a comfortable scale instead of dominating the viewport. */
+
+/* Narrow the whole page so media doesn't sprawl edge-to-edge. */
+.gfx-page .proj-hero > .container,
+.gfx-page .proj-media > .container,
+.gfx-page .proj-footer > .container {
+  max-width: 920px;
+}
+
+/* Trim the hero so the page opens quietly. */
+.gfx-page .proj-hero {
+  padding-top: calc(var(--nav-height) + clamp(28px, 4vw, 56px));
+  padding-bottom: clamp(20px, 2.5vw, 32px);
+}
+.gfx-page .proj-hero-title {
+  font-size: clamp(36px, 5vw, 64px);
+  margin-bottom: 20px;
+}
+.gfx-page .proj-hero-label { margin-bottom: 16px; }
+.gfx-page .proj-details {
+  margin-top: clamp(24px, 3vw, 36px);
+  padding-top: clamp(18px, 2vw, 24px);
+}
+
+/* Tighter row + smaller media tiles. */
+.gfx-page .proj-media--gfx .proj-media-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(12px, 2vw, 24px);
+  gap: clamp(8px, 1.2vw, 14px);
+}
+.gfx-page .proj-media--gfx .proj-media-half {
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+}
+.gfx-page .proj-media--gfx .proj-media-full {
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+}
+.gfx-page .proj-media--gfx .proj-media-contain img {
+  padding: clamp(18px, 3vw, 36px);
 }
 
-.gfx-chapter {
-  margin-top: clamp(56px, 8vw, 120px);
+.gfx-page .gfx-chapter {
+  margin-top: clamp(36px, 4.5vw, 64px);
   display: grid;
-  gap: clamp(14px, 2vw, 24px);
+  gap: clamp(8px, 1.2vw, 14px);
 }
-.gfx-chapter:first-child { margin-top: 0; }
+.gfx-page .gfx-chapter:first-child { margin-top: 0; }
 
-.gfx-chapter-head {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  column-gap: clamp(16px, 2vw, 28px);
-  row-gap: 6px;
-  align-items: end;
-  padding-bottom: clamp(20px, 2.5vw, 32px);
-  margin-bottom: clamp(8px, 1.2vw, 16px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+/* Chapter header: a tiny label, nothing more. */
+.gfx-page .gfx-chapter-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-bottom: clamp(10px, 1.2vw, 14px);
+  margin-bottom: clamp(4px, 0.6vw, 8px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-
-.gfx-chapter-num {
-  grid-column: 1;
-  grid-row: 1 / span 2;
+.gfx-page .gfx-chapter-num {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(40px, 5.5vw, 72px);
-  font-weight: 200;
+  font-size: 11px;
+  font-weight: 400;
   line-height: 1;
   color: var(--accent, #B8C4D0);
-  opacity: 0.55;
-  letter-spacing: -0.02em;
-  align-self: center;
+  opacity: 0.5;
+  letter-spacing: 0.2em;
 }
-
-.gfx-chapter-title {
-  grid-column: 2;
-  grid-row: 1;
+.gfx-page .gfx-chapter-title {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(28px, 4.5vw, 56px);
-  font-weight: 200;
-  letter-spacing: -0.01em;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
   line-height: 1;
+  text-transform: uppercase;
   color: var(--cream-text, #E0E2E8);
   margin: 0;
 }
+.gfx-page .gfx-chapter-sub { display: none; }
 
-.gfx-chapter-sub {
-  grid-column: 2;
-  grid-row: 2;
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(13px, 1.1vw, 15px);
-  font-weight: 300;
-  color: rgba(224,226,232,0.55);
-  margin: 0;
-  max-width: 56ch;
-}
-
-/* Subtle image-hover for graphic-design tiles — adds liveliness while
-   scrolling without distracting from the artwork. */
-.proj-media--gfx .proj-media-half,
-.proj-media--gfx .proj-media-full {
-  transition: transform 0.6s var(--ease-out-expo, cubic-bezier(0.22,1,0.36,1)),
-              box-shadow 0.6s ease,
+/* Quieter hover — small lift, no scale. */
+.gfx-page .proj-media--gfx .proj-media-half,
+.gfx-page .proj-media--gfx .proj-media-full {
+  transition: transform 0.5s var(--ease-out-expo, cubic-bezier(0.22,1,0.36,1)),
+              box-shadow 0.5s ease,
               border-color 0.4s ease;
-  will-change: transform;
 }
-.proj-media--gfx .proj-media-half img,
-.proj-media--gfx .proj-media-full img {
-  transition: transform 1.1s var(--ease-out-expo, cubic-bezier(0.22,1,0.36,1)),
-              filter 0.6s ease;
-}
-.proj-media--gfx .proj-media-half:hover,
-.proj-media--gfx .proj-media-full:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 50px rgba(0,0,0,0.45);
-  border-color: rgba(255,255,255,0.12);
-}
-.proj-media--gfx .proj-media-half:hover img,
-.proj-media--gfx .proj-media-full:hover img {
-  transform: scale(1.03);
-}
-.proj-media--gfx .proj-media-contain:hover img {
-  transform: scale(1.04);
-  filter: none;
+.gfx-page .proj-media--gfx .proj-media-half:hover,
+.gfx-page .proj-media--gfx .proj-media-full:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  border-color: rgba(255,255,255,0.1);
 }
 
 @media (max-width: 720px) {
-  .gfx-chapter-head {
+  .gfx-page .proj-media--gfx .proj-media-row {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    row-gap: 4px;
   }
-  .gfx-chapter-num {
-    grid-column: 1;
-    grid-row: 1;
-    font-size: 36px;
-  }
-  .gfx-chapter-title {
-    grid-column: 1;
-    grid-row: 2;
-    font-size: 28px;
-  }
-  .gfx-chapter-sub {
-    grid-column: 1;
-    grid-row: 3;
-  }
-  .proj-media--gfx .proj-media-row {
-    grid-template-columns: 1fr;
+  .gfx-page .proj-media--gfx .proj-media-half {
+    aspect-ratio: 4 / 5;
   }
 }
