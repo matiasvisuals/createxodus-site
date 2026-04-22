@@ -808,23 +808,6 @@ button { border: none; background: none; cursor: pointer; color: inherit; font-f
   }
 }
 
-/* Graphic design variants — logos/art need "contain" instead of "cover" so they
-   don't get cropped. The De La Cruz marks are black-on-transparent, so the
-   container needs a light backdrop to render them legibly. */
-.proj-media-contain {
-  background: linear-gradient(135deg, #f4f1ea 0%, #e8e3d6 100%) !important;
-  border-color: rgba(255,255,255,0.12) !important;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-}
-
-.proj-media-contain img,
-.proj-media-contain video {
-  object-fit: contain !important;
-  background: transparent;
-  padding: clamp(28px, 5vw, 64px);
-  mix-blend-mode: multiply;
-}
-
 /* Legacy section-label (kept for any other pages that may use it) */
 .proj-media-section-label {
   grid-column: 1 / -1;
@@ -844,107 +827,294 @@ button { border: none; background: none; cursor: pointer; color: inherit; font-f
   padding-top: 0;
 }
 
-/* ---- Graphic Design — minimal chapter layout ----
-   Used on /work/de-la-cruz.html (body.gfx-page). Smaller media, narrower
-   column, quieter chapter labels. The point is restraint — let the artwork
-   read at a comfortable scale instead of dominating the viewport. */
+/* =============================================================
+   GRAPHIC DESIGN — editorial showcase (body.gfx-page)
+   Native aspect ratios for every tile (no forced horizontal
+   crops), three tile flavors for the three artwork types, and
+   a featured row for the 9:16 story flyer so it's shown as the
+   phone-format piece it actually is.
+   ============================================================= */
 
-/* Narrow the whole page so media doesn't sprawl edge-to-edge. */
-.gfx-page .proj-hero > .container,
-.gfx-page .proj-media > .container,
-.gfx-page .proj-footer > .container {
-  max-width: 920px;
-}
-
-/* Trim the hero so the page opens quietly. */
-.gfx-page .proj-hero {
-  padding-top: calc(var(--nav-height) + clamp(28px, 4vw, 56px));
-  padding-bottom: clamp(20px, 2.5vw, 32px);
-}
-.gfx-page .proj-hero-title {
-  font-size: clamp(36px, 5vw, 64px);
-  margin-bottom: 20px;
-}
-.gfx-page .proj-hero-label { margin-bottom: 16px; }
-.gfx-page .proj-details {
-  margin-top: clamp(24px, 3vw, 36px);
-  padding-top: clamp(18px, 2vw, 24px);
+/* Hero stays full-size to match other client pages — only narrow
+   the gallery container so editorial compositions read tight. */
+.gfx-page .gfx-stack > .container {
+  max-width: 1080px;
 }
 
-/* Tighter row + smaller media tiles. */
-.gfx-page .proj-media--gfx .proj-media-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(8px, 1.2vw, 14px);
-}
-.gfx-page .proj-media--gfx .proj-media-half {
-  aspect-ratio: 4 / 5;
-  border-radius: 8px;
-}
-.gfx-page .proj-media--gfx .proj-media-full {
-  aspect-ratio: 16 / 10;
-  border-radius: 8px;
-}
-.gfx-page .proj-media--gfx .proj-media-contain img {
-  padding: clamp(18px, 3vw, 36px);
+.gfx-stack {
+  padding: clamp(8px, 1.5vw, 24px) 0 clamp(56px, 7vw, 96px);
 }
 
+/* ---- Chapters ---- */
 .gfx-page .gfx-chapter {
-  margin-top: clamp(36px, 4.5vw, 64px);
+  margin-top: clamp(56px, 7vw, 104px);
   display: grid;
-  gap: clamp(8px, 1.2vw, 14px);
+  gap: clamp(20px, 3vw, 40px);
 }
 .gfx-page .gfx-chapter:first-child { margin-top: 0; }
 
-/* Chapter header: a tiny label, nothing more. */
 .gfx-page .gfx-chapter-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  row-gap: 6px;
   align-items: baseline;
-  gap: 14px;
-  padding-bottom: clamp(10px, 1.2vw, 14px);
-  margin-bottom: clamp(4px, 0.6vw, 8px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: clamp(14px, 1.6vw, 20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .gfx-page .gfx-chapter-num {
+  grid-row: 1;
   font-family: 'Outfit', sans-serif;
   font-size: 11px;
-  font-weight: 400;
-  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.3em;
   color: var(--accent, #B8C4D0);
-  opacity: 0.5;
-  letter-spacing: 0.2em;
+  opacity: 0.6;
+  line-height: 1;
 }
 .gfx-page .gfx-chapter-title {
+  grid-row: 1;
   font-family: 'Outfit', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  line-height: 1;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--cream-text, #E0E2E8);
   margin: 0;
+  line-height: 1;
 }
-.gfx-page .gfx-chapter-sub { display: none; }
+.gfx-page .gfx-chapter-sub {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 300;
+  color: rgba(224,226,232,0.6);
+  margin: 0;
+  max-width: 60ch;
+}
 
-/* Quieter hover — small lift, no scale. */
-.gfx-page .proj-media--gfx .proj-media-half,
-.gfx-page .proj-media--gfx .proj-media-full {
+/* ---- Pair labels (sub-groups within a chapter) ---- */
+.gfx-page .gfx-pair { display: grid; gap: clamp(10px, 1.4vw, 16px); }
+
+.gfx-page .gfx-pair-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(224,226,232,0.55);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.gfx-page .gfx-pair-label span {
+  color: var(--accent, #B8C4D0);
+  opacity: 0.7;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+}
+
+/* ---- Rows ---- */
+.gfx-page .gfx-row {
+  display: grid;
+  gap: clamp(10px, 1.4vw, 16px);
+}
+.gfx-page .gfx-row--two   { grid-template-columns: 1fr 1fr; }
+.gfx-page .gfx-row--three { grid-template-columns: repeat(3, 1fr); }
+
+/* Lead row: primary mark large + monogram smaller, asymmetric */
+.gfx-page .gfx-row--lead {
+  grid-template-columns: 7fr 4fr;
+  align-items: end;
+}
+
+/* ---- Tiles — native aspect, three flavors ---- */
+.gfx-page .gfx-tile {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-dark);
+  border: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
   transition: transform 0.5s var(--ease-out-expo, cubic-bezier(0.22,1,0.36,1)),
               box-shadow 0.5s ease,
               border-color 0.4s ease;
 }
-.gfx-page .proj-media--gfx .proj-media-half:hover,
-.gfx-page .proj-media--gfx .proj-media-full:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+.gfx-page .gfx-tile img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.gfx-page .gfx-tile figcaption {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(224,226,232,0.55);
+  padding: 14px 18px 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  background: transparent;
+}
+.gfx-page .gfx-tile figcaption span {
+  color: var(--accent, #B8C4D0);
+  opacity: 0.7;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+}
+.gfx-page .gfx-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
   border-color: rgba(255,255,255,0.1);
 }
 
-@media (max-width: 720px) {
-  .gfx-page .proj-media--gfx .proj-media-row {
+/* Ink tiles — black-on-white artwork (logos, typography prints).
+   Cream backdrop with multiply blend so the source PNG's white
+   falls away and only the ink remains. */
+.gfx-page .gfx-tile--ink {
+  background: linear-gradient(135deg, #faf6ed 0%, #ece5d2 100%);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.3);
+}
+.gfx-page .gfx-tile--ink img {
+  mix-blend-mode: multiply;
+  padding: clamp(22px, 4vw, 56px);
+}
+.gfx-page .gfx-tile--ink figcaption {
+  color: rgba(20,24,40,0.55);
+  background: rgba(255,255,255,0.5);
+  border-top: 1px solid rgba(20,24,40,0.08);
+}
+.gfx-page .gfx-tile--ink figcaption span {
+  color: rgba(20,24,40,0.4);
+}
+
+/* Soft tiles — white shirt mockups need a neutral mid-tone backdrop
+   so the white garment reads against something. */
+.gfx-page .gfx-tile--soft {
+  background: linear-gradient(160deg, #1a2038 0%, #14182a 100%);
+  border-color: rgba(255,255,255,0.08);
+}
+.gfx-page .gfx-tile--soft img {
+  padding: clamp(24px, 4vw, 56px);
+}
+
+/* Print tiles — full-color flyers, no padding, native bleed. */
+.gfx-page .gfx-tile--print img { padding: 0; }
+
+/* Lead/mono — fine-tune the asymmetric Identity row */
+.gfx-page .gfx-tile--lead { align-self: stretch; }
+.gfx-page .gfx-tile--mono { align-self: end; }
+
+/* ---- Featured 9:16 story flyer + side note ---- */
+.gfx-page .gfx-feature {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(20px, 3vw, 40px) 0;
+}
+.gfx-page .gfx-tile--phone {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.gfx-page .gfx-tile--phone img { padding: 0; }
+.gfx-page .gfx-tile--phone figcaption {
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  padding: 0;
+}
+
+.gfx-page .gfx-feature-aside {
+  display: grid;
+  gap: 16px;
+  max-width: 44ch;
+}
+.gfx-page .gfx-feature-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--accent, #B8C4D0);
+  opacity: 0.7;
+}
+.gfx-page .gfx-feature-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(15px, 1.3vw, 18px);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--cream-text, #E0E2E8);
+  margin: 0;
+}
+.gfx-page .gfx-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 16px;
+}
+.gfx-page .gfx-feature-list li {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(224,226,232,0.7);
+  letter-spacing: 0.02em;
+}
+.gfx-page .gfx-feature-list li span {
+  color: var(--accent, #B8C4D0);
+  opacity: 0.75;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+/* Reveal animation for tiles + chapter heads */
+.gfx-page .gfx-tile,
+.gfx-page .gfx-chapter-head,
+.gfx-page .gfx-feature-aside {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.8s var(--ease-out-expo, cubic-bezier(0.22,1,0.36,1)),
+              box-shadow 0.5s ease, border-color 0.4s ease;
+}
+.gfx-page .gfx-tile.revealed,
+.gfx-page .gfx-chapter-head.revealed,
+.gfx-page .gfx-feature-aside.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 760px) {
+  .gfx-page .gfx-row--lead,
+  .gfx-page .gfx-row--two {
     grid-template-columns: 1fr;
   }
-  .gfx-page .proj-media--gfx .proj-media-half {
-    aspect-ratio: 4 / 5;
+  .gfx-page .gfx-row--three {
+    grid-template-columns: 1fr 1fr;
   }
+  .gfx-page .gfx-feature {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: left;
+  }
+  .gfx-page .gfx-tile--phone { max-width: 260px; }
+  .gfx-page .gfx-tile--ink img { padding: clamp(18px, 6vw, 36px); }
+  .gfx-page .gfx-feature-aside { max-width: 100%; }
+}
+@media (max-width: 480px) {
+  .gfx-page .gfx-row--three { grid-template-columns: 1fr; }
 }

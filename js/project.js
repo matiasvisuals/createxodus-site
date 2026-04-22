@@ -68,7 +68,7 @@
 
   /* ---- Scroll reveal ---- */
   var reveals = document.querySelectorAll(
-    '.proj-hero-title, .proj-hero-label, .proj-tags, .proj-details, .proj-media-full, .proj-media-half, .proj-media-third, .proj-media-vertical, .proj-nav-item, .gfx-chapter-head'
+    '.proj-hero-title, .proj-hero-label, .proj-tags, .proj-details, .proj-media-full, .proj-media-half, .proj-media-third, .proj-media-vertical, .proj-nav-item, .gfx-chapter-head, .gfx-tile, .gfx-feature-aside'
   );
 
   var observer;
