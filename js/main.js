@@ -673,7 +673,15 @@
           c.classList.toggle('is-hidden', !matches);
         });
 
-        workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Compute target after filter reflow (getBoundingClientRect forces
+        // synchronous layout), then scroll via Lenis to match the anchor-link
+        // pattern. Native scrollIntoView fights Lenis and lands in random spots.
+        var top = workSection.getBoundingClientRect().top + window.scrollY - 80;
+        if (lenis) {
+          lenis.scrollTo(top);
+        } else {
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
       });
     });
   }
