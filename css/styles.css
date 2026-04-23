@@ -1952,6 +1952,12 @@ input, select, textarea { font-family: inherit; }
   animation: pf-iframe-pan 22s linear infinite;
 }
 
+/* Default state: iframe src is unset (loaded on hover). Hide the empty
+   iframe so the gradient + URL fallback shows through. */
+.pf-card-iframe:not([src]) {
+  display: none;
+}
+
 @keyframes pf-iframe-pan {
   0%   { transform: scale(0.28) translateY(0); }
   50%  { transform: scale(0.28) translateY(-1600px); }

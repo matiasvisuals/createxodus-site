@@ -444,6 +444,23 @@
         try { vid.currentTime = 0; } catch(e) { /* ignore */ }
       });
     });
+
+    // Website preview iframes: never auto-load. Each external site is a full
+    // page (with its own scripts, fonts, and media) and loading several at
+    // once was crashing the tab. Load on hover, unload on leave so memory
+    // stays bounded to one preview at a time.
+    pfCards.forEach(card => {
+      const iframe = card.querySelector('iframe.pf-card-iframe');
+      if (!iframe || !iframe.dataset.src) return;
+      let unloadTimer = null;
+      card.addEventListener('mouseenter', () => {
+        if (unloadTimer) { clearTimeout(unloadTimer); unloadTimer = null; }
+        if (iframe.src !== iframe.dataset.src) iframe.src = iframe.dataset.src;
+      });
+      card.addEventListener('mouseleave', () => {
+        unloadTimer = setTimeout(() => { iframe.removeAttribute('src'); }, 400);
+      });
+    });
   }
 
   /* ============================================
