@@ -1984,26 +1984,45 @@ input, select, textarea { font-family: inherit; }
   100% { transform: scale(0.28) translateY(0); }
 }
 
-/* Resting-state placeholder behind iframe. Hidden so the card shows a clean
-   gradient + corner labels until the live preview loads on hover (avoids the
-   big center text duplicating the bottom-left card name). */
+/* Center brand logo — fills the card now that previews are disabled. */
 .pf-card-iframe-fallback {
   position: absolute;
   inset: 0;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
+  padding: 14% 12%;
   pointer-events: none;
 }
 
-.pf-card-iframe-fallback .pf-card-url {
+/* The brand logo image. Per-card max-width/height (inline) keep each brand
+   optically balanced despite very different aspect ratios. */
+.pf-card-logo-center {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 22px rgba(0,0,0,0.45));
+}
+
+/* Black-ink logos (De La Cruz, Adamó) flipped to white for the dark card. */
+.pf-card-logo-center.is-invert {
+  filter: invert(1) brightness(1.7) drop-shadow(0 6px 22px rgba(0,0,0,0.45));
+}
+
+/* Text-only brands (no logo asset) rendered as a centered wordmark. */
+.pf-card-logo-word {
   font-family: 'Outfit', sans-serif;
-  font-weight: 200;
-  font-size: clamp(18px, 2.6vw, 32px);
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.85);
+  font-weight: 300;
+  font-size: clamp(20px, 3vw, 34px);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  text-align: center;
+  color: rgba(255,255,255,0.92);
   text-shadow: 0 2px 16px rgba(0,0,0,0.5);
 }
+
+/* Top-left uppercase tag is redundant now that the brand logo sits center. */
+.pf-card-website .pf-card-logo-text { display: none; }
 
 /* Scale the iframe differently depending on card width breakpoints */
 @media (max-width: 1100px) {
