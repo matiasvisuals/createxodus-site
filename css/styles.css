@@ -1922,6 +1922,26 @@ input, select, textarea { font-family: inherit; }
   z-index: 3;
 }
 
+/* Demo badge — marks a Vercel demo not yet on a live domain */
+.pf-card-badge {
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 4px 10px;
+  border: 1px solid rgba(184,196,208,0.45);
+  border-radius: 100px;
+  background: rgba(0,0,0,0.3);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: 3;
+}
+
 /* Filtered-out cards */
 .pf-card.is-hidden {
   display: none;
