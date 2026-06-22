@@ -1984,12 +1984,13 @@ input, select, textarea { font-family: inherit; }
   100% { transform: scale(0.28) translateY(0); }
 }
 
-/* Fallback text behind iframe — only visible if iframe fails to render
-   (e.g. site blocks embedding via X-Frame-Options) */
+/* Resting-state placeholder behind iframe. Hidden so the card shows a clean
+   gradient + corner labels until the live preview loads on hover (avoids the
+   big center text duplicating the bottom-left card name). */
 .pf-card-iframe-fallback {
   position: absolute;
   inset: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   pointer-events: none;
