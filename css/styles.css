@@ -2001,12 +2001,8 @@ input, select, textarea { font-family: inherit; }
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 6px 22px rgba(0,0,0,0.45));
-}
-
-/* Black-ink logos (De La Cruz, Adamó) flipped to white for the dark card. */
-.pf-card-logo-center.is-invert {
-  filter: invert(1) brightness(1.7) drop-shadow(0 6px 22px rgba(0,0,0,0.45));
+  /* Normalize every brand mark to solid white on the dark card. */
+  filter: brightness(0) invert(1) drop-shadow(0 6px 22px rgba(0,0,0,0.45));
 }
 
 /* Text-only brands (no logo asset) rendered as a centered wordmark. */
