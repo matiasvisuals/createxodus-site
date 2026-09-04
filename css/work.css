@@ -25,20 +25,20 @@
   flex-wrap: wrap;
   margin-bottom: clamp(24px, 4vh, 40px);
 }
-.wk-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.wk-filters { display: flex; flex-wrap: wrap; gap: 4px 22px; }
 .wk-filter {
-  padding: 11px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.12);
-  background: rgba(255,255,255,0.5);
+  position: relative;
+  padding: 10px 0 12px;
   font-size: 10.5px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink);
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  color: var(--ink-3);
+  transition: color 0.3s;
 }
-.wk-filter:hover { background: rgba(255,255,255,0.9); }
-.wk-filter.active { background: #0b0b0b; border-color: #0b0b0b; color: #fff; }
+.wk-filter::after { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease); }
+.wk-filter:hover { color: var(--ink); }
+.wk-filter.active { color: var(--ink); }
+.wk-filter.active::after { transform: scaleX(1); }
 .wk-count {
   font-family: var(--serif);
   font-size: 12px;
@@ -146,9 +146,7 @@
   position: absolute;
   top: 16px;
   left: 16px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.25);
+  padding: 0;
   font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -159,15 +157,12 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  width: auto;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.14);
-  border: 1px solid rgba(255,255,255,0.22);
-  backdrop-filter: blur(8px);
+  color: #fff;
   opacity: 0;
   transform: translateY(-4px);
   transition: opacity 0.4s, transform 0.5s var(--ease);
@@ -196,7 +191,7 @@
   .wk-meta { left: 12px; right: 12px; bottom: 12px; }
   .wk-name { font-size: 10.5px; }
   .wk-cat { font-size: 9px; }
-  .wk-open { opacity: 1; transform: none; width: 26px; height: 26px; top: 10px; right: 10px; }
+  .wk-open { opacity: 1; transform: none; top: 12px; right: 12px; }
 }
 @media (max-width: 480px) {
   .wk-grid { grid-template-columns: 1fr; }

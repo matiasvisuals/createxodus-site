@@ -32,11 +32,14 @@
       var frag = document.createElement('span');
       frag.className = 'ms';
       if (mode === 'chars') {
-        for (var i = 0; i < text.length; i++) {
-          var ch = text[i];
-          if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); continue; }
-          frag.appendChild(unit(ch));
-        }
+        text.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+          var word = document.createElement('span');
+          word.className = 'mword';
+          for (var i = 0; i < part.length; i++) word.appendChild(unit(part[i]));
+          frag.appendChild(word);
+        });
       } else {
         var parts = text.split(/(\s+)/);
         parts.forEach(function (p) {
