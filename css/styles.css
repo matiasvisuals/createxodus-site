@@ -533,29 +533,33 @@ ul { list-style: none; }
 }
 .split-head .prose { max-width: 420px; }
 
-/* Partners logo grid */
+/* Partners logo grid: 4 x 4 cells, every logo boxed to the same optical size */
 .logo-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(36px, 5vh, 70px) 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(28px, 4vh, 48px) clamp(12px, 2vw, 32px);
   padding-top: 8px;
 }
+.logo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+}
 .logo-grid img {
-  height: clamp(16px, 1.6vw, 22px);
+  display: block;
   width: auto;
-  max-width: 88px;
-  margin: 0 auto;
+  height: auto;
+  max-width: 72%;
+  max-height: 22px;
   object-fit: contain;
   filter: brightness(0);
   opacity: 0.7;
+  transition: transform 0.6s var(--ease);
 }
-.logo-grid img.tall { height: clamp(26px, 2.6vw, 36px); }
-.logo-grid img.nike { height: clamp(14px, 1.3vw, 18px); }
-/* flex cells: each logo owns a quarter of the row and centres inside it */
-.logo-grid img { flex: 0 0 25%; width: 25%; max-width: 25%; margin: 0; object-fit: contain; object-position: center; transition: transform 0.6s var(--ease); }
-.logo-grid img:hover { transform: translateY(-4px); }
+.logo-grid img.logo-mark { max-height: 40px; max-width: 60%; }
+.logo-grid img.logo-nike { max-height: 18px; max-width: 46%; }
+.logo-cell:hover img { transform: translateY(-3px); }
 
 /* Tables */
 .table { border-top: 1px solid var(--rule); }
@@ -1157,7 +1161,7 @@ a.row:hover { background: rgba(255,255,255,0.35); }
 @media (max-width: 1024px) {
   .split { grid-template-columns: 1fr; gap: 36px; }
   .split-head { position: static; }
-  .logo-grid img { flex-basis: 33.333%; width: 33.333%; max-width: 33.333%; }
+  .logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .cs-body { width: min(64%, 520px); }
 }
 
@@ -1213,8 +1217,10 @@ a.row:hover { background: rgba(255,255,255,0.35); }
   .client-row small { font-size: 8px; }
   .reel { border-radius: 16px; }
 
-  .logo-grid { gap: 32px 0; }
-  .logo-grid img { flex-basis: 50%; width: 50%; max-width: 50%; }
+  .logo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
+  .logo-cell { height: 36px; }
+  .logo-grid img { max-height: 18px; }
+  .logo-grid img.logo-mark { max-height: 30px; }
   .row { grid-template-columns: 1fr auto; gap: 6px 16px; padding: 18px 0; }
   .row-b { grid-column: 1 / -1; order: 3; }
   .cta-pill { flex-direction: column; align-items: stretch; text-align: center; padding: 20px; border-radius: 16px; }
