@@ -114,10 +114,9 @@
     function done() {
       if (finished) return;
       finished = true;
-      // End state of the mask equals the card's own shape, so clearing it is invisible;
-      // the card shadow, hidden during the sequence, fades in via CSS once the flag drops.
+      // Every tween ends on its stylesheet value, so clearing inline styles changes nothing on screen.
       if (hasGsap) {
-        gsap.set('.hero', { clearProps: 'clipPath' });
+        gsap.set('.hero-bg', { clearProps: 'clipPath,transform' });
         gsap.set(['.nav', '.hero-line > *', '.hero-foot > *', '.hero-name .ch', '.hero-title > *'], { clearProps: 'all' });
       }
       html.classList.remove('is-intro');
@@ -142,9 +141,11 @@
       }
     }
     var titleParts = title ? title.querySelectorAll(':scope > *') : [];
+    // remember each part's own resting letter-spacing so the end state is exactly the stylesheet's
+    titleParts.forEach(function (el) { var ls = getComputedStyle(el).letterSpacing; el.dataset.ls = ls === 'normal' ? '0px' : ls; });
 
     // Long, slow settle on the footage runs on its own so the cleanup does not wait for it
-    gsap.fromTo('.hero-bg', { scale: 1.22 }, { scale: 1, duration: 6.5, ease: 'power2.out' });
+    gsap.fromTo('.hero-bg', { scale: 1.22 }, { scale: 1, duration: 3.9, ease: 'power2.out' });
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: done });
 
     tl
@@ -152,14 +153,14 @@
       .fromTo(veil, { opacity: 1 }, { opacity: 0, duration: 1.4, ease: 'power2.inOut' }, 0)
       .fromTo(shade, { opacity: 0.55 }, { opacity: 0, duration: 2.6, ease: 'power2.inOut' }, 0.4)
       // 0.6s - the bars open to the full card
-      .fromTo('.hero', { clipPath: 'inset(38% 0 38% 0 round 40px)' }, { clipPath: 'inset(0% 0 0% 0 round 40px)', duration: 1.9, ease: 'expo.inOut' }, 0.6)
+      .fromTo('.hero-bg', { clipPath: 'inset(38% 0 38% 0)' }, { clipPath: 'inset(0% 0 0% 0)', duration: 1.9, ease: 'expo.inOut' }, 0.6)
       // 1.7s - the rule draws, then the name rises letter by letter
       .fromTo('.hero-rule', { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 1.3, ease: 'expo.inOut' }, 1.7)
       .set(name, { opacity: 1 }, 1.8)
       .fromTo(chars, { yPercent: 115 }, { yPercent: 0, duration: 1.0, ease: 'expo.out', stagger: 0.035 }, 1.8)
       // 2.1s - the title tightens from wide tracking into place
       .set(title, { opacity: 1 }, 2.1)
-      .fromTo(titleParts, { opacity: 0, letterSpacing: '0.38em', x: 10 }, { opacity: 1, letterSpacing: '0.04em', x: 0, duration: 1.5, ease: 'expo.out', stagger: 0.08 }, 2.1)
+      .fromTo(titleParts, { opacity: 0, letterSpacing: '0.38em', x: 10 }, { opacity: 1, letterSpacing: function (i, el) { return el.dataset.ls; }, x: 0, duration: 1.5, ease: 'expo.out', stagger: 0.08 }, 2.1)
       // 2.5s - bio and meta settle, tab drops in
       .fromTo('.hero-bio', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, 2.5)
       .fromTo('.hero-meta', { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1 }, 2.75)
