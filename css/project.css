@@ -115,8 +115,9 @@ ul { list-style: none; }
   white-space: nowrap;
   overflow: hidden;
 }
-.nav-group--l { justify-content: flex-end; padding-right: clamp(28px, 4vw, 64px); }
-.nav-group--r { justify-content: flex-start; padding-left: clamp(28px, 4vw, 64px); }
+.nav-group--l { justify-content: flex-end; }
+.nav-group--r { justify-content: flex-start; }
+.nav-group { min-width: 0; padding: 0; }
 .nav-link {
   font-family: 'Inter', var(--sans);
   font-size: 14px;
@@ -899,7 +900,8 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
     inset 0 -1px 0 rgba(255,255,255,0.10);
   transition: width 0.7s var(--ease), background 0.45s ease, color 0.45s ease, box-shadow 0.45s ease;
 }
-.nav:hover { width: 820px; }
+.nav:hover { width: 820px; column-gap: clamp(28px, 4vw, 64px); }
+.nav-logo { min-width: max-content; }
 .nav:hover .nav-group, .nav.open .nav-group {
   opacity: 1;
   visibility: visible;
@@ -922,7 +924,7 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
 .nav.on-light .nav-logo img { filter: brightness(0); opacity: 0.85; }
 
 @media (max-width: 768px) {
-  .nav { width: 190px; height: 46px; padding-inline: calc(var(--nav-r) + 12px); }
+  .nav { width: 190px; height: 46px; padding-inline: calc(var(--nav-r) + 12px); transition: background 0.45s ease, color 0.45s ease, box-shadow 0.45s ease; }
   .nav:hover { width: 190px; }
   .nav:hover .nav-group { opacity: 0; visibility: hidden; }
   .nav.open {
@@ -945,6 +947,7 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
   .nav.open .nav-toggle { left: 0; right: 0; bottom: auto; height: 60px; }
   .nav.open .nav-logo { order: -1; margin: 14px 0 10px; }
   .nav.open .nav-logo img { filter: none; opacity: 1; }
-  .nav.open .nav-group { flex-direction: column; gap: 14px; padding: 0; justify-content: center; opacity: 1; visibility: visible; }
+  .nav.open .nav-group { flex-direction: column; gap: 14px; padding: 0; justify-content: center; opacity: 1; visibility: visible; transition: opacity 0.45s ease 0.05s, transform 0.5s var(--ease), visibility 0s; }
+  .nav.open .nav-logo { min-width: 0; }
   .nav.open .nav-link { font-size: 16px; color: #fff; text-shadow: none; padding: 6px 0; }
 }
