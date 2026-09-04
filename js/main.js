@@ -117,7 +117,8 @@
       // Every tween ends on its stylesheet value, so clearing inline styles changes nothing on screen.
       if (hasGsap) {
         gsap.set('.hero-bg', { clearProps: 'clipPath,transform' });
-        gsap.set(['.nav', '.hero-line > *', '.hero-foot > *', '.hero-name .ch', '.hero-title > *'], { clearProps: 'all' });
+        gsap.set('.nav', { clearProps: 'transform' }); // keep the tab's clip-path (set by glass.js)
+        gsap.set(['.hero-line > *', '.hero-foot > *', '.hero-name .ch', '.hero-title > *'], { clearProps: 'all' });
       }
       html.classList.remove('is-intro');
       if (hasGsap) {
