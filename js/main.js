@@ -114,9 +114,14 @@
     function done() {
       if (finished) return;
       finished = true;
+      // End state of the mask equals the card's own shape, so clearing it is invisible;
+      // the card shadow, hidden during the sequence, fades in via CSS once the flag drops.
+      if (hasGsap) {
+        gsap.set('.hero', { clearProps: 'clipPath' });
+        gsap.set(['.nav', '.hero-line > *', '.hero-foot > *', '.hero-name .ch', '.hero-title > *'], { clearProps: 'all' });
+      }
       html.classList.remove('is-intro');
       if (hasGsap) {
-        gsap.set(['.nav', '.hero', '.hero-line > *', '.hero-foot > *', '.hero-name .ch', '.hero-title > *'], { clearProps: 'all' });
         gsap.set(veil, { display: 'none' });
         ScrollTrigger.refresh();
       }
