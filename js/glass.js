@@ -88,7 +88,22 @@
   }
   injectLens();
 
-  /* ---- 3. Adaptive tint for the nav tab ---- */
+  /* ---- 3. Nav outline: one clip-path (shoulders + rounded bottom), resized live ---- */
+  var navEl = document.getElementById('nav');
+  if (navEl) {
+    var clipNav = function () {
+      var W = navEl.offsetWidth, H = navEl.offsetHeight;
+      var r = Math.min(25, H / 2);
+      navEl.style.clipPath = "path('M0 0 H" + W + " A" + r + " " + r + " 0 0 0 " + (W - r) + " " + r +
+        " V" + (H - r) + " A" + r + " " + r + " 0 0 1 " + (W - 2 * r) + " " + H + " H" + (2 * r) +
+        " A" + r + " " + r + " 0 0 1 " + r + " " + (H - r) + " V" + r + " A" + r + " " + r + " 0 0 0 0 0 Z')";
+    };
+    clipNav();
+    if ('ResizeObserver' in window) new ResizeObserver(clipNav).observe(navEl);
+    window.addEventListener('resize', clipNav);
+  }
+
+  /* ---- 4. Adaptive tint for the nav tab ---- */
   var nav = document.getElementById('nav');
   if (nav) {
     var lightSel = '.card--light, .proj-media, .gfx-stack, .wk-section';
