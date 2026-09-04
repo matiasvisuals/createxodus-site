@@ -14,6 +14,7 @@
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches && !/motion=force/.test(location.search);
   var speed = reduce ? 0.6 : 1;
+  var small = window.matchMedia('(max-width: 768px)').matches;
 
   var SEL = {
     chars: '.proj-hero-title, .proj-prev-title, .proj-next-title, .cs-l1 > span, .cs-l2 > span',
@@ -70,11 +71,11 @@
   /* Letter rise */
   document.querySelectorAll(SEL.chars).forEach(function (el) {
     if (el.closest('.hero') || el.dataset.split) return;
-    var units = split(el, 'chars');
+    var units = split(el, small ? 'words' : 'chars');
     if (!units.length) return;
     gsap.fromTo(units, { yPercent: 115 }, {
-      yPercent: 0, duration: 1.05 * speed, ease: 'expo.out',
-      stagger: Math.min(0.035, 0.7 / units.length),
+      yPercent: 0, duration: (small ? 0.9 : 1.05) * speed, ease: 'expo.out',
+      stagger: Math.min(small ? 0.08 : 0.035, 0.7 / units.length),
       scrollTrigger: trigger(el.closest('.cs') || el)
     });
   });
@@ -94,6 +95,12 @@
   /* Tracking tighten */
   document.querySelectorAll(SEL.track).forEach(function (el) {
     if (el.closest('.hero') || el.closest('.nav')) return;
+    if (small) {
+      // letter-spacing tweens jitter on phones: plain rise instead
+      gsap.fromTo(el, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.8 * speed, ease: 'power3.out',
+        scrollTrigger: trigger(el.closest('.cs') || el, 'top 92%') });
+      return;
+    }
     var finalLs = getComputedStyle(el).letterSpacing;
     var px = parseFloat(finalLs) || 0;
     gsap.fromTo(el, { opacity: 0, letterSpacing: (px * 3 + 5) + 'px', x: 6 }, {

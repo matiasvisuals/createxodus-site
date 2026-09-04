@@ -80,7 +80,8 @@
       }
     });
     if (scrub) {
-      document.querySelectorAll('.proj-media-full img, .proj-media-half img, .proj-media-third img, .proj-video-preview video').forEach(function (m) {
+      var parallaxSel = '.proj-media-full img, .proj-media-half img, .proj-media-third img' + (window.matchMedia('(max-width: 768px)').matches ? '' : ', .proj-video-preview video');
+      document.querySelectorAll(parallaxSel).forEach(function (m) {
         var box = m.parentNode;
         gsap.fromTo(m, { yPercent: -6 }, { yPercent: 6, ease: 'none',
           scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true } });
@@ -122,16 +123,37 @@
   var closeBtn = document.getElementById('videoClose');
   var previews = document.querySelectorAll('.proj-video-preview[data-video]');
 
+  var smallScreen = window.matchMedia('(max-width: 768px)').matches;
   if (lightbox && lightboxVideo && previews.length) {
     previews.forEach(function (preview) {
       preview.addEventListener('click', function () {
         var src = preview.getAttribute('data-video');
-        lightboxVideo.querySelector('source').src = src;
-        lightboxVideo.load();
+        if (smallScreen) {
+          // Phones: play right in the tile with native controls, no overlay
+          var v = preview.querySelector('video');
+          if (!v) return;
+          if (!preview.classList.contains('is-inline')) {
+            preview.classList.add('is-inline');
+            v.removeAttribute('data-src');
+            v.src = src;
+            v.controls = true;
+            v.muted = false;
+            v.preload = 'auto';
+            v.setAttribute('controls', '');
+            v.load();
+          }
+          var pr = v.play();
+          if (pr && pr.catch) pr.catch(function () {});
+          return;
+        }
+        var source = lightboxVideo.querySelector('source');
+        if (source) source.remove();
+        lightboxVideo.src = src;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
         if (lenis) lenis.stop();
-        lightboxVideo.play();
+        var p = lightboxVideo.play();
+        if (p && p.catch) p.catch(function () {});
       });
     });
 

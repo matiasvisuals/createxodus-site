@@ -15,7 +15,8 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches && !/motion=force/.test(location.search);
 
   /* ---- 1. Ambient video ---- */
-  if (!reduceMotion) {
+  var smallScreen = window.matchMedia('(max-width: 768px)').matches;
+  if (!reduceMotion && !smallScreen) {
     var amb = document.createElement('video');
     amb.className = 'ambient';
     amb.muted = true; amb.loop = true; amb.playsInline = true; amb.autoplay = true;
