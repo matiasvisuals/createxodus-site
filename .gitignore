@@ -16,6 +16,8 @@ Thumbs.db
 
 # Allow compressed web videos
 !WORK/web/*.mp4
+!assets/hero-bg.mp4
+!assets/ambient.mp4
 
 # Raw client project folders (not part of the site)
 AOA TOURNAMENT/

@@ -1,481 +1,347 @@
 /* ============================================
-   CREATEXODUS — Cinematic Interactions
+   CREATEXODUS — Interactions
+   Lenis smooth scroll + GSAP ScrollTrigger.
+   All reveals are scroll-position driven; nothing
+   fires on load except the hero fade-in (CSS).
    ============================================ */
 
 (function () {
   'use strict';
 
-  /* ---- Register GSAP + ScrollTrigger unconditionally ---- */
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-  }
+  var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+  if (hasGsap) gsap.registerPlugin(ScrollTrigger);
 
-  /* ---- Lenis Smooth Scroll ---- */
-  let lenis;
-  var gateEl = document.getElementById('password-gate');
-  var gateVisible = gateEl && gateEl.style.display !== 'none';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches && !/motion=force/.test(location.search);
 
-  function initLenis() {
-    if (lenis || typeof Lenis === 'undefined') return;
+  /* ---- Lenis smooth scroll ---- */
+  var lenis = null;
+  if (typeof Lenis !== 'undefined' && !reduceMotion) {
     lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
+      duration: 1.25,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true
     });
-
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    if (hasGsap) {
       lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
       gsap.ticker.lagSmoothing(0);
     } else {
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
+      (function raf(time) { lenis.raf(time); requestAnimationFrame(raf); })(0);
     }
   }
 
-  /* Only init Lenis after gate is gone — its event listeners block native scroll */
-  if (gateVisible) {
-    window.addEventListener('gate-dismissed', initLenis, { once: true });
-  } else {
-    initLenis();
+  function scrollToTarget(target) {
+    if (lenis) lenis.scrollTo(target, { offset: -20, duration: 1.4 });
+    else target.scrollIntoView({ behavior: 'smooth' });
   }
 
-  /* ---- Init animations immediately ---- */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAnimations);
-  } else {
-    initAnimations();
-  }
-
-  /* ---- Scroll Progress Bar ---- */
-  const progressBar = document.querySelector('.scroll-progress');
-  if (progressBar) {
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      progressBar.style.width = progress + '%';
+  /* ---- Anchor links ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (id === '#' ) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      closeNav();
+      scrollToTarget(target);
     });
-  }
-
-  /* ---- Navigation ---- */
-  const navbar = document.getElementById('navbar');
-  const navToggle = document.querySelector('.nav-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
   });
 
-  if (navToggle) {
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-      if (lenis) {
-        mobileMenu.classList.contains('active') ? lenis.stop() : lenis.start();
+  /* ---- Nav tab (mobile toggle) ---- */
+  var nav = document.getElementById('nav');
+  var navToggle = document.getElementById('navToggle');
+  function closeNav() { if (nav) nav.classList.remove('open'); }
+  if (nav && navToggle) {
+    navToggle.addEventListener('click', function () { nav.classList.toggle('open'); });
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target)) closeNav();
+    });
+  }
+
+  /* ---- Live clock (Pacific) + year ---- */
+  function tick() {
+    var now = new Date();
+    var time;
+    try {
+      time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles' });
+    } catch (err) {
+      time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    }
+    document.querySelectorAll('[data-clock]').forEach(function (el) { el.textContent = time; });
+    document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = now.getFullYear(); });
+  }
+  tick();
+  setInterval(tick, 15000);
+
+  /* ---- Background videos: make sure muted loops actually run ---- */
+  function initBgVideos() {
+    var vids = document.querySelectorAll('video[autoplay][muted]');
+    if (!vids.length) return;
+    function tryPlay(v) {
+      v.muted = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    vids.forEach(tryPlay);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) tryPlay(e.target); else e.target.pause();
+        });
+      }, { threshold: 0.05 });
+      vids.forEach(function (v) { io.observe(v); });
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) vids.forEach(tryPlay);
+    });
+    var kick = function () { vids.forEach(tryPlay); };
+    window.addEventListener('pointerdown', kick, { once: true });
+    window.addEventListener('keydown', kick, { once: true });
+    window.addEventListener('load', kick);
+  }
+
+  /* ---- Cinematic intro on the landing page ---- */
+  function initIntro() {
+    var html = document.documentElement;
+    if (!html.classList.contains('is-intro')) return;
+    var finished = false;
+    var veil = document.querySelector('.intro-veil');
+    var shade = document.querySelector('.hero-shade');
+    var name = document.querySelector('.hero-name');
+    var title = document.querySelector('.hero-title');
+
+    function done() {
+      if (finished) return;
+      finished = true;
+      html.classList.remove('is-intro');
+      if (hasGsap) {
+        gsap.set(['.nav', '.hero', '.hero-line > *', '.hero-foot > *', '.hero-name .ch', '.hero-title > *'], { clearProps: 'all' });
+        gsap.set(veil, { display: 'none' });
+        ScrollTrigger.refresh();
+      }
+    }
+    if (!hasGsap) { done(); return; }
+
+    // Split the name into letters so it can rise from a mask, letter by letter
+    var chars = [];
+    if (name && !name.querySelector('.ch')) {
+      var text = name.textContent;
+      name.textContent = '';
+      for (var i = 0; i < text.length; i++) {
+        var sp = document.createElement('span');
+        sp.className = 'ch';
+        sp.textContent = text[i];
+        name.appendChild(sp);
+        chars.push(sp);
+      }
+    }
+    var titleParts = title ? title.querySelectorAll(':scope > *') : [];
+
+    // Long, slow settle on the footage runs on its own so the cleanup does not wait for it
+    gsap.fromTo('.hero-bg', { scale: 1.22 }, { scale: 1, duration: 6.5, ease: 'power2.out' });
+    var tl = gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: done });
+
+    tl
+      // 0s  - black veil lifts to reveal a letterboxed strip of moving footage
+      .fromTo(veil, { opacity: 1 }, { opacity: 0, duration: 1.4, ease: 'power2.inOut' }, 0)
+      .fromTo(shade, { opacity: 0.55 }, { opacity: 0, duration: 2.6, ease: 'power2.inOut' }, 0.4)
+      // 0.6s - the bars open to the full card
+      .fromTo('.hero', { clipPath: 'inset(38% 0 38% 0 round 40px)' }, { clipPath: 'inset(0% 0 0% 0 round 40px)', duration: 1.9, ease: 'expo.inOut' }, 0.6)
+      // 1.7s - the rule draws, then the name rises letter by letter
+      .fromTo('.hero-rule', { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 1.3, ease: 'expo.inOut' }, 1.7)
+      .set(name, { opacity: 1 }, 1.8)
+      .fromTo(chars, { yPercent: 115 }, { yPercent: 0, duration: 1.0, ease: 'expo.out', stagger: 0.035 }, 1.8)
+      // 2.1s - the title tightens from wide tracking into place
+      .set(title, { opacity: 1 }, 2.1)
+      .fromTo(titleParts, { opacity: 0, letterSpacing: '0.38em', x: 10 }, { opacity: 1, letterSpacing: '0.04em', x: 0, duration: 1.5, ease: 'expo.out', stagger: 0.08 }, 2.1)
+      // 2.5s - bio and meta settle, tab drops in
+      .fromTo('.hero-bio', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, 2.5)
+      .fromTo('.hero-meta', { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1 }, 2.75)
+      .fromTo('.nav', { y: -70 }, { y: 0, duration: 1.3, ease: 'expo.out' }, 2.4);
+
+    if (reduceMotion) tl.timeScale(1.8);
+    setTimeout(done, 8000);
+  }
+
+  /* ---- Scroll-driven motion ----
+     Entrance reveals always run. Scrubbed motion (parallax, scale, dimming)
+     is skipped when the visitor asks for reduced motion. */
+  function initScroll() {
+    if (!hasGsap) {
+      document.querySelectorAll('.cs').forEach(function (c) { c.style.opacity = 1; });
+      return;
+    }
+    var scrub = !reduceMotion;
+    var light = '#d1d6e0';
+    var ink = '#424242';
+    var once = function (trigger, start) { return { trigger: trigger, start: start || 'top 85%', once: true }; };
+
+    // Hero recedes: content drifts up and fades, footage pushes in
+    if (scrub) {
+      gsap.to('.hero-line, .hero-foot', {
+        y: -70, opacity: 0.15, ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom 30%', scrub: true }
+      });
+      gsap.to('.hero-video', {
+        scale: 1.12, ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
+
+    // Cards settle into the frame as they arrive
+    document.querySelectorAll('.card--light').forEach(function (card) {
+      if (scrub) {
+        gsap.fromTo(card, { scale: 0.965, y: 40 }, {
+          scale: 1, y: 0, ease: 'none',
+          scrollTrigger: { trigger: card, start: 'top 95%', end: 'top 45%', scrub: 0.5 }
+        });
       }
     });
 
-    mobileLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-        if (lenis) lenis.start();
+    // Intro statement fills word by word
+    var fill = document.querySelector('[data-fill]');
+    if (fill) {
+      var words = fill.textContent.trim().split(/\s+/);
+      fill.innerHTML = words.map(function (w) { return '<span class="w">' + w + '</span>'; }).join(' ');
+      if (scrub) {
+        gsap.to(fill.querySelectorAll('.w'), {
+          color: ink, stagger: 0.04, ease: 'none',
+          scrollTrigger: { trigger: fill, start: 'top 80%', end: 'bottom 45%', scrub: 0.6 }
+        });
+      } else {
+        gsap.to(fill.querySelectorAll('.w'), { color: ink, stagger: 0.03, duration: 0.6, scrollTrigger: once(fill) });
+      }
+    }
+
+    // Client index: names darken as they pass the middle
+    document.querySelectorAll('.client-row').forEach(function (row) {
+      if (scrub) {
+        gsap.timeline({ scrollTrigger: { trigger: row, start: 'top 78%', end: 'top 22%', scrub: 0.5 } })
+          .fromTo(row, { color: light }, { color: ink, ease: 'none' })
+          .to(row, { color: light, ease: 'none' });
+      } else {
+        gsap.fromTo(row, { color: light }, { color: ink, duration: 0.9, scrollTrigger: once(row, 'top 80%') });
+      }
+    });
+
+    // Reel grows to full width, then drifts
+    var reel = document.querySelector('[data-reel]');
+    if (reel && scrub) {
+      gsap.fromTo(reel, { scale: 0.42, borderRadius: 18 }, {
+        scale: 1, borderRadius: 24, ease: 'none',
+        scrollTrigger: { trigger: reel, start: 'top 95%', end: 'top 12%', scrub: 0.4 }
+      });
+      gsap.fromTo(reel.querySelector('video'), { yPercent: -6 }, {
+        yPercent: 6, ease: 'none',
+        scrollTrigger: { trigger: reel, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    }
+
+    // Rows and grids rise in with a slight slide
+    document.querySelectorAll('[data-rows]').forEach(function (group) {
+      gsap.from(group.children, {
+        y: 20, x: -10, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.06,
+        scrollTrigger: once(group)
       });
     });
-  }
 
-  /* ---- Smooth Scroll for Anchors ---- */
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        const offset = 80;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        if (lenis) {
-          lenis.scrollTo(top);
-        } else {
-          window.scrollTo({ top, behavior: 'smooth' });
+    // Split headings are animated by js/motion.js
+
+    // About photo parallax
+    var about = document.querySelector('.about-photo img');
+    if (about && scrub) {
+      gsap.fromTo(about, { yPercent: -7 }, {
+        yPercent: 7, ease: 'none',
+        scrollTrigger: { trigger: about.parentNode, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    }
+
+    // Case studies: parallax footage, dim/bright on approach, lines slide in
+    document.querySelectorAll('.cs').forEach(function (card) {
+      var media = card.querySelector('.cs-media img, .cs-media video');
+      if (scrub) {
+        gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 85%', end: 'bottom 15%', scrub: 0.4 } })
+          .fromTo(card, { opacity: 0.28 }, { opacity: 1, ease: 'none', duration: 0.35 })
+          .to(card, { opacity: 1, duration: 0.3 })
+          .to(card, { opacity: 0.28, ease: 'none', duration: 0.35 });
+        if (media) {
+          gsap.fromTo(media, { yPercent: -8 }, {
+            yPercent: 8, ease: 'none',
+            scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true }
+          });
         }
+      } else {
+        card.style.opacity = 1;
+      }
+      var body = card.querySelector('.cs-body');
+      if (body) {
+        // kicker, headline letters and description are animated by js/motion.js
+        gsap.from(body.querySelector('.cs-meta'), { y: 16, opacity: 0, scaleX: 0.92, transformOrigin: 'left center', duration: 1, ease: 'power3.out', delay: 0.5, scrollTrigger: once(card, 'top 88%') });
       }
     });
-  });
 
-  /* ---- (Portfolio is now desktop folder grid — no carousel needed) ---- */
-
-  /* ---- (Testimonials removed) ---- */
-
-  /* ---- Client Logo Marquee (auto-scroll + drag) ---- */
-  var marqueeInner = document.querySelector('.marquee-inner');
-  if (marqueeInner) {
-    var mOffset = 0;
-    var mSpeed = 1.5;
-    var mDragging = false;
-    var mStartX = 0;
-    var mDragStart = 0;
-    var mVelocity = 0;
-    var mLastX = 0;
-    var mLastTime = 0;
-    var mMomentum = 0;
-    var mHalfWidth = marqueeInner.scrollWidth / 2;
-
-    function wrapOffset() {
-      if (mOffset > 0) mOffset -= mHalfWidth;
-      if (mOffset <= -mHalfWidth) mOffset += mHalfWidth;
-    }
-
-    function marqueeLoop() {
-      if (!mDragging) {
-        // Apply momentum from swipe, decaying over time
-        if (Math.abs(mMomentum) > 0.2) {
-          mOffset += mMomentum;
-          mMomentum *= 0.95;
-        } else {
-          mMomentum = 0;
-          mOffset -= mSpeed;
-        }
-      }
-      wrapOffset();
-      marqueeInner.style.transform = 'translateX(' + mOffset + 'px)';
-      requestAnimationFrame(marqueeLoop);
-    }
-    requestAnimationFrame(marqueeLoop);
-
-    marqueeInner.addEventListener('pointerdown', function (e) {
-      mDragging = true;
-      mMomentum = 0;
-      mStartX = e.clientX;
-      mLastX = e.clientX;
-      mLastTime = Date.now();
-      mDragStart = mOffset;
-      marqueeInner.setPointerCapture(e.pointerId);
+    // Pills and the "view all" block
+    document.querySelectorAll('.cta-pill, .cases-more').forEach(function (el) {
+      gsap.from(el, { y: 24, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: once(el, 'top 90%') });
     });
 
-    marqueeInner.addEventListener('pointermove', function (e) {
-      if (!mDragging) return;
-      var now = Date.now();
-      var dt = now - mLastTime;
-      if (dt > 0) mVelocity = (e.clientX - mLastX) / dt * 16;
-      mLastX = e.clientX;
-      mLastTime = now;
-      mOffset = mDragStart + (e.clientX - mStartX);
-      wrapOffset();
-    });
-
-    function endDrag() {
-      if (!mDragging) return;
-      mDragging = false;
-      mMomentum = mVelocity;
+    // Footer
+    var footer = document.querySelector('.footer');
+    if (footer) {
+      gsap.from(footer.querySelectorAll('.footer-grid > *, .footer-bar'), {
+        y: 18, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.1,
+        scrollTrigger: once(footer, 'top 90%')
+      });
     }
 
-    marqueeInner.addEventListener('pointerup', endDrag);
-    marqueeInner.addEventListener('pointercancel', endDrag);
+    window.addEventListener('load', function () { setTimeout(function () { try { ScrollTrigger.refresh(); } catch (e) {} }, 60); });
   }
 
-  /* ---- Hero Video Trim (loop before Mercedes logo) ---- */
-  var heroVid = document.querySelector('.hero-video');
-  if (heroVid) {
-    var MAX_TIME = 43;
-    heroVid.addEventListener('timeupdate', function () {
-      if (heroVid.currentTime >= MAX_TIME) {
-        heroVid.currentTime = 0;
-      }
-    });
-  }
-
-  /* ---- Contact Form (Formspree AJAX) ---- */
-  var contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+  /* ---- Contact form (Formspree AJAX) ---- */
+  function initContactForm() {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var btn = contactForm.querySelector('button[type="submit"] span');
+      var btn = form.querySelector('button[type="submit"] span');
       var origText = btn.textContent;
       btn.textContent = 'Sending...';
-      fetch('https://formspree.io/f/mpqygjgo', {
-        method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
-      }).then(function(r) {
-        if (r.ok) {
-          btn.textContent = 'Sent!';
-          contactForm.reset();
-          setTimeout(function(){ btn.textContent = origText; }, 3000);
-        } else {
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (r) {
+          btn.textContent = r.ok ? 'Sent!' : 'Error — try again';
+          if (r.ok) form.reset();
+          setTimeout(function () { btn.textContent = origText; }, 3000);
+        })
+        .catch(function () {
           btn.textContent = 'Error — try again';
-          setTimeout(function(){ btn.textContent = origText; }, 3000);
-        }
-      }).catch(function() {
-        btn.textContent = 'Error — try again';
-        setTimeout(function(){ btn.textContent = origText; }, 3000);
-      });
-    });
-  }
-
-  /* ---- Globe is initialized via ES module in index.html ---- */
-
-  /* Hero logo + buttons are static (CSS-only fade-in). No scroll morph. */
-  function initLogoMorph() { /* intentionally empty — morph removed */ }
-
-  /* ---- Animations ---- */
-  function initAnimations() {
-    // Counter Animation (numbers count up when scrolled into view)
-    var statNumbers = document.querySelectorAll('.stat-num[data-count]');
-    if ('IntersectionObserver' in window) {
-      var counterObserver = new IntersectionObserver(
-        function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target);
-              counterObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.3 }
-      );
-      statNumbers.forEach(function(el) { counterObserver.observe(el); });
-    } else {
-      statNumbers.forEach(function(el) { animateCounter(el); });
-    }
-
-    // Safety net: trigger counters after 5s if observer didn't fire
-    setTimeout(function () {
-      statNumbers.forEach(function(el) {
-        if (el.textContent === '0') animateCounter(el);
-      });
-    }, 5000);
-
-    // GSAP — hero parallax only (scrub-based, no visibility control)
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      try {
-        gsap.to('.hero-video', {
-          scale: 1.1,
-          scrollTrigger: {
-            trigger: '#hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-          },
+          setTimeout(function () { btn.textContent = origText; }, 3000);
         });
-
-        // Hero CE logo morphs into nav pill slot; buttons fade out
-        initLogoMorph();
-
-        gsap.to('.hero-scroll', {
-          opacity: 0,
-          scrollTrigger: {
-            trigger: '#hero',
-            start: '20% top',
-            end: '40% top',
-            scrub: 1,
-          },
-        });
-
-        setTimeout(function () { ScrollTrigger.refresh(); }, 500);
-      } catch(e) { /* hero parallax failed — no big deal */ }
-    }
-  }
-
-  /* ---- Counter Animation ---- */
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.count);
-    const duration = 2000;
-    const start = performance.now();
-
-    function update(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(eased * target);
-      el.textContent = current;
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        el.textContent = target;
-      }
-    }
-
-    requestAnimationFrame(update);
-  }
-
-  /* ---- Page Fade Out on Navigation ---- */
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest('a[href]');
-    if (!link) return;
-    var href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:') || link.target === '_blank') return;
-    if (href.startsWith('http')) return;
-
-    e.preventDefault();
-    document.body.style.transition = 'opacity 0.4s ease';
-    document.body.style.opacity = '0';
-    setTimeout(function () {
-      window.location.href = href;
-    }, 400);
-  });
-
-  /* ---- Easter Egg ---- */
-  const footerLogo = document.getElementById('footer-logo');
-  if (footerLogo) {
-    let clickCount = 0;
-    let clickTimer;
-
-    footerLogo.addEventListener('click', () => {
-      clickCount++;
-      clearTimeout(clickTimer);
-      clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
-
-      if (clickCount >= 5) {
-        clickCount = 0;
-        triggerExplosion();
-      }
     });
   }
 
-  function triggerExplosion() {
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:fixed;inset:0;z-index:99999;pointer-events:none;';
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext('2d');
-    const parts = [];
-    const cx = canvas.width / 2;
-    const cy = canvas.height / 2;
-
-    for (let i = 0; i < 120; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 8 + 2;
-      parts.push({
-        x: cx, y: cy,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        r: Math.random() * 4 + 1,
-        alpha: 1,
-        color: Math.random() > 0.5 ? '#B8C4D0' : '#E0E2E8',
-      });
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      let alive = false;
-
-      parts.forEach((p) => {
-        if (p.alpha <= 0) return;
-        alive = true;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.1;
-        p.alpha -= 0.012;
-      });
-
-      if (alive) requestAnimationFrame(animate);
-      else canvas.remove();
-    }
-
-    animate();
-  }
-
-  // ===== PORTFOLIO: Category Filters + Hover Video Previews =====
-  const pfTabs = document.querySelectorAll('.pf-tab');
-  const pfCards = document.querySelectorAll('.pf-card');
-
-  if (pfTabs.length && pfCards.length) {
-    // Filter behavior — matches on data-services (space-separated service slugs),
-    // falls back to data-cat for legacy cards (e.g. the websites card).
-    function cardMatches(card, filter) {
-      if (filter === 'all') return true;
-      const services = (card.dataset.services || '').split(/\s+/).filter(Boolean);
-      if (services.includes(filter)) return true;
-      return card.dataset.cat === filter;
-    }
-    pfTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const filter = tab.dataset.filter;
-        pfTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        pfCards.forEach(card => {
-          card.classList.toggle('is-hidden', !cardMatches(card, filter));
-        });
-      });
-    });
-
-    // Lazy-load video sources as cards enter the viewport (saves bandwidth)
-    const lazyLoadVideo = (video) => {
-      if (video.dataset.loaded || !video.dataset.src) return;
-      const source = document.createElement('source');
-      source.src = video.dataset.src;
-      source.type = 'video/mp4';
-      video.appendChild(source);
-      video.load();
-      video.dataset.loaded = '1';
-    };
-
-    // Each card shows a static poster image (.pf-card-poster) as its idle
-    // state. Video is loaded and played only on hover; leaving the card
-    // pauses and resets the video so the poster re-covers it.
-    pfCards.forEach(card => {
-      const vid = card.querySelector('video.pf-card-media');
-      if (!vid) return;
-      card.addEventListener('mouseenter', () => {
-        lazyLoadVideo(vid);
-        const p = vid.play();
-        if (p !== undefined) p.catch(() => { /* autoplay blocked — ignore */ });
-      });
-      card.addEventListener('mouseleave', () => {
-        vid.pause();
-        try { vid.currentTime = 0; } catch(e) { /* ignore */ }
-      });
-    });
-
-    // Website preview iframes are intentionally never loaded — no hover preview.
-    // Each card stays a clean gradient tile with its corner labels; clicking the
-    // card still opens the live site in a new tab.
-  }
-
-  /* ============================================
-     BOOKING MODAL — Multi-step wizard
-     (Deferred: modal HTML appears AFTER this script in index.html)
-     ============================================ */
+  /* ---- Booking modal (multi-step wizard) ---- */
   function initBookingModal() {
     var modal = document.getElementById('bookingModal');
     var form = document.getElementById('bookingForm');
     if (!modal || !form) return;
 
-    var currentStep = 1;
-    var selectedType = '';
-
     function openBooking(e) {
       if (e) e.preventDefault();
+      closeNav();
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      if (lenis) lenis.stop();
     }
 
     function closeBooking() {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (lenis) lenis.start();
       setTimeout(function () {
         goToStep(1);
-        selectedType = '';
         form.reset();
         document.querySelectorAll('.bk-type').forEach(function (c) { c.classList.remove('selected'); });
         var hidden = document.getElementById('bkProjectType');
@@ -484,7 +350,6 @@
     }
 
     function goToStep(step) {
-      currentStep = step;
       document.querySelectorAll('.booking-step').forEach(function (s) { s.classList.remove('active'); });
       var target = document.querySelector('.booking-step[data-step="' + step + '"]');
       if (target) target.classList.add('active');
@@ -499,42 +364,35 @@
           progress.style.opacity = '0';
         }
       }
-
-      // Re-trigger stagger
       if (target) {
         target.querySelectorAll('.bk-stagger').forEach(function (el) {
           el.style.animation = 'none';
-          void el.offsetHeight; // reflow to restart animation
+          void el.offsetHeight;
           el.style.animation = '';
         });
       }
     }
 
-    // Type selection → auto-advance
     document.querySelectorAll('.bk-type').forEach(function (card) {
       card.addEventListener('click', function () {
         document.querySelectorAll('.bk-type').forEach(function (c) { c.classList.remove('selected'); });
         card.classList.add('selected');
-        selectedType = card.dataset.type;
         var hidden = document.getElementById('bkProjectType');
-        if (hidden) hidden.value = selectedType;
+        if (hidden) hidden.value = card.dataset.type;
         setTimeout(function () { goToStep(2); }, 320);
       });
     });
 
-    // Back / Continue navigation
     document.querySelectorAll('.bk-back, .bk-continue:not(.booking-submit-btn)').forEach(function (btn) {
       if (btn.dataset.goto) {
         btn.addEventListener('click', function () { goToStep(parseInt(btn.dataset.goto, 10)); });
       }
     });
 
-    // Open triggers — hero Book button + nav pill Book
     document.querySelectorAll('[data-book-open]').forEach(function (btn) {
       btn.addEventListener('click', openBooking);
     });
 
-    // Close triggers
     var closeBtn = document.getElementById('bookingClose');
     var backdrop = document.getElementById('bookingBackdrop');
     var doneBtn = document.getElementById('bookingDone');
@@ -545,7 +403,6 @@
       if (e.key === 'Escape' && modal.classList.contains('active')) closeBooking();
     });
 
-    // Submit via Formspree AJAX — matches the gate contact form pattern
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var submitBtn = form.querySelector('.booking-submit-btn');
@@ -553,141 +410,54 @@
       submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
 
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(function (r) {
-        if (r.ok) {
-          goToStep(4);
-        } else {
-          submitBtn.innerHTML = 'Error — try again';
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (r) {
+          submitBtn.disabled = false;
+          if (r.ok) {
+            goToStep(4);
+            submitBtn.innerHTML = originalText;
+          } else {
+            submitBtn.textContent = 'Error — try again';
+            setTimeout(function () { submitBtn.innerHTML = originalText; }, 3000);
+          }
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Error — try again';
           setTimeout(function () { submitBtn.innerHTML = originalText; }, 3000);
-        }
-      }).catch(function () {
-        submitBtn.innerHTML = 'Error — try again';
-        setTimeout(function () { submitBtn.innerHTML = originalText; }, 3000);
-      }).finally(function () {
-        submitBtn.disabled = false;
-        if (submitBtn.innerHTML === 'Sending...') submitBtn.innerHTML = originalText;
-      });
+        });
     });
   }
 
+  /* ---- Calendly discovery call ---- */
   function initDiscoveryCall() {
-    // Matches both the standalone section button and the in-modal option
-    var triggers = document.querySelectorAll('[data-calendly-url]');
-    if (!triggers.length) return;
-    triggers.forEach(function (btn) {
+    document.querySelectorAll('[data-calendly-url]').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         var url = btn.getAttribute('data-calendly-url');
         if (!url) return;
-
-        // Close the booking modal first if it's open (so Calendly's popup takes over cleanly)
         var modal = document.getElementById('bookingModal');
         if (modal && modal.classList.contains('active')) {
           modal.classList.remove('active');
           modal.setAttribute('aria-hidden', 'true');
           document.body.style.overflow = '';
+          if (lenis) lenis.start();
         }
-
-        if (window.Calendly) {
-          window.Calendly.initPopupWidget({ url: url });
-        } else {
-          // Calendly script hasn't loaded yet — fall back to a new tab
-          window.open(url, '_blank', 'noopener');
-        }
+        if (window.Calendly) window.Calendly.initPopupWidget({ url: url });
+        else window.open(url, '_blank', 'noopener');
       });
     });
   }
 
-  // Booking modal + categories section + discovery call need DOM to be parsed
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      initBookingModal();
-      initCategoriesSection();
-      initDiscoveryCall();
-    });
-  } else {
+  function init() {
+    initBgVideos();
+    initIntro();
+    initScroll();
+    initContactForm();
     initBookingModal();
-    initCategoriesSection();
     initDiscoveryCall();
   }
 
-  /* ============================================
-     CATEGORIES SECTION — Senti-style hover rows
-     Clicking a row scrolls to #work and activates that portfolio filter
-     ============================================ */
-  function initCategoriesSection() {
-    var cards = document.querySelectorAll('.cat-card');
-    if (!cards.length) return;
-
-    function lazyLoadCardVideo(card) {
-      var vid = card.querySelector('video.cat-card-video');
-      if (!vid) return null;
-      var src = vid.querySelector('source[data-src]');
-      if (src && !src.getAttribute('src')) {
-        src.setAttribute('src', src.getAttribute('data-src'));
-        vid.load();
-      }
-      return vid;
-    }
-
-    cards.forEach(function (card) {
-      card.addEventListener('mouseenter', function () {
-        var vid = lazyLoadCardVideo(card);
-        if (!vid) return;
-        var p = vid.play();
-        if (p !== undefined) p.catch(function () { /* autoplay blocked — ignore */ });
-      });
-      card.addEventListener('mouseleave', function () {
-        var vid = card.querySelector('video.cat-card-video');
-        if (!vid) return;
-        vid.pause();
-        try { vid.currentTime = 0; } catch (e) { /* ignore */ }
-      });
-
-      card.addEventListener('click', function (e) {
-        e.preventDefault();
-        var filter = card.getAttribute('data-filter');
-        var workSection = document.getElementById('work');
-        if (!workSection) return;
-
-        // Reset the card's hover state — pause/reset the video and drop focus
-        // so the poster re-covers and the button doesn't stay visually "pressed".
-        var vid = card.querySelector('video.cat-card-video');
-        if (vid) {
-          vid.pause();
-          try { vid.currentTime = 0; } catch (_) {}
-        }
-        if (card.blur) card.blur();
-
-        var tabs = document.querySelectorAll('.pf-tab');
-        var pfCardsEls = document.querySelectorAll('.pf-card');
-        tabs.forEach(function (t) {
-          t.classList.toggle('active', t.getAttribute('data-filter') === filter);
-        });
-        pfCardsEls.forEach(function (c) {
-          var matches = filter === 'all';
-          if (!matches) {
-            var services = (c.getAttribute('data-services') || '').split(/\s+/).filter(Boolean);
-            matches = services.indexOf(filter) !== -1 || c.getAttribute('data-cat') === filter;
-          }
-          c.classList.toggle('is-hidden', !matches);
-        });
-
-        // Compute target after filter reflow (getBoundingClientRect forces
-        // synchronous layout), then scroll via Lenis to match the anchor-link
-        // pattern. Native scrollIntoView fights Lenis and lands in random spots.
-        var top = workSection.getBoundingClientRect().top + window.scrollY - 80;
-        if (lenis) {
-          lenis.scrollTo(top);
-        } else {
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        }
-      });
-    });
-  }
-
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();

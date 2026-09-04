@@ -3,49 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interscope — CREATEXODUS</title>
+  <meta name="description" content="Interscope — Sound Design by Matias Mena / CREATEXODUS.">
+  <title>Interscope — Matias Mena / CREATEXODUS</title>
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/icons/favicon-64.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CREATEXODUS">
+  <meta property="og:title" content="Interscope — Matias Mena / CREATEXODUS">
+  <meta property="og:description" content="Interscope — Sound Design by Matias Mena / CREATEXODUS.">
+  <meta property="og:url" content="https://createxodus.com/WORK/interscope.html">
+  <meta property="og:image" content="https://createxodus.com/assets/thumbs/interscope-2pac.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interscope — Matias Mena / CREATEXODUS">
+  <meta name="twitter:description" content="Interscope — Sound Design by Matias Mena / CREATEXODUS.">
+  <meta name="twitter:image" content="https://createxodus.com/assets/thumbs/interscope-2pac.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;1,500&family=Inter:wght@500&family=Hedvig+Letters+Serif&family=Playfair+Display:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/project.css">
 </head>
 <body>
 
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="pre-center">
-      <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="pre-logo">
-      <div class="pre-bar-track">
-        <div class="pre-bar-fill"></div>
-      </div>
+    <!-- Navigation -->
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="nav-group nav-group--l">
+      <a href="../index.html#about" class="nav-link">About</a>
+      <a href="../work.html" class="nav-link">Work</a>
+      <a href="../index.html#services" class="nav-link">Services</a>
     </div>
-  </div>
-
-  <!-- Background -->
-  <div class="site-bg" aria-hidden="true"></div>
-  <div class="site-pattern" aria-hidden="true">
-    <img src="../CE WALL LOGOS.png" alt="" class="site-pattern-img">
-  </div>
-
-  <!-- Navigation -->
-  <nav class="proj-nav">
-    <a href="../index.html" class="proj-nav-logo">
-      <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS">
+    <a href="../index.html" class="nav-logo" aria-label="Matias Mena — CREATEXODUS, home">
+      <img src="../assets/logo-mark.png" alt="CREATEXODUS">
     </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('proj-menu').classList.toggle('active');this.classList.toggle('active');document.body.style.overflow=this.classList.contains('active')?'hidden':''">
-      <span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- Full-Screen Menu Overlay -->
-  <div id="proj-menu" class="proj-overlay-menu">
-    <div class="proj-menu-inner">
-      <a href="../index.html#work" class="proj-menu-link">Portfolio</a>
-      <a href="../index.html#services" class="proj-menu-link">Services</a>
-      <a href="../index.html#about" class="proj-menu-link">About</a>
-      <a href="../index.html#contact" class="proj-menu-link">Contact</a>
+    <div class="nav-group nav-group--r">
+      <a href="../index.html#partners" class="nav-link">Partners</a>
+      <a href="../index.html#contact" class="nav-link">Contact</a>
+      <a href="../index.html#contact" class="nav-link">Book</a>
     </div>
-  </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle menu"></button>
+  </nav>
 
   <!-- Hero -->
   <section class="proj-hero">
@@ -81,7 +77,7 @@
       <div class="proj-media-grid">
 
         <div class="proj-media-full proj-video-preview" data-video="../WORK/web/interscope-2pac.mp4">
-          <video src="../WORK/web/interscope-2pac.mp4#t=12" preload="metadata" muted playsinline></video>
+          <video poster="../assets/thumbs/interscope-2pac.jpg" src="../WORK/web/interscope-2pac.mp4#t=12" preload="none" muted playsinline></video>
           <div class="proj-play-btn">
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
               <circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
@@ -129,20 +125,58 @@
   </section>
 
   <!-- Footer -->
-  <footer class="proj-footer">
-    <div class="container">
-      <div class="proj-footer-inner">
-        <img src="../CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="proj-footer-logo">
-        <span class="proj-footer-copy">&copy; 2026 CREATEXODUS. All rights reserved.</span>
-        <div class="proj-footer-links">
-          <a href="../index.html#work">Portfolio</a>
-          <a href="../index.html#services">Services</a>
-          <a href="../index.html#contact">Contact</a>
+  <footer class="footer" id="footer">
+    <div class="footer-grid">
+      <div>
+        <a href="../index.html" class="footer-logo" aria-label="Home"><img src="../assets/logo-mark.png" alt="CREATEXODUS"></a>
+        <span class="footer-name">Matias Mena</span>
+        <p class="footer-blurb">Matias Mena is the founder and creative director of CREATEXODUS, a Santa Barbara multimedia studio. Film, photography, sound design, graphic design and web development for brands that expect the work to look as good as the name on it.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/matiasxmena/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+          </a>
+          <a href="mailto:matias@createxodus.com" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 8l9 6 9-6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="eyebrow">Pages</span>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../work.html">Work</a></li>
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#partners">Partners</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="eyebrow">Case Studies</span>
+          <ul>
+            <li><a href="ferrari.html">Ferrari</a></li>
+            <li><a href="mercedes-benz.html">Mercedes-Benz</a></li>
+            <li><a href="cactus-jack.html">Cactus Jack</a></li>
+            <li><a href="celsius.html">Celsius</a></li>
+            <li><a href="interscope.html">Interscope</a></li>
+            <li><a href="ag1.html">AG1</a></li>
+          </ul>
         </div>
       </div>
     </div>
+    <div class="footer-bar">
+      <div class="footer-bar-l"><span class="serif">Founder &amp; Creative Director</span><img src="../assets/logo-mark.png" alt="" class="hero-mark" aria-hidden="true"><span>CREATEXODUS</span></div>
+      <div class="footer-bar-c">MATIAS MENA</div>
+      <div class="footer-bar-r"><span>&copy;<span data-year>2026</span> Santa Barbara, CA</span><span data-clock>--:-- --</span></div>
+    </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="../js/motion.js"></script>
+  <script src="../js/glass.js"></script>
   <script src="../js/project.js"></script>
 </body>
 </html>

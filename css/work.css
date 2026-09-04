@@ -1,0 +1,209 @@
+/* ============================================
+   CREATEXODUS — Work index page
+   Builds on project.css (nav, cards, footer).
+   ============================================ */
+
+.wk-hero { min-height: min(60vh, 560px); }
+.wk-intro {
+  max-width: 560px;
+  margin-top: 8px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.62;
+  letter-spacing: 0.02em;
+  color: rgba(242,244,248,0.7);
+}
+
+.wk-section { padding-top: clamp(28px, 4vh, 44px); }
+
+.wk-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(24px, 4vh, 40px);
+}
+.wk-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.wk-filter {
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.5);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.wk-filter:hover { background: rgba(255,255,255,0.9); }
+.wk-filter.active { background: #0b0b0b; border-color: #0b0b0b; color: #fff; }
+.wk-count {
+  font-family: var(--serif);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.wk-count b { font-family: var(--sans); font-weight: 500; color: var(--ink); }
+
+.wk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.wk-card {
+  position: relative;
+  display: block;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--tile);
+  aspect-ratio: 4 / 5;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.8s var(--ease);
+}
+.wk-card.revealed { opacity: 1; transform: none; }
+.wk-card.is-hidden { display: none; }
+
+.wk-media { position: absolute; inset: 0; }
+.wk-media img, .wk-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 1.2s var(--ease), opacity 0.5s ease;
+}
+.wk-media video { opacity: 0; }
+.wk-card.is-playing .wk-media video { opacity: 1; }
+.wk-card:hover .wk-media img, .wk-card:hover .wk-media video { transform: scale(1.06); }
+.wk-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.72) 100%);
+}
+
+.wk-card--site .wk-media {
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 15%, #1b3f63 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 90% 90%, #123456 0%, transparent 60%),
+    linear-gradient(160deg, #0b1a2c, #05090f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wk-card--site .wk-media img.wk-site-logo {
+  position: relative;
+  inset: auto;
+  width: 60%;
+  height: 36%;
+  max-height: 36%;
+  object-fit: contain;
+  transform: none;
+  transition: transform 1.2s var(--ease);
+}
+.wk-card--site .wk-media img.wk-site-logo--dark { filter: invert(1) brightness(1.1); }
+.wk-card:hover .wk-site-logo { transform: scale(1.04); }
+.wk-site-word {
+  position: relative;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.1;
+  text-align: center;
+  padding: 0 24px;
+  color: #f2f4f8;
+}
+
+.wk-meta {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.wk-name {
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.wk-cat {
+  font-family: var(--serif);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.wk-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+}
+.wk-open {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.4s, transform 0.5s var(--ease);
+}
+.wk-card:hover .wk-open { opacity: 1; transform: none; }
+
+.wk-empty {
+  padding: 60px 0;
+  text-align: center;
+  font-family: var(--serif);
+  color: var(--ink-3);
+}
+
+.wk-cta { padding: clamp(40px, 6vh, 72px) var(--gutter); }
+.wk-cta-inner { display: flex; justify-content: center; text-align: center; }
+.wk-cta-inner > div { display: flex; flex-direction: column; align-items: center; }
+
+@media (max-width: 1024px) {
+  .wk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .wk-hero { min-height: 0; }
+  .wk-toolbar { flex-direction: column; align-items: flex-start; }
+  .wk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .wk-card { border-radius: 14px; }
+  .wk-meta { left: 12px; right: 12px; bottom: 12px; }
+  .wk-name { font-size: 10.5px; }
+  .wk-cat { font-size: 9px; }
+  .wk-open { opacity: 1; transform: none; width: 26px; height: 26px; top: 10px; right: 10px; }
+}
+@media (max-width: 480px) {
+  .wk-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wk-card { opacity: 1; transform: none; transition: none; }
+}
+
+/* Word-logo website tiles already show the name large; hide the duplicate label */
+.wk-card--site:has(.wk-site-word) .wk-name { display: none; }

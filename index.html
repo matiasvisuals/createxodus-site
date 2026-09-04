@@ -3,891 +3,412 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CREATEXODUS — Premium Creative Studio</title>
-  <meta name="description" content="CREATEXODUS is a premium creative studio specializing in videography, photography, creative direction, and sound design for the world's most ambitious brands. Based in Santa Barbara, CA.">
+  <title>Matias Mena — Founder &amp; Creative Director, CREATEXODUS</title>
+  <meta name="description" content="Matias Mena is a Santa Barbara filmmaker and creative director, and the founder of CREATEXODUS — a multimedia studio producing film, photography, sound design and web for the world's most ambitious brands.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CREATEXODUS">
+  <meta property="og:title" content="Matias Mena — Founder & Creative Director, CREATEXODUS">
+  <meta property="og:description" content="Matias Mena is a Santa Barbara filmmaker and creative director, and the founder of CREATEXODUS — a multimedia studio producing film, photography, sound design and web for the world's most ambitious brands.">
+  <meta property="og:url" content="https://createxodus.com/">
+  <meta property="og:image" content="https://createxodus.com/assets/hero-bg-poster.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Matias Mena — Founder & Creative Director, CREATEXODUS">
+  <meta name="twitter:description" content="Matias Mena is a Santa Barbara filmmaker and creative director, and the founder of CREATEXODUS — a multimedia studio producing film, photography, sound design and web for the world's most ambitious brands.">
+  <meta name="twitter:image" content="https://createxodus.com/assets/hero-bg-poster.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;1,500&family=Inter:wght@500&family=Hedvig+Letters+Serif&family=Playfair+Display:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('is-intro');</script>
 </head>
 <body>
 
+  <div class="intro-veil" aria-hidden="true"></div>
 
-  <!-- Site-wide Background -->
-  <div class="site-bg" aria-hidden="true"></div>
-  <div class="site-pattern" aria-hidden="true">
-    <img src="CE WALL LOGOS.png" alt="" class="site-pattern-img">
-  </div>
-
-  <!-- Grain Overlay -->
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- Scroll Progress Bar -->
-  <div class="scroll-progress" aria-hidden="true"></div>
-
-  <!-- ============ NAVIGATION ============ -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <div class="nav-pill" aria-label="Primary">
-        <div class="nav-pill-group nav-pill-left">
-          <a href="#work" class="nav-pill-link">Work</a>
-          <a href="#services" class="nav-pill-link">Services</a>
-        </div>
-        <a href="#hero" class="nav-pill-slot" aria-label="CREATEXODUS — back to top">
-          <img src="CE LOGO LANDING PAGE.png" alt="CREATEXODUS" class="nav-pill-logo">
-        </a>
-        <div class="nav-pill-group nav-pill-right">
-          <a href="#about" class="nav-pill-link">About</a>
-          <a href="#contact" class="nav-pill-link">Contact</a>
-        </div>
-      </div>
-
-      <button class="nav-toggle" aria-label="Menu">
-        <span></span><span></span>
-      </button>
+  <!-- ============ NAV TAB ============ -->
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="nav-group nav-group--l">
+      <a href="#about" class="nav-link">About</a>
+      <a href="work.html" class="nav-link">Work</a>
+      <a href="#services" class="nav-link">Services</a>
     </div>
+    <a href="#top" class="nav-logo" aria-label="Matias Mena — CREATEXODUS, back to top">
+      <img src="assets/logo-mark.png" alt="CREATEXODUS">
+    </a>
+    <div class="nav-group nav-group--r">
+      <a href="#partners" class="nav-link">Partners</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <button type="button" class="nav-link" data-book-open>Book</button>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle menu"></button>
   </nav>
 
-  <!-- Full-Screen Menu Overlay -->
-  <div id="mobile-menu">
-    <div class="mobile-inner">
-      <a href="#work" class="mobile-link">Portfolio</a>
-      <a href="#services" class="mobile-link">Services</a>
-      <a href="#about" class="mobile-link">About</a>
-      <a href="#contact" class="mobile-link">Contact</a>
-      <a href="#contact" class="btn btn-glass mobile-cta">Discuss a Project</a>
-    </div>
-  </div>
+  <main class="page" id="top">
 
-  <!-- ============ HERO ============ -->
-  <section id="hero">
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="WORK/web/mercedes-recap-v4.mp4" type="video/mp4">
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-fade"></div>
-
-    <div class="hero-inner">
-      <img src="CE LOGO LANDING PAGE.png" alt="CREATEXODUS" class="hero-landing-img">
-      <div class="hero-ctas">
-        <button type="button" class="btn btn-lit hero-cta" data-book-open>
-          <span>Book</span>
-        </button>
-        <a href="#work" class="btn btn-glass hero-cta">
-          <span>Portfolio</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-corner hc-bl">
-      <span class="hc-small">Santa Barbara, CA</span>
-    </div>
-    <div class="hero-corner hc-br">
-      <span class="hc-small">Multimedia Agency</span>
-    </div>
-
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      <span class="scroll-text">SCROLL</span>
-    </div>
-  </section>
-
-  <!-- ============ CLIENT LOGO MARQUEE ============ -->
-  <section id="logo-marquee">
-    <div class="marquee-track">
-      <div class="marquee-inner">
-        <img src="assets/logos/ferrari.png" alt="Ferrari" class="marquee-logo">
-        <img src="assets/logos/porsche-white.png" alt="Porsche" class="marquee-logo">
-        <img src="assets/logos/mercedes-white-new.png" alt="Mercedes-Benz" class="marquee-logo">
-        <img src="assets/logos/cactusjack.svg" alt="Cactus Jack" class="marquee-logo">
-        <img src="assets/logos/celsius.png" alt="Celsius" class="marquee-logo">
-        <img src="assets/logos/youngla-white.png" alt="YoungLA" class="marquee-logo">
-        <img src="assets/logos/newbalance-white-new.png" alt="New Balance" class="marquee-logo">
-        <img src="assets/logos/ag1-white-new.png" alt="AG1" class="marquee-logo">
-        <img src="assets/logos/kollective-white-new.png" alt="Kollective" class="marquee-logo">
-        <img src="assets/logos/bounce-white-new.png" alt="Bounce Sports" class="marquee-logo">
-        <img src="assets/logos/taos-white-new.png" alt="Taos Footwear" class="marquee-logo">
-        <!-- duplicate for seamless loop -->
-        <img src="assets/logos/ferrari.png" alt="Ferrari" class="marquee-logo">
-        <img src="assets/logos/porsche-white.png" alt="Porsche" class="marquee-logo">
-        <img src="assets/logos/mercedes-white-new.png" alt="Mercedes-Benz" class="marquee-logo">
-        <img src="assets/logos/cactusjack.svg" alt="Cactus Jack" class="marquee-logo">
-        <img src="assets/logos/celsius.png" alt="Celsius" class="marquee-logo">
-        <img src="assets/logos/youngla-white.png" alt="YoungLA" class="marquee-logo">
-        <img src="assets/logos/newbalance-white-new.png" alt="New Balance" class="marquee-logo">
-        <img src="assets/logos/ag1-white-new.png" alt="AG1" class="marquee-logo">
-        <img src="assets/logos/kollective-white-new.png" alt="Kollective" class="marquee-logo">
-        <img src="assets/logos/bounce-white-new.png" alt="Bounce Sports" class="marquee-logo">
-        <img src="assets/logos/taos-white-new.png" alt="Taos Footwear" class="marquee-logo">
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ STATS BAR ============ -->
-  <section id="stats">
-    <div class="container">
-      <div class="stats-row">
-        <div class="stat">
-          <span class="stat-num" data-count="17">0</span>
-          <span class="stat-suffix">+</span>
-          <span class="stat-label">Brands<br>Served</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num" data-count="21">0</span>
-          <span class="stat-suffix">+</span>
-          <span class="stat-label">Projects<br>Delivered</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num" data-count="6">0</span>
-          <span class="stat-suffix"></span>
-          <span class="stat-label">Core<br>Services</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num" data-count="100">0</span>
-          <span class="stat-suffix">%</span>
-          <span class="stat-label">Client<br>Satisfaction</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PORTFOLIO / WORK (Preview Cards + Filters) ============ -->
-  <section id="work">
-    <div class="container">
-      <div class="section-label"><span>01</span><span>SELECTED WORK</span></div>
-      <h2 class="section-headline">Portfolio</h2>
-
-      <!-- Category Filters -->
-      <div class="pf-filters" role="tablist">
-        <button class="pf-tab active" data-filter="all">All</button>
-        <button class="pf-tab" data-filter="videography">Videography</button>
-        <button class="pf-tab" data-filter="photography">Photography</button>
-        <button class="pf-tab" data-filter="editing">Editing</button>
-        <button class="pf-tab" data-filter="sound-design">Sound Design</button>
-        <button class="pf-tab" data-filter="graphic-design">Graphic Design</button>
-        <button class="pf-tab" data-filter="social-media">Social Media</button>
-        <button class="pf-tab" data-filter="long-form">Long Form</button>
-        <button class="pf-tab" data-filter="web-development">Web Dev</button>
+    <!-- ============ HERO ============ -->
+    <section class="card hero" id="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-bg-poster.jpg">
+          <source src="assets/hero-bg.mp4" type="video/mp4">
+        </video>
+        <div class="hero-tint"></div>
+        <div class="hero-grain"></div>
+        <div class="hero-vignette"></div>
+        <div class="hero-shade"></div>
       </div>
 
-      <!-- Preview Card Grid -->
-      <div class="pf-grid">
-
-        <!-- ===== COMMERCIAL ===== -->
-        <a href="WORK/ferrari.html" class="pf-card" data-cat="commercial" data-services="videography editing sound-design long-form">
-          <img class="pf-card-poster" src="assets/thumbs/ferrari-rev-4.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/ferrari-rev-4.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/ferrari.png" class="pf-card-logo" alt="Ferrari">
-          <span class="pf-card-name">Ferrari</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/porsche.html" class="pf-card" data-cat="commercial" data-services="editing long-form">
-          <img class="pf-card-poster" src="assets/thumbs/porsche-grand-opening.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/porsche-grand-opening.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/porsche-white.png" class="pf-card-logo" alt="Porsche">
-          <span class="pf-card-name">Porsche</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/mercedes-benz.html" class="pf-card" data-cat="commercial" data-services="editing sound-design social-media">
-          <img class="pf-card-poster" src="assets/thumbs/mercedes-recap-v4.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/mercedes-recap-v4.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/mercedes-white-new.png" class="pf-card-logo pf-card-logo-wide" alt="Mercedes-Benz">
-          <span class="pf-card-name">Mercedes-Benz</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/toyota.html" class="pf-card" data-cat="commercial" data-services="sound-design">
-          <img class="pf-card-poster" src="assets/thumbs/toyota-spec.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/toyota-spec.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/toyota-white.png" class="pf-card-logo" alt="Toyota">
-          <span class="pf-card-name">Toyota</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/youngla.html" class="pf-card" data-cat="commercial" data-services="sound-design">
-          <img class="pf-card-poster" src="assets/thumbs/youngla-sfx-site.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/youngla-sfx-site.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/youngla-white.png" class="pf-card-logo" alt="YoungLA">
-          <span class="pf-card-name">YoungLA</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/new-balance.html" class="pf-card" data-cat="commercial" data-services="sound-design">
-          <img class="pf-card-poster" src="assets/thumbs/new-balance-final.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/new-balance-final.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/newbalance-white-new.png" class="pf-card-logo pf-card-logo-wide" alt="New Balance">
-          <span class="pf-card-name">New Balance</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/ag1.html" class="pf-card" data-cat="commercial" data-services="videography">
-          <img class="pf-card-poster" src="assets/thumbs/terra-oceana-her-2.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/terra-oceana-her-2.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/ag1-white-new.png" class="pf-card-logo" alt="AG1">
-          <span class="pf-card-name">AG1</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/celsius.html" class="pf-card" data-cat="commercial" data-services="videography editing long-form">
-          <img class="pf-card-poster" src="assets/thumbs/celsius-jake-shane-bts.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/celsius-jake-shane-bts.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/celsius.png" class="pf-card-logo" alt="Celsius">
-          <span class="pf-card-name">Celsius</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/bounce-sports.html" class="pf-card" data-cat="commercial" data-services="editing social-media">
-          <img class="pf-card-poster" src="assets/thumbs/bounce-highlight.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/bounce-highlight.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/bounce-white-new.png" class="pf-card-logo" alt="Bounce Sports">
-          <span class="pf-card-name">Bounce Sports</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/left-coast.html" class="pf-card" data-cat="commercial" data-services="videography social-media">
-          <img class="pf-card-poster" src="assets/thumbs/left-coast-team-highlight.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/left-coast-team-highlight.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">LEFT COAST</span>
-          <span class="pf-card-name">Left Coast Basketball</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/taos-footwear.html" class="pf-card" data-cat="commercial" data-services="editing">
-          <img class="pf-card-poster" src="assets/thumbs/taos-big-time.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/taos-big-time.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/taos-white-new.png" class="pf-card-logo" alt="Taos Footwear">
-          <span class="pf-card-name">Taos Footwear</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/mirrorless-apparel.html" class="pf-card" data-cat="commercial" data-services="videography editing sound-design social-media">
-          <img class="pf-card-poster" src="assets/thumbs/mirrorless-running.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/mirrorless-running.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/mirrorless-white.png" class="pf-card-logo" alt="Mirrorless Apparel">
-          <span class="pf-card-name">Mirrorless Apparel</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/aoa.html" class="pf-card" data-cat="photography" data-services="photography">
-          <img class="pf-card-media" src="AOA TOURNAMENT/AOA 2025-219.jpg" alt="AOA" loading="lazy">
-          <div class="pf-card-overlay"></div>
-          <img src="AOA LOGO.png" class="pf-card-logo pf-card-logo-lg" alt="AOA">
-          <span class="pf-card-name">AOA Tournament</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/bebsters.html" class="pf-card" data-cat="commercial" data-services="social-media">
-          <img class="pf-card-poster" src="assets/thumbs/bebsters-volleyball.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/bebsters-volleyball.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">BEBSTERS</span>
-          <span class="pf-card-name">Bebsters Beach Bash</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <!-- ===== MUSIC ===== -->
-        <a href="WORK/cactus-jack.html" class="pf-card" data-cat="music" data-services="photography long-form">
-          <img class="pf-card-poster" src="assets/thumbs/bts-hell-yeah-draft1.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/bts-hell-yeah-draft1.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/cactusjack.svg" class="pf-card-logo" alt="Cactus Jack">
-          <span class="pf-card-name">Cactus Jack</span>
-          <span class="pf-card-category">Music</span>
-        </a>
-
-        <a href="WORK/kollective.html" class="pf-card" data-cat="creators" data-services="editing videography">
-          <img class="pf-card-poster" src="assets/thumbs/kollective-annas-introduction-v3.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/kollective-annas-introduction-v3.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/kollective-white-new.png" class="pf-card-logo" alt="Kollective">
-          <span class="pf-card-name">Kollective</span>
-          <span class="pf-card-category">Creator</span>
-        </a>
-
-        <a href="WORK/interscope.html" class="pf-card" data-cat="music" data-services="sound-design">
-          <img class="pf-card-poster" src="assets/thumbs/interscope-2pac.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/interscope-2pac.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="INTERSCOPE LOGO.png" class="pf-card-logo pf-card-logo-lg" alt="Interscope">
-          <span class="pf-card-name">Interscope</span>
-          <span class="pf-card-category">Music</span>
-        </a>
-
-        <a href="WORK/opium.html" class="pf-card" data-cat="photography" data-services="photography">
-          <img class="pf-card-media" src="images/opium/DESTROY-LONELY---BL-COLLECTION_05.png" alt="Opium" loading="lazy">
-          <div class="pf-card-overlay"></div>
-          <img src="Opium logo.png" class="pf-card-logo pf-card-logo-lg" alt="Opium">
-          <span class="pf-card-name">Opium</span>
-          <span class="pf-card-category">Music</span>
-        </a>
-
-        <a href="WORK/neffect.html" class="pf-card" data-cat="music" data-services="videography editing">
-          <img class="pf-card-poster" src="assets/thumbs/final-n-effect.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/final-n-effect.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/neffect-white.png" class="pf-card-logo" alt="NEFFECT">
-          <span class="pf-card-name">NEFFECT</span>
-          <span class="pf-card-category">Music</span>
-        </a>
-
-        <a href="WORK/tamed-psychotic.html" class="pf-card" data-cat="commercial" data-services="sound-design">
-          <img class="pf-card-poster" src="assets/thumbs/clip-1-tamed.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/clip-1-tamed.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="TAMED LOGO.png" class="pf-card-logo pf-card-logo-lg" alt="Tamed Psychotic">
-          <span class="pf-card-name">Tamed Psychotic</span>
-          <span class="pf-card-category">Commercial</span>
-        </a>
-
-        <a href="WORK/richamiri.html" class="pf-card" data-cat="photography" data-services="photography">
-          <img class="pf-card-media" src="images/richamiri/Richamirii BTS-19.jpg" alt="Rich Amiri" loading="lazy">
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">RICH AMIRI</span>
-          <span class="pf-card-name">Rich Amiri</span>
-          <span class="pf-card-category">Music</span>
-        </a>
-
-        <!-- ===== CREATORS ===== -->
-        <a href="WORK/cody-wilder.html" class="pf-card" data-cat="creators" data-services="sound-design long-form">
-          <img class="pf-card-poster" src="assets/thumbs/cody-wilder-dune.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/cody-wilder-dune.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">CODY WILDER</span>
-          <span class="pf-card-name">Cody Wilder</span>
-          <span class="pf-card-category">Creator</span>
-        </a>
-
-        <a href="WORK/john-sakaguchi.html" class="pf-card" data-cat="creators" data-services="">
-          <img class="pf-card-poster" src="assets/thumbs/j-sakaguchi-final.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/j-sakaguchi-final.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">JOHN SAKAGUCHI</span>
-          <span class="pf-card-name">John Sakaguchi</span>
-          <span class="pf-card-category">Creator</span>
-        </a>
-
-        <a href="WORK/the-menas.html" class="pf-card" data-cat="creators" data-services="videography editing long-form">
-          <img class="pf-card-poster" src="assets/thumbs/the-menas.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/the-menas.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">THE MENA'S</span>
-          <span class="pf-card-name">The Mena's</span>
-          <span class="pf-card-category">Creator</span>
-        </a>
-
-        <!-- ===== EVENTS & EDUCATION ===== -->
-        <a href="WORK/westmont-college.html" class="pf-card" data-cat="events" data-services="videography social-media long-form">
-          <img class="pf-card-poster" src="assets/thumbs/westmont-christmas.jpg" alt="" loading="lazy"><video class="pf-card-media" muted loop playsinline preload="auto"  data-src="WORK/web/westmont-christmas.mp4"></video>
-          <div class="pf-card-overlay"></div>
-          <img src="assets/logos/westmont-white.png" class="pf-card-logo pf-card-logo-wide" alt="Westmont College" style="filter: brightness(0) invert(1)">
-          <span class="pf-card-name">Westmont College</span>
-          <span class="pf-card-category">Education</span>
-        </a>
-
-        <a href="WORK/passion-conferences.html" class="pf-card" data-cat="photography" data-services="photography">
-          <img class="pf-card-media" src="PASSION/passion fixed.jpg" alt="Passion Conferences" loading="lazy">
-          <div class="pf-card-overlay"></div>
-          <img src="PASSION LOGO.png" class="pf-card-logo" alt="Passion">
-          <span class="pf-card-name">Passion Conferences</span>
-          <span class="pf-card-category">Events</span>
-        </a>
-
-        <!-- ===== REAL ESTATE ===== -->
-        <a href="WORK/751-san-ysidro.html" class="pf-card" data-cat="real-estate" data-services="photography">
-          <img class="pf-card-media" src="REAL-ESTATE/751-san-ysidro/751 San Ysidro Rd Photos V2-40.jpg" alt="751 San Ysidro Rd" loading="lazy">
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">751 SAN YSIDRO</span>
-          <span class="pf-card-name">751 San Ysidro Rd</span>
-          <span class="pf-card-category">Real Estate</span>
-        </a>
-
-        <a href="WORK/amys-home.html" class="pf-card" data-cat="real-estate" data-services="photography">
-          <img class="pf-card-media" src="REAL-ESTATE/amy-home/AMY HOUSE FOOTHILL-38.jpg" alt="Amy's Home" loading="lazy">
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">AMY'S HOME</span>
-          <span class="pf-card-name">Amy's Home</span>
-          <span class="pf-card-category">Real Estate</span>
-        </a>
-
-        <!-- ===== GRAPHIC DESIGN ===== -->
-        <a href="WORK/de-la-cruz.html" class="pf-card" data-cat="graphic-design" data-services="graphic-design">
-          <img class="pf-card-media" src="assets/thumbs/de-la-cruz.jpg" alt="De La Cruz" loading="lazy">
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">DE LA CRUZ</span>
-          <span class="pf-card-name">De La Cruz</span>
-          <span class="pf-card-category">Graphic Design</span>
-        </a>
-
-        <!-- ===== WEBSITES ===== -->
-        <a href="https://exodushills.com" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://www.exodushills.com/" scrolling="no" tabindex="-1" loading="lazy" title="Exodus Hills"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center" src="assets/logos/web-exodushills.png" alt="Exodus Hills" loading="lazy" style="max-width:84%;max-height:34%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">EXODUS HILLS</span>
-          <span class="pf-card-name">Exodus Hills</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://sentivillas.com" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://sentivillas.com/" scrolling="no" tabindex="-1" loading="lazy" title="Senti Villas"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center" src="assets/logos/web-sentivillas.png" alt="Senti Villas" loading="lazy" style="max-width:60%;max-height:64%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">SENTI VILLAS</span>
-          <span class="pf-card-name">Senti Villas</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://ridgelineproductions.com" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://ridgelineproductions.com/" scrolling="no" tabindex="-1" loading="lazy" title="Ridgeline Productions"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center" src="assets/logos/web-ridgeline.png" alt="Ridgeline Productions" loading="lazy" style="max-width:66%;max-height:32%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">RIDGELINE PRODUCTIONS</span>
-          <span class="pf-card-name">Ridgeline Productions</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://massageclubsb.com" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://massageclubsb.com/" scrolling="no" tabindex="-1" loading="lazy" title="Massage Club SB"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center" src="assets/logos/web-massageclub.png" alt="Massage Club SB" loading="lazy" style="max-width:74%;max-height:80%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">MASSAGE CLUB SB</span>
-          <span class="pf-card-name">Massage Club SB</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://my-fathers-business.vercel.app" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://my-fathers-business.vercel.app/" scrolling="no" tabindex="-1" loading="lazy" title="My Father's Business"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center" src="assets/logos/web-myfathers.png" alt="My Father's Business" loading="lazy" style="max-width:90%;max-height:88%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-badge">Demo</span>
-          <span class="pf-card-logo-text">MY FATHER'S BUSINESS</span>
-          <span class="pf-card-name">My Father's Business</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://bread-of-life-sourdough.vercel.app" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://bread-of-life-sourdough.vercel.app/" scrolling="no" tabindex="-1" loading="lazy" title="Bread of Life Sourdough"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <span class="pf-card-logo-word">Bread of Life<br>Sourdough</span>
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-badge">Demo</span>
-          <span class="pf-card-logo-text">BREAD OF LIFE</span>
-          <span class="pf-card-name">Bread of Life Sourdough</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://adamo-site.vercel.app" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://adamo-site.vercel.app/" scrolling="no" tabindex="-1" loading="lazy" title="Adamó"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center is-invert" src="assets/logos/web-adamo.png" alt="Adamó" loading="lazy" style="max-width:60%;max-height:32%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-badge">Demo</span>
-          <span class="pf-card-logo-text">ADAMÓ</span>
-          <span class="pf-card-name">Adamó</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://good-land-wine-shop.vercel.app" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://good-land-wine-shop.vercel.app/" scrolling="no" tabindex="-1" loading="lazy" title="Good Land Wine Shop"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center" src="assets/logos/web-goodland.png" alt="Good Land Wine Shop" loading="lazy" style="max-width:46%;max-height:48%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-badge">Demo</span>
-          <span class="pf-card-logo-text">GOOD LAND</span>
-          <span class="pf-card-name">Good Land Wine Shop</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://little-king-coffee.vercel.app" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://little-king-coffee.vercel.app/" scrolling="no" tabindex="-1" loading="lazy" title="Little King Coffee"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center" src="assets/logos/web-littleking.png" alt="Little King Coffee" loading="lazy" style="max-width:62%;max-height:36%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-badge">Demo</span>
-          <span class="pf-card-logo-text">LITTLE KING</span>
-          <span class="pf-card-name">Little King Coffee</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://delacruztour.com" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://delacruztour.com/" scrolling="no" tabindex="-1" loading="lazy" title="De La Cruz Tour"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center is-invert" src="assets/logos/web-delacruz.png" alt="De La Cruz Tour" loading="lazy" style="max-width:82%;max-height:58%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">DE LA CRUZ TOUR</span>
-          <span class="pf-card-name">De La Cruz Tour</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
-        <a href="https://morethanadream.us" target="_blank" rel="noopener noreferrer" class="pf-card pf-card-website" data-cat="websites" data-services="web-development">
-          <div class="pf-card-iframe-wrap">
-            <iframe class="pf-card-iframe" data-src="https://morethanadream.us/" scrolling="no" tabindex="-1" loading="lazy" title="More Than A Dream"></iframe>
-            <div class="pf-card-iframe-fallback">
-              <img class="pf-card-logo-center" src="assets/logos/web-morethanadream.png" alt="More Than A Dream" loading="lazy" style="max-width:76%;max-height:58%">
-            </div>
-          </div>
-          <div class="pf-card-overlay"></div>
-          <span class="pf-card-logo-text">MORE THAN A DREAM</span>
-          <span class="pf-card-name">More Than A Dream</span>
-          <span class="pf-card-category">Website</span>
-        </a>
-
+      <div class="hero-line">
+        <span class="hero-name hero-reveal">MATIAS MENA</span>
+        <span class="hero-rule hero-reveal" aria-hidden="true"></span>
+        <span class="hero-title hero-reveal">
+          <span class="serif">Founder &amp; Creative Director</span>
+          <img src="assets/logo-mark.png" alt="" class="hero-mark" aria-hidden="true">
+          <span class="sans">CREATEXODUS</span>
+        </span>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ SERVICES ============ -->
-  <section id="services">
-    <div class="container">
-      <div class="section-label"><span>02</span><span>SERVICES</span></div>
-      <h2 class="section-headline">What we do</h2>
-      <p class="svc-intro">Jump straight to the work — every discipline links to that section of the portfolio.</p>
-    </div>
-
-    <div class="container">
-      <div class="cat-grid">
-        <button type="button" class="cat-card" data-filter="videography">
-          <div class="cat-card-media">
-            <img class="cat-card-poster" src="assets/thumbs/ferrari-rev-4.jpg" alt="">
-            <video class="cat-card-video" preload="none" loop muted playsinline>
-              <source data-src="WORK/web/ferrari-rev-4.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="cat-card-overlay">
-            <span class="cat-card-num">01</span>
-            <h3 class="cat-card-title">Videography</h3>
-            <p class="cat-card-desc">Cinematic production for brands &amp; campaigns</p>
-          </div>
-        </button>
-
-        <button type="button" class="cat-card" data-filter="photography">
-          <div class="cat-card-media">
-            <img class="cat-card-poster" src="assets/thumbs/bts-hell-yeah-draft1.jpg" alt="">
-            <video class="cat-card-video" preload="none" loop muted playsinline>
-              <source data-src="WORK/web/bts-hell-yeah-draft1.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="cat-card-overlay">
-            <span class="cat-card-num">02</span>
-            <h3 class="cat-card-title">Photography</h3>
-            <p class="cat-card-desc">Editorial &amp; commercial stills</p>
-          </div>
-        </button>
-
-        <button type="button" class="cat-card" data-filter="editing">
-          <div class="cat-card-media">
-            <img class="cat-card-poster" src="assets/thumbs/taos-big-time.jpg" alt="">
-            <video class="cat-card-video" preload="none" loop muted playsinline>
-              <source data-src="WORK/web/taos-big-time.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="cat-card-overlay">
-            <span class="cat-card-num">03</span>
-            <h3 class="cat-card-title">Editing</h3>
-            <p class="cat-card-desc">Color grading &amp; post-production</p>
-          </div>
-        </button>
-
-        <button type="button" class="cat-card" data-filter="sound-design">
-          <div class="cat-card-media">
-            <img class="cat-card-poster" src="assets/thumbs/interscope-2pac.jpg" alt="">
-            <video class="cat-card-video" preload="none" loop muted playsinline>
-              <source data-src="WORK/web/interscope-2pac.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="cat-card-overlay">
-            <span class="cat-card-num">04</span>
-            <h3 class="cat-card-title">Sound Design</h3>
-            <p class="cat-card-desc">Mixing, sonic branding &amp; audio</p>
-          </div>
-        </button>
-
-        <button type="button" class="cat-card cat-card--gfx" data-filter="graphic-design">
-          <div class="cat-card-media">
-            <img class="cat-card-poster" src="assets/thumbs/de-la-cruz.jpg" alt="De La Cruz — graphic design preview">
-          </div>
-          <div class="cat-card-overlay">
-            <span class="cat-card-num">05</span>
-            <h3 class="cat-card-title">Graphic Design</h3>
-            <p class="cat-card-desc">Logos, apparel, flyers &amp; identity</p>
-          </div>
-        </button>
-
-        <button type="button" class="cat-card cat-card--web" data-filter="web-development">
-          <div class="cat-card-media">
-            <img class="cat-card-poster" src="assets/thumbs/exodushills.jpg" alt="Exodus Hills — website preview">
-          </div>
-          <div class="cat-card-overlay">
-            <span class="cat-card-num">06</span>
-            <h3 class="cat-card-title">Web Development</h3>
-            <p class="cat-card-desc">Custom-built sites, launched in-house</p>
-          </div>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ LOCATION (Interactive Globe) ============ -->
-  <section id="location">
-    <div class="container">
-      <div class="section-label"><span>03</span><span>LOCATION</span></div>
-      <h2 class="section-headline">Location</h2>
-      <div class="globe-wrap">
-        <canvas id="globe-canvas"></canvas>
-        <div class="globe-label">
-          <span class="globe-city">Santa Barbara, CA</span>
-          <span class="globe-country">USA</span>
+      <div class="hero-foot">
+        <p class="hero-bio">Filmmaker and creative director behind CREATEXODUS, a Santa Barbara multimedia studio producing film, photography, sound design and web for the world's most ambitious brands</p>
+        <div class="hero-meta">
+          <span>&copy;<span data-year>2026</span></span>
+          <span>Santa Barbara, CA</span>
+          <span data-clock>--:-- --</span>
         </div>
       </div>
-      <div class="location-details-row">
-        <div class="loc-item">
-          <span class="loc-label">Home Base</span>
-          <span class="loc-value">Santa Barbara, CA</span>
+    </section>
+
+    <!-- ============ INTRO + CLIENT INDEX + REEL ============ -->
+    <section class="card card--light intro" id="about-intro">
+      <div class="intro-statement">
+        <span class="eyebrow">( Intro )</span>
+        <p class="intro-text" data-fill>A Santa Barbara filmmaker and creative director producing film, photography, sound and web for brands people already know — from Ferrari showrooms to Formula 1 paddocks to backstage with Cactus Jack.</p>
+      </div>
+
+      <div class="client-index" data-index>
+        <div class="client-row"><span>Ferrari</span><small>( Automotive )</small></div><br>
+        <div class="client-row"><span>Mercedes-Benz</span><small>( Automotive )</small></div><br>
+        <div class="client-row"><span>Porsche</span><small>( Automotive )</small></div><br>
+        <div class="client-row"><span>Cactus Jack</span><small>( Music )</small></div><br>
+        <div class="client-row"><span>Interscope</span><small>( Music )</small></div><br>
+        <div class="client-row"><span>Celsius</span><small>( Beverage )</small></div><br>
+        <div class="client-row"><span>New Balance</span><small>( Apparel )</small></div><br>
+        <div class="client-row"><span>AG1</span><small>( Wellness )</small></div>
+      </div>
+
+      <div class="reel-wrap">
+        <div class="reel" data-reel>
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/thumbs/mercedes-recap-v4.jpg">
+            <source src="WORK/web/mercedes-recap-v4.mp4" type="video/mp4">
+          </video>
         </div>
-        <div class="loc-item">
-          <span class="loc-label">Email</span>
-          <a href="mailto:matias@createxodus.com" class="loc-value">matias@createxodus.com</a>
+      </div>
+
+      <!-- Partners -->
+      <div class="split" id="partners">
+        <div class="split-head">
+          <span class="eyebrow">Brands &amp;</span>
+          <h2 class="split-title">Notable Partners</h2>
+          <p class="prose">After years shooting for agencies, labels and dealerships, I have been lucky enough to work with some of the most recognizable names in automotive, music, apparel and wellness. Here are a few of my favorites.</p>
         </div>
-        <div class="loc-item">
-          <span class="loc-label">Follow</span>
-          <div class="social-row">
-            <a href="https://www.instagram.com/matiasxmena/" target="_blank" rel="noopener noreferrer" class="btn-circle btn-sm-circle" aria-label="Instagram"><span>IG</span></a>
+        <div class="logo-grid" data-rows>
+          <img src="assets/logos/ferrari.png" alt="Ferrari" class="tall">
+          <img src="assets/logos/porsche-white.png" alt="Porsche">
+          <img src="assets/logos/mercedes-white-new.png" alt="Mercedes-Benz">
+          <img src="assets/logos/cactusjack.svg" alt="Cactus Jack" class="tall">
+          <img src="assets/logos/celsius.png" alt="Celsius">
+          <img src="assets/logos/youngla-white.png" alt="YoungLA">
+          <img src="assets/logos/newbalance-white-new.png" alt="New Balance">
+          <img src="assets/logos/ag1-white-new.png" alt="AG1">
+          <img src="assets/logos/kollective-white-new.png" alt="Kollective">
+          <img src="assets/logos/bounce-white-new.png" alt="Bounce Sports">
+          <img src="assets/logos/taos-white-new.png" alt="Taos Footwear">
+          <img src="assets/logos/interscope-white.png" alt="Interscope Records" class="tall">
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="split" id="services">
+        <div class="split-head">
+          <span class="eyebrow">Disciplines &amp;</span>
+          <h2 class="split-title">What We Do</h2>
+          <p class="prose">Six disciplines under one roof at CREATEXODUS, so a campaign can be shot, cut, scored, designed and launched without leaving the studio. Most projects touch three or four of these at once.</p>
+        </div>
+        <div>
+          <div class="table" data-rows>
+            <div class="row"><span class="row-a">Videography</span><span class="row-b">Cinematic production for brands &amp; campaigns</span><span class="row-c">01</span></div>
+            <div class="row"><span class="row-a">Photography</span><span class="row-b">Editorial &amp; commercial stills</span><span class="row-c">02</span></div>
+            <div class="row"><span class="row-a">Editing</span><span class="row-b">Color grading &amp; post-production</span><span class="row-c">03</span></div>
+            <div class="row"><span class="row-a">Sound Design</span><span class="row-b">Mixing, sonic branding &amp; audio</span><span class="row-c">04</span></div>
+            <div class="row"><span class="row-a">Graphic Design</span><span class="row-b">Logos, apparel, flyers &amp; identity</span><span class="row-c">05</span></div>
+            <div class="row"><span class="row-a">Web Development</span><span class="row-b">Custom-built sites, launched in-house</span><span class="row-c">06</span></div>
+          </div>
+          <div class="cta-pill">
+            <span class="cta-pill-text">Have a project in mind?</span>
+            <button type="button" class="btn-dark" data-book-open>
+              Get in touch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="8" r="7"/><path d="M5.5 8h5M8.5 5.5L11 8l-2.5 2.5"/></svg>
+            </button>
           </div>
         </div>
-        <a href="mailto:matias@createxodus.com" class="btn btn-glass">
-          <span>Say Hello</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" stroke-width="1.5"/></svg>
+      </div>
+    </section>
+
+    <!-- ============ CASE STUDIES ============ -->
+    <section class="cases" id="work">
+
+      <!-- 01 Ferrari -->
+      <a href="WORK/ferrari.html" class="cs" style="--cs-tint:#dcc6a6">
+        <div class="cs-media"><img src="assets/thumbs/ferrari-rev-4.jpg" alt="" loading="lazy"><div class="cs-shade"></div></div>
+        <div class="cs-body">
+          <div class="cs-head">
+            <span class="cs-kicker"><img src="assets/logos/ferrari.png" alt="Ferrari" class="cs-logo cs-logo--tall">Esperienza</span>
+            <div class="cs-l1"><span class="cs-display">FERRARI</span></div>
+            <div class="cs-l2"><span class="cs-italic">REVEALED</span></div>
+          </div>
+          <div class="cs-meta">
+            <div><b>Client :</b><span>Ferrari</span></div>
+            <div><b>Role :</b><span>Videography</span></div>
+            <div><b>Year :</b><span>2025</span></div>
+          </div>
+          <p class="cs-desc">An invitation-only showroom experience in Dallas captured end to end — the arrivals, the reveal, and the details that make the prancing horse what it is. Shot, cut and scored in-house.</p>
+        </div>
+        <span class="cs-open"><span>View project</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
+      </a>
+
+      <!-- 02 Mercedes-Benz -->
+      <a href="WORK/mercedes-benz.html" class="cs cs--left" style="--cs-tint:#d6dee7">
+        <div class="cs-media"><img src="assets/thumbs/mercedes-recap-v4.jpg" alt="" loading="lazy"><div class="cs-shade"></div></div>
+        <div class="cs-body">
+          <div class="cs-head">
+            <span class="cs-kicker"><img src="assets/logos/mercedes-white-new.png" alt="Mercedes-Benz" class="cs-logo">Recap &amp; Editorial</span>
+            <div class="cs-l1"><span class="cs-display">MERCEDES</span></div>
+            <div class="cs-l2"><span class="cs-italic">BENZ</span></div>
+          </div>
+          <div class="cs-meta">
+            <div><b>Client :</b><span>Mercedes-Benz</span></div>
+            <div><b>Role :</b><span>Editing</span></div>
+            <div><b>Year :</b><span>2025</span></div>
+          </div>
+          <p class="cs-desc">Event recap, a Sharp Magazine editorial feature and the e-Sprinter launch — three deliverables from one dealership partnership, cut for broadcast, print and social.</p>
+        </div>
+        <span class="cs-open"><span>View project</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
+      </a>
+
+      <!-- 03 Cactus Jack -->
+      <a href="WORK/cactus-jack.html" class="cs" style="--cs-tint:#cdb07a">
+        <div class="cs-media"><img src="assets/thumbs/bts-hell-yeah-draft1.jpg" alt="" loading="lazy"><div class="cs-shade"></div></div>
+        <div class="cs-body">
+          <div class="cs-head">
+            <span class="cs-kicker"><img src="assets/logos/cactusjack.svg" alt="Cactus Jack" class="cs-logo cs-logo--tall">Behind the scenes</span>
+            <div class="cs-l1"><span class="cs-bold">HELL</span></div>
+            <div class="cs-l2"><span class="cs-display">YEAH</span></div>
+          </div>
+          <div class="cs-meta">
+            <div><b>Client :</b><span>Cactus Jack</span></div>
+            <div><b>Role :</b><span>BTS &amp; Stills</span></div>
+            <div><b>Year :</b><span>2024</span></div>
+          </div>
+          <p class="cs-desc">On set with Cactus Jack — stills and motion shot in the gaps between takes, delivered as a documentary cut and a full photo set.</p>
+        </div>
+        <span class="cs-open"><span>View project</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
+      </a>
+
+      <!-- 04 Celsius -->
+      <a href="WORK/celsius.html" class="cs cs--left" style="--cs-tint:#f1b48c">
+        <div class="cs-media"><img src="assets/thumbs/celsius-jake-shane-bts.jpg" alt="" loading="lazy"><div class="cs-shade"></div></div>
+        <div class="cs-body">
+          <div class="cs-head">
+            <span class="cs-kicker"><img src="assets/logos/celsius.png" alt="Celsius" class="cs-logo">Jake Shane &times;</span>
+            <div class="cs-l1"><span class="cs-display">CELSIUS</span></div>
+            <div class="cs-l2"><span class="cs-italic">BTS</span></div>
+          </div>
+          <div class="cs-meta">
+            <div><b>Client :</b><span>Celsius</span></div>
+            <div><b>Role :</b><span>Videography</span></div>
+            <div><b>Year :</b><span>2024</span></div>
+          </div>
+          <p class="cs-desc">Behind the scenes on the Jake Shane &times; Celsius shoot — run-and-gun coverage of the talent, the crew and the set, cut into a vertical-first edit.</p>
+        </div>
+        <span class="cs-open"><span>View project</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
+      </a>
+
+      <!-- 05 Interscope -->
+      <a href="WORK/interscope.html" class="cs" style="--cs-tint:#c0a9dc">
+        <div class="cs-media"><img src="assets/thumbs/interscope-2pac.jpg" alt="" loading="lazy"><div class="cs-shade"></div></div>
+        <div class="cs-body">
+          <div class="cs-head">
+            <span class="cs-kicker"><img src="assets/logos/interscope-white.png" alt="Interscope Records" class="cs-logo cs-logo--tall">Catalog campaign</span>
+            <div class="cs-l1"><span class="cs-italic">2PAC</span></div>
+            <div class="cs-l2"><span class="cs-display">INTERSCOPE</span></div>
+          </div>
+          <div class="cs-meta">
+            <div><b>Client :</b><span>Interscope</span></div>
+            <div><b>Role :</b><span>Sound &amp; Motion</span></div>
+            <div><b>Year :</b><span>2023</span></div>
+          </div>
+          <p class="cs-desc">Campaign content for Interscope Records' 2Pac catalog — archival-inspired motion pieces with original sound design, built for the label's social channels.</p>
+        </div>
+        <span class="cs-open"><span>View project</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
+      </a>
+
+      <!-- 06 AG1 -->
+      <a href="WORK/ag1.html" class="cs cs--left" style="--cs-tint:#b3dcc3">
+        <div class="cs-media"><img src="assets/thumbs/terra-oceana-her-2.jpg" alt="" loading="lazy"><div class="cs-shade"></div></div>
+        <div class="cs-body">
+          <div class="cs-head">
+            <span class="cs-kicker"><img src="assets/logos/ag1-white-new.png" alt="AG1" class="cs-logo">Spec commercial</span>
+            <div class="cs-l1"><span class="cs-display">AG1</span></div>
+            <div class="cs-l2"><span class="cs-italic">DAILY</span></div>
+          </div>
+          <div class="cs-meta">
+            <div><b>Client :</b><span>AG1</span></div>
+            <div><b>Role :</b><span>Videography</span></div>
+            <div><b>Year :</b><span>2024</span></div>
+          </div>
+          <p class="cs-desc">A self-initiated spec commercial for AG1 — shot on the Central Coast, colored and sound-designed in-house, built to broadcast spec.</p>
+        </div>
+        <span class="cs-open"><span>View project</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span>
+      </a>
+
+      <div class="cases-more">
+        <span class="cases-more-text">Six of forty projects</span>
+        <a href="work.html" class="btn-dark">View all work
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="8" r="7"/><path d="M5.5 8h5M8.5 5.5L11 8l-2.5 2.5"/></svg>
         </a>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ DISCOVERY CALL ============ -->
-  <section id="discovery">
-    <div class="container">
-      <div class="discovery-card">
-        <div class="section-label"><span>05</span><span>DISCOVERY CALL</span></div>
-        <h2 class="discovery-headline">Prefer to just talk it out?</h2>
-        <p class="discovery-sub">Grab a free 30-minute discovery call. We'll walk through your vision, ballpark the scope, and see if we're the right fit.</p>
-        <button type="button" class="btn btn-lit discovery-btn" id="discoveryCallBtn" data-calendly-url="https://calendly.com/matias-createxodus">
-          <span>Book a Call</span>
-        </button>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ CTA / CONTACT ============ -->
-  <section id="contact">
-    <div class="container">
-      <h2 class="cta-headline cta-center">Let's Create.</h2>
-
-      <form id="contact-form" class="glass-card" action="https://formspree.io/f/mpqygjgo" method="POST">
-        <div class="form-row">
-          <div class="form-field">
-            <label for="c-name">Name</label>
-            <input type="text" id="c-name" name="name" required placeholder="Your name">
-          </div>
-          <div class="form-field">
-            <label for="c-email">Email</label>
-            <input type="email" id="c-email" name="email" required placeholder="you@company.com">
-          </div>
+    <!-- ============ ABOUT + CONTACT ============ -->
+    <section class="card card--light" id="about" style="margin-top: var(--inset)">
+      <div class="split">
+        <div class="split-head">
+          <span class="eyebrow">About,</span>
+          <h2 class="split-title">Matias Mena</h2>
+          <p class="prose">I'm a filmmaker and creative director based in Santa Barbara, California, and the founder of CREATEXODUS — a premium creative studio specializing in high-end video production, photography, and creative direction for the world's most ambitious brands, from Ferrari showrooms and Formula 1 Grand Prix events to UFC campaigns and behind-the-scenes with Cactus Jack.</p>
         </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="c-type">Project Type</label>
-            <select id="c-type" name="type">
-              <option value="" disabled selected>Select a service</option>
-              <option>Videography</option>
-              <option>Photography</option>
-              <option>Video Editing</option>
-              <option>Sound Design</option>
-              <option>Creative Direction</option>
-              <option>Social Media Marketing</option>
-              <option>Full Campaign</option>
-            </select>
+        <div>
+          <div class="about-photo">
+            <img src="assets/matias.jpg" alt="Matias Mena — Founder of CREATEXODUS" loading="lazy">
           </div>
-          <div class="form-field">
-            <label for="c-budget">Budget</label>
-            <select id="c-budget" name="budget">
-              <option value="" disabled selected>Select a range</option>
-              <option>Under $1,000</option>
-              <option>$1,000 — $5,000</option>
-              <option>$5,000 — $10,000</option>
-              <option>$10,000 — $25,000</option>
-              <option>$25,000+</option>
-            </select>
+          <div class="about-facts" data-rows>
+            <div class="row"><span class="row-a">Studio</span><span class="row-c">CREATEXODUS</span></div>
+            <div class="row"><span class="row-a">Role</span><span class="row-c">Founder &amp; Creative Director</span></div>
+            <div class="row"><span class="row-a">Home Base</span><span class="row-c">Santa Barbara, CA</span></div>
+            <a class="row" href="mailto:matias@createxodus.com"><span class="row-a">Email</span><span class="row-c">matias@createxodus.com</span></a>
+            <a class="row" href="https://www.instagram.com/matiasxmena/" target="_blank" rel="noopener noreferrer"><span class="row-a">Instagram</span><span class="row-c">@matiasxmena <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></span></a>
           </div>
-        </div>
-        <div class="form-field">
-          <label for="c-msg">Message</label>
-          <textarea id="c-msg" name="message" rows="4" required placeholder="Tell us about your vision..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-glass btn-full">
-          <span>Send It</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H5M13 1V9" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- ============ ABOUT ============ -->
-  <section id="about">
-    <div class="container about-compact">
-      <div class="about-layout">
-        <div class="about-col-text">
-          <div class="section-label"><span>04</span><span>ABOUT</span></div>
-          <h2 class="section-headline">About</h2>
-          <p class="about-p">CREATEXODUS is a premium creative studio founded by Matias Mena, based in Santa Barbara, California. We specialize in high-end video production, photography, and creative direction for the world's most ambitious brands — from Ferrari showrooms to Formula 1 Grand Prix events, from UFC campaigns to behind-the-scenes with Cactus Jack.</p>
-        </div>
-        <div class="about-col-image">
-          <img src="assets/matias.jpg" alt="Matias Mena — Founder of CREATEXODUS" class="about-photo">
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer id="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-left">
-          <img src="CREATEXODUS LOGO FINAL.png" alt="CREATEXODUS" class="footer-logo" id="footer-logo">
-          <span class="footer-copy">&copy; 2026 CREATEXODUS. All rights reserved.</span>
+      <div class="split" id="contact">
+        <div class="split-head">
+          <span class="eyebrow">Get in touch,</span>
+          <h2 class="split-title">Let's Create</h2>
+          <p class="prose">I'm always open to new work. Whether you have a campaign that needs a crew, an event that needs a recap, or a brand that needs a site, send a note and I'll get back within a day.</p>
         </div>
-        <div class="footer-links">
-          <a href="#work">Portfolio</a>
-          <a href="#services">Services</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/matiasxmena/" target="_blank" rel="noopener noreferrer" class="btn-circle btn-sm-circle" aria-label="Instagram"><span>IG</span></a>
+        <div>
+          <form id="contact-form" class="form" action="https://formspree.io/f/mpqygjgo" method="POST">
+            <div class="form-row">
+              <div class="field"><label for="c-name">Name</label><input type="text" id="c-name" name="name" required placeholder="Your name"></div>
+              <div class="field"><label for="c-email">Email</label><input type="email" id="c-email" name="email" required placeholder="you@company.com"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="c-type">Project</label>
+                <select id="c-type" name="type" required>
+                  <option value="" disabled selected>Select a service</option>
+                  <option>Videography</option>
+                  <option>Photography</option>
+                  <option>Video Editing</option>
+                  <option>Sound Design</option>
+                  <option>Creative Direction</option>
+                  <option>Graphic Design</option>
+                  <option>Web Development</option>
+                  <option>Full Campaign</option>
+                </select>
+              </div>
+              <div class="field"><label for="c-budget">Budget</label>
+                <select id="c-budget" name="budget" required>
+                  <option value="" disabled selected>Select a range</option>
+                  <option>Under $5,000</option>
+                  <option>$5,000–$10,000</option>
+                  <option>$10,000–$25,000</option>
+                  <option>$25,000+</option>
+                </select>
+              </div>
+            </div>
+            <div class="field field--area"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="3" required placeholder="Tell us about your vision"></textarea></div>
+            <div class="form-foot">
+              <span class="form-note">Replies within 24 hours.</span>
+              <button type="submit" class="btn-dark"><span>Send it</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="8" r="7"/><path d="M5.5 8h5M8.5 5.5L11 8l-2.5 2.5"/></svg>
+              </button>
+            </div>
+          </form>
+          <div class="cta-pill">
+            <span class="cta-pill-text">Prefer to just talk it out?</span>
+            <button type="button" class="btn-dark" data-calendly-url="https://calendly.com/matias-createxodus">
+              Book a 30-min call
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="8" r="7"/><path d="M5.5 8h5M8.5 5.5L11 8l-2.5 2.5"/></svg>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="js/main.js"></script>
-  <script type="module">
-    try {
-      const createGlobe = (await import('https://cdn.jsdelivr.net/npm/cobe@0.6.3/+esm')).default;
-      const canvas = document.getElementById('globe-canvas');
-      if (canvas && createGlobe) {
-        let phi = 2.09;
-        let theta = 0.3;
-        let pointerDown = false;
-        let pointerX = 0;
-        let pointerY = 0;
-        let dragPhi = 0;
-        let dragTheta = 0;
-        let destroyGlobe = null;
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" id="footer">
+      <div class="footer-grid">
+        <div>
+          <a href="#top" class="footer-logo" aria-label="Back to top"><img src="assets/logo-mark.png" alt="CREATEXODUS"></a>
+          <span class="footer-name">Matias Mena</span>
+          <p class="footer-blurb">Matias Mena is the founder and creative director of CREATEXODUS, a Santa Barbara multimedia studio. Film, photography, sound design, graphic design and web development for brands that expect the work to look as good as the name on it.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/matiasxmena/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+            </a>
+            <a href="mailto:matias@createxodus.com" aria-label="Email">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 8l9 6 9-6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <span class="eyebrow">Pages</span>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="work.html">Work</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#partners">Partners</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <span class="eyebrow">Case Studies</span>
+            <ul>
+              <li><a href="WORK/ferrari.html">Ferrari</a></li>
+              <li><a href="WORK/mercedes-benz.html">Mercedes-Benz</a></li>
+              <li><a href="WORK/cactus-jack.html">Cactus Jack</a></li>
+              <li><a href="WORK/celsius.html">Celsius</a></li>
+              <li><a href="WORK/interscope.html">Interscope</a></li>
+              <li><a href="WORK/ag1.html">AG1</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="footer-bar-l"><span class="serif">Founder &amp; Creative Director</span><img src="assets/logo-mark.png" alt="" class="hero-mark" aria-hidden="true"><span>CREATEXODUS</span></div>
+        <div class="footer-bar-c">MATIAS MENA</div>
+        <div class="footer-bar-r"><span>&copy;<span data-year>2026</span> Santa Barbara, CA</span><span data-clock>--:-- --</span></div>
+      </div>
+    </footer>
 
-        canvas.addEventListener('pointerdown', (e) => {
-          pointerDown = true;
-          pointerX = e.clientX;
-          pointerY = e.clientY;
-          canvas.setPointerCapture(e.pointerId);
-        });
-
-        canvas.addEventListener('pointermove', (e) => {
-          if (pointerDown) {
-            dragPhi += (e.clientX - pointerX) / 150;
-            dragTheta += (e.clientY - pointerY) / 150;
-            dragTheta = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, dragTheta));
-            pointerX = e.clientX;
-            pointerY = e.clientY;
-          }
-        });
-
-        canvas.addEventListener('pointerup', () => { pointerDown = false; });
-        canvas.addEventListener('pointercancel', () => { pointerDown = false; });
-
-        function initGlobe() {
-          try {
-            if (destroyGlobe) destroyGlobe();
-
-            const size = canvas.offsetWidth;
-            if (size === 0) return;
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            const pixelSize = size * dpr;
-
-            canvas.width = pixelSize;
-            canvas.height = pixelSize;
-
-            const isMobile = size < 400;
-
-            destroyGlobe = createGlobe(canvas, {
-              devicePixelRatio: dpr,
-              width: pixelSize,
-              height: pixelSize,
-              phi: phi + dragPhi,
-              theta: theta + dragTheta,
-              dark: 1,
-              diffuse: 1.2,
-              mapSamples: isMobile ? 12000 : 16000,
-              mapBrightness: 6,
-              baseColor: [0.15, 0.18, 0.25],
-              markerColor: [0.72, 0.77, 0.82],
-              glowColor: [0.06, 0.08, 0.14],
-              markers: [
-                { location: [34.42, -119.70], size: 0.08 }
-              ],
-              onRender: (state) => {
-                if (!pointerDown) {
-                  phi += 0.003;
-                  dragTheta *= 0.95;
-                }
-                state.phi = phi + dragPhi;
-                state.theta = theta + dragTheta;
-              }
-            });
-          } catch(e) { /* WebGL not available — globe silently fails */ }
-        }
-
-        initGlobe();
-
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(initGlobe, 200);
-        });
-      }
-    } catch(e) { /* cobe CDN failed to load — globe section still shows text content */ }
-  </script>
+  </main>
 
   <!-- ============ BOOKING MODAL — Multi-step wizard ============ -->
   <div class="booking-modal" id="bookingModal" aria-hidden="true">
@@ -930,8 +451,8 @@
 
         <!-- Step 2: Contact -->
         <div class="booking-step" data-step="2">
-          <h2 class="bk-title">Tell us who<br>you are.</h2>
-          <p class="bk-sub">So we can get back to you.</p>
+          <h2 class="bk-title">Tell me who<br>you are.</h2>
+          <p class="bk-sub">So I can get back to you.</p>
           <div class="bk-fields">
             <div class="bk-card-field bk-stagger">
               <svg class="bk-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg>
@@ -958,7 +479,7 @@
         <!-- Step 3: Details -->
         <div class="booking-step" data-step="3">
           <h2 class="bk-title">The details.</h2>
-          <p class="bk-sub">Help us understand the scope of your project.</p>
+          <p class="bk-sub">Help me understand the scope of your project.</p>
           <div class="bk-fields">
             <div class="bk-card-field bk-stagger">
               <svg class="bk-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -969,8 +490,8 @@
               <select name="budget_range" id="bkBudget">
                 <option value="" disabled selected>Budget Range</option>
                 <option>Under $5,000</option>
-                <option>$5,000 – $10,000</option>
-                <option>$10,000 – $25,000</option>
+                <option>$5,000–$10,000</option>
+                <option>$10,000–$25,000</option>
                 <option>$25,000+</option>
               </select>
             </div>
@@ -993,17 +514,25 @@
         <div class="booking-step" data-step="4">
           <div class="bk-success">
             <div class="bk-success-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0b0b0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path class="bk-check-path" d="M4 12l6 6L20 6"/>
               </svg>
             </div>
-            <h2 class="bk-title">We're on it.</h2>
-            <p class="bk-sub">Expect to hear from us within 24 hours.<br>We can't wait to bring your vision to life.</p>
+            <h2 class="bk-title">I'm on it.</h2>
+            <p class="bk-sub">Expect to hear from me within 24 hours.<br>I can't wait to bring your vision to life.</p>
             <button type="button" class="bk-continue" id="bookingDone">Close</button>
           </div>
         </div>
       </form>
     </div>
   </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/glass.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
