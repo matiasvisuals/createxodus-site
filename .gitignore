@@ -44,3 +44,4 @@ assets/originals/
 
 # Password gate (removed)
 js/auth-guard.js
+.vercel
