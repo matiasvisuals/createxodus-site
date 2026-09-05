@@ -1025,5 +1025,4 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
   left: 0; right: 0; bottom: 0;
   height: 18vh;
 }
-.menu-open .nav { -webkit-backdrop-filter: none; backdrop-filter: none; }
 @media (min-width: 769px) { .menu-sheet { display: none; } }
