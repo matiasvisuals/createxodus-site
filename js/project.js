@@ -21,12 +21,7 @@
   /* ---- Nav tab (mobile toggle) ---- */
   var nav = document.getElementById('nav');
   var navToggle = document.getElementById('navToggle');
-  if (nav && navToggle) {
-    navToggle.addEventListener('click', function () { nav.classList.toggle('open'); });
-    document.addEventListener('click', function (e) {
-      if (!nav.contains(e.target)) nav.classList.remove('open');
-    });
-  }
+  // the phone menu is a separate sheet built by js/glass.js
 
   /* ---- Clock + year ---- */
   function tick() {

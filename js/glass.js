@@ -104,7 +104,47 @@
     window.addEventListener('resize', clipNav);
   }
 
-  /* ---- 4. Adaptive tint for the nav tab ---- */
+  /* ---- 4. Phone menu sheet: built from the tab's links, toggled with a class on <html> ---- */
+  var navForSheet = document.getElementById('nav');
+  if (navForSheet) {
+    var sheet = document.createElement('div');
+    sheet.className = 'menu-sheet';
+    sheet.setAttribute('aria-hidden', 'true');
+    var links = navForSheet.querySelectorAll('.nav-link');
+    var idx = 0;
+    links.forEach(function (l, i) {
+      var a = document.createElement('a');
+      a.href = l.getAttribute('href') || '#contact';
+      a.textContent = l.textContent.trim();
+      a.style.setProperty('--i', idx++);
+      if (l.hasAttribute('data-book-open')) a.setAttribute('data-book-open', '');
+      sheet.appendChild(a);
+      if (i === 2) { var rule = document.createElement('span'); rule.className = 'menu-sheet-rule'; sheet.appendChild(rule); }
+    });
+    var closeZone = document.createElement('div'); closeZone.className = 'menu-sheet-close'; sheet.appendChild(closeZone);
+    document.body.appendChild(sheet);
+
+    var htmlEl = document.documentElement;
+    var setOpen = function (open) {
+      htmlEl.classList.toggle('menu-open', open);
+      sheet.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    var toggle = document.getElementById('navToggle');
+    if (toggle) toggle.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!htmlEl.classList.contains('menu-open')); });
+    closeZone.addEventListener('click', function () { setOpen(false); });
+    sheet.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (!a) return;
+      setOpen(false);
+      if (a.hasAttribute('data-book-open')) { e.preventDefault(); var b = navForSheet.querySelector('[data-book-open]'); if (b) setTimeout(function () { b.click(); }, 350); }
+      // in-page anchors are handled by the page's own anchor logic (main.js / project.js)
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    window.__closeMenu = function () { setOpen(false); };
+  }
+
+  /* ---- 5. Adaptive tint for the nav tab ---- */
   var nav = document.getElementById('nav');
   if (nav) {
     var lightSel = '.card--light, .proj-media, .gfx-stack, .wk-section';

@@ -1311,7 +1311,7 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
 }
 .nav:hover { width: 820px; column-gap: clamp(28px, 4vw, 64px); }
 .nav-logo { min-width: max-content; }
-.nav:hover .nav-group, .nav.open .nav-group {
+.nav:hover .nav-group {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -1336,29 +1336,6 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
   .nav { width: 190px; height: 46px; padding-inline: calc(var(--nav-r) + 12px); transition: background 0.45s ease, color 0.45s ease, box-shadow 0.45s ease; }
   .nav:hover { width: 190px; }
   .nav:hover .nav-group { opacity: 0; visibility: hidden; }
-  .nav.open {
-    width: calc(100vw - 20px + 2 * var(--nav-r));
-    left: calc(10px - var(--nav-r));
-    right: auto;
-    margin-inline: 0;
-    height: auto;
-    grid-template-columns: 1fr;
-    row-gap: 14px;
-    padding: 0 var(--nav-r) 26px;
-    color: #fff;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%),
-      rgba(14,16,22,0.80);
-    -webkit-backdrop-filter: blur(24px) saturate(1.6);
-    backdrop-filter: blur(24px) saturate(1.6);
-    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.16);
-  }
-  .nav.open .nav-toggle { left: 0; right: 0; bottom: auto; height: 60px; }
-  .nav.open .nav-logo { order: -1; margin: 14px 0 10px; }
-  .nav.open .nav-logo img { filter: none; opacity: 1; }
-  .nav.open .nav-group { flex-direction: column; gap: 14px; padding: 0; justify-content: center; opacity: 1; visibility: visible; transition: opacity 0.45s ease 0.05s, transform 0.5s var(--ease), visibility 0s; }
-  .nav.open .nav-logo { min-width: 0; }
-  .nav.open .nav-link { font-size: 16px; color: #fff; text-shadow: none; padding: 6px 0; }
 }
 
 /* ---- Phones: keep the look, drop the per-frame blur work that makes menus stutter ---- */
@@ -1373,7 +1350,66 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
       rgba(20,22,28,0.34);
   }
   .nav { -webkit-backdrop-filter: blur(14px) saturate(1.5); backdrop-filter: blur(14px) saturate(1.5); }
-  .nav.open { -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); }
-  .nav.open .nav-group { transition: opacity 0.35s ease 0.04s, transform 0.4s var(--ease), visibility 0s; }
   .footer-bar { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 }
+
+/* ---- Phone menu: a separate full-screen glass sheet (opacity/transform only, like exodushills.com) ---- */
+.menu-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 990;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 90px 24px 40px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0.25) 100%),
+    rgba(12,14,20,0.70);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+}
+.menu-open .menu-sheet {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.5s ease, visibility 0s;
+}
+.menu-sheet a {
+  font-family: 'Inter', var(--sans);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #fff;
+  padding: 12px 8px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.55s var(--ease);
+  transition-delay: 0s;
+}
+.menu-open .menu-sheet a {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(0.06s + var(--i, 0) * 0.05s);
+}
+.menu-sheet-rule {
+  width: 44px;
+  height: 1px;
+  background: rgba(255,255,255,0.28);
+  margin: 10px 0 14px;
+  transform: scaleX(0);
+  transition: transform 0.6s var(--ease) 0.05s;
+}
+.menu-open .menu-sheet-rule { transform: scaleX(1); }
+.menu-sheet-close {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 18vh;
+}
+.menu-open .nav { -webkit-backdrop-filter: none; backdrop-filter: none; }
+@media (min-width: 769px) { .menu-sheet { display: none; } }

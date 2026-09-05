@@ -51,13 +51,8 @@
   /* ---- Nav tab (mobile toggle) ---- */
   var nav = document.getElementById('nav');
   var navToggle = document.getElementById('navToggle');
-  function closeNav() { if (nav) nav.classList.remove('open'); }
-  if (nav && navToggle) {
-    navToggle.addEventListener('click', function () { nav.classList.toggle('open'); });
-    document.addEventListener('click', function (e) {
-      if (!nav.contains(e.target)) closeNav();
-    });
-  }
+  function closeNav() { if (window.__closeMenu) window.__closeMenu(); }
+  // the phone menu is a separate sheet built by js/glass.js
 
   /* ---- Live clock (Pacific) + year ---- */
   function tick() {
