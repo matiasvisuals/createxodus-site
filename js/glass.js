@@ -121,6 +121,11 @@
     sheet.setAttribute('aria-hidden', 'true');
     var links = navForSheet.querySelectorAll('.nav-link');
     var idx = 0;
+    var home = document.createElement('a');
+    home.href = root + 'index.html';
+    home.textContent = 'Home';
+    home.style.setProperty('--i', idx++);
+    sheet.appendChild(home);
     links.forEach(function (l, i) {
       var a = document.createElement('a');
       a.href = l.getAttribute('href') || '#contact';
@@ -130,7 +135,8 @@
       sheet.appendChild(a);
       if (i === 2) { var rule = document.createElement('span'); rule.className = 'menu-sheet-rule'; sheet.appendChild(rule); }
     });
-    var closeZone = document.createElement('div'); closeZone.className = 'menu-sheet-close'; sheet.appendChild(closeZone);
+    var scrim = document.createElement('div'); scrim.className = 'menu-scrim';
+    document.body.appendChild(scrim);
     document.body.appendChild(sheet);
 
     var htmlEl = document.documentElement;
@@ -141,7 +147,7 @@
     };
     var toggle = document.getElementById('navToggle');
     if (toggle) toggle.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!htmlEl.classList.contains('menu-open')); });
-    closeZone.addEventListener('click', function () { setOpen(false); });
+    scrim.addEventListener('click', function () { setOpen(false); });
     sheet.addEventListener('click', function (e) {
       var a = e.target.closest('a');
       if (!a) return;
