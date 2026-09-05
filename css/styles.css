@@ -1362,8 +1362,8 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 90px 24px 40px;
+  gap: 4px;
+  padding: 96px 24px 40px;
   background:
     linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0.25) 100%),
     rgba(12,14,20,0.70);
@@ -1406,6 +1406,27 @@ a:focus-visible, button:focus-visible, .row:focus-visible {
   transition: transform 0.6s var(--ease) 0.05s;
 }
 .menu-open .menu-sheet-rule { transform: scaleX(1); }
+.menu-sheet::before {
+  content: '';
+  position: absolute;
+  top: 74px; left: 24px; right: 24px;
+  height: 1px;
+  background: rgba(255,255,255,0.16);
+  transform: scaleX(0);
+  transition: transform 0.7s var(--ease) 0.1s;
+}
+.menu-open .menu-sheet::before { transform: scaleX(1); }
+.menu-sheet::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 28px;
+  width: 1px; height: 56px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.7s var(--ease) 0.25s;
+}
+.menu-open .menu-sheet::after { transform: scaleY(1); }
 .menu-sheet-close {
   position: absolute;
   left: 0; right: 0; bottom: 0;

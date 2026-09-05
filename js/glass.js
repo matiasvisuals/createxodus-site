@@ -92,12 +92,27 @@
   /* ---- 3. Nav outline: one clip-path (shoulders + rounded bottom), resized live ---- */
   var navEl = document.getElementById('nav');
   if (navEl) {
+    var isWebKit = navigator.vendor === 'Apple Computer, Inc.';
     var clipNav = function () {
       var W = navEl.offsetWidth, H = navEl.offsetHeight;
       var r = Math.min(25, H / 2);
-      navEl.style.clipPath = "path('M0 0 H" + W + " A" + r + " " + r + " 0 0 0 " + (W - r) + " " + r +
-        " V" + (H - r) + " A" + r + " " + r + " 0 0 1 " + (W - 2 * r) + " " + H + " H" + (2 * r) +
-        " A" + r + " " + r + " 0 0 1 " + r + " " + (H - r) + " V" + r + " A" + r + " " + r + " 0 0 0 0 0 Z')";
+      var d = 'M0 0 H' + W + ' A' + r + ' ' + r + ' 0 0 0 ' + (W - r) + ' ' + r +
+        ' V' + (H - r) + ' A' + r + ' ' + r + ' 0 0 1 ' + (W - 2 * r) + ' ' + H + ' H' + (2 * r) +
+        ' A' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + (H - r) + ' V' + r + ' A' + r + ' ' + r + ' 0 0 0 0 0 Z';
+      if (isWebKit) {
+        // WebKit does not clip a backdrop-filtered layer with clip-path; a mask of the same shape does the job
+        var svg = "url(\"data:image/svg+xml;utf8," + encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 " + W + " " + H + "' width='" + W + "' height='" + H + "'><path d='" + d + "' fill='#000'/></svg>") + "\")";
+        navEl.style.webkitMaskImage = svg;
+        navEl.style.maskImage = svg;
+        navEl.style.webkitMaskSize = '100% 100%';
+        navEl.style.maskSize = '100% 100%';
+        navEl.style.webkitMaskRepeat = 'no-repeat';
+        navEl.style.maskRepeat = 'no-repeat';
+        navEl.style.webkitClipPath = 'none';
+        navEl.style.clipPath = 'none';
+      } else {
+        navEl.style.clipPath = "path('" + d + "')";
+      }
     };
     clipNav();
     if ('ResizeObserver' in window) new ResizeObserver(clipNav).observe(navEl);
